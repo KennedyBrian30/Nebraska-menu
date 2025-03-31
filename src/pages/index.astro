@@ -4,34 +4,6 @@ import Layout from "../layouts/Layout.astro";
 
 <Layout title="Club Nebraska Menu">
     <style>
-        .nav-item {
-            font-size: 64px;
-            font-weight: bold;
-            margin: 40px;
-            padding: 30px;
-            color: white;
-            display: block;
-            text-decoration: none;
-            transition: 0.3s;
-            font-family: 'Brush Script MT', cursive;
-            text-align: center;
-            position: relative;
-        }
-        .nav-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 120%;
-            height: 100%;
-            background: rgba(57, 109, 14, 0.8);
-            clip-path: polygon(5% 0%, 95% 0%, 100% 50%, 95% 100%, 5% 100%, 0% 50%);
-            z-index: -1;
-        }
-        .nav-item:hover::before {
-            background: rgba(21, 102, 71, 0.8);
-        }
         .menu {
             width: 100%;
             max-width: 1200px;
@@ -39,6 +11,57 @@ import Layout from "../layouts/Layout.astro";
             display: flex;
             flex-direction: column;
             align-items: center;
+            padding: 20px;
+        }
+
+        .nav-item {
+            font-size: 48px;
+            font-weight: bold;
+            margin: 20px;
+            padding: 20px;
+            color: white;
+            display: block;
+            text-decoration: none;
+            transition: 0.3s;
+            font-family: 'Brush Script MT', cursive;
+            text-align: center;
+            position: relative;
+            width: 80%;
+            max-width: 500px;
+        }
+
+        .nav-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 110%;
+            height: 100%;
+            background: rgba(57, 109, 14, 0.8);
+            clip-path: polygon(5% 0%, 95% 0%, 100% 50%, 95% 100%, 5% 100%, 0% 50%);
+            z-index: -1;
+        }
+
+        .nav-item:hover::before {
+            background: rgba(21, 102, 71, 0.8);
+        }
+
+        @media (max-width: 768px) {
+            .nav-item {
+                font-size: 32px;
+                margin: 15px;
+                padding: 15px;
+                width: 90%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-item {
+                font-size: 24px;
+                margin: 10px;
+                padding: 10px;
+            }
         }
     </style>
 
@@ -50,7 +73,6 @@ import Layout from "../layouts/Layout.astro";
         <a href="/specials" class="nav-item">Specials</a>
     </div>
 </Layout>
-
 
 
 
