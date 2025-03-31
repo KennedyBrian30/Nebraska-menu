@@ -1,203 +1,170 @@
+---
 import Layout from "../layouts/Layout.astro";
+---
 
-<style>
-/* General styles for responsiveness */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+<Layout title="Breakfast Menu" subtitle="Morning Delights">
+    <style>
+        .page-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: white;
+            padding: 50px 20px;
+            text-transform: uppercase;
+            background: url('/breakfast-bg.jpg') no-repeat center center;
+            background-size: cover;
+            position: relative;
+            width: 100%;
+        }
 
-body {
-    font-family: Arial, sans-serif;
-}
+        .page-title::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
 
-/* Responsive Page Title */
-.page-title {
-    text-align: center;
-    font-size: 2.5rem;
-    font-weight: bold;
-    color: white;
-    padding: 50px 20px;
-    text-transform: uppercase;
-    background: url('/breakfast-bg.jpg') no-repeat center center;
-    background-size: cover;
-    position: relative;
-}
+        .page-title span {
+            position: relative;
+            z-index: 2;
+        }
 
-.page-title::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 1;
-}
+        .section-header {
+            display: block;
+            text-align: center;
+            padding: 10px 20px;
+            color: white;
+            font-size: 2rem;
+            font-weight: bold;
+            background: rgba(57, 109, 14, 0.8);
+            margin: 20px auto;
+            width: fit-content;
+            border-radius: 10px;
+        }
 
-.page-title span {
-    position: relative;
-    z-index: 2;
-}
+        .image-row {
+            display: flex;
+            flex-wrap: nowrap;
+            gap: 10px;
+            width: 100%;
+            padding: 10px 0;
+            justify-content: center;
+        }
 
-/* Section Headers */
-.section-header {
-    display: block;
-    text-align: center;
-    padding: 10px 20px;
-    color: white;
-    font-size: 2.0rem;
-    font-weight: bold;
-    background: rgba(57, 109, 14, 0.8);
-    text-align: center;
-    margin: 20px auto;
-    width: 80%;
-    border-radius: 10px;
-}
+        .image-row img {
+            width: 33.33%; /* Equal width for 3 images to fit page */
+            height: auto; /* Maintains natural aspect ratio */
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
 
-/* Responsive Image Row */
-.image-row {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 20px;
-}
+        .image-row img:hover {
+            transform: scale(1.05);
+        }
 
-.image-row img {
-    width: 100%;
-    max-width: 300px;
-    height: auto;
-    border-radius: 8px;
-    transition: transform 0.3s ease;
-}
+        .menu-list {
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: white;
+            background: rgba(105, 87, 96, 0.8);
+            padding: 15px;
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+            border-radius: 10px;
+        }
 
-.image-row img:hover {
-    transform: scale(1.05);
-}
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 90%;
+            padding: 5px 0;
+            margin: 0 auto;
+        }
 
-/* Responsive Menu List */
-.menu-list {
-    text-align: center;
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: white;
-    background: rgba(105, 87, 96, 0.8);
-    padding: 15px;
-    margin-top: -5px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+        .full-breakfast {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+        }
 
-.menu-item {
-    display: flex;
-    justify-content: space-between;
-    width: 90%;
-    max-width: 400px;
-    padding: 5px 0;
-}
+        .full-breakfast img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            display: block;
+            transition: transform 0.3s ease;
+        }
 
-/* Responsive Full Breakfast Image */
-.full-breakfast img {
-    width: 100%;
-    max-width: 600px;
-    height: auto;
-    border-radius: 8px;
-    display: block;
-    margin-bottom: 10px;
-}
+        .full-breakfast img:hover {
+            transform: scale(1.05);
+        }
 
-.full-breakfast-details {
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: white;
-    background: rgba(124, 12, 68, 0.8);
-    padding: 15px;
-    text-align: center;
-}
+        .full-breakfast-details {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: white;
+            background: rgba(124, 12, 68, 0.8);
+            padding: 15px;
+            text-align: center;
+            width: 100%;
+            border-radius: 0 0 10px 10px;
+        }
+    </style>
 
-/* Responsive Dark Mode Toggle */
-.dark-mode {
-    background: #121212;
-    color: white;
-}
-
-/* Media Queries for Mobile Devices */
-@media (max-width: 768px) {
-    .page-title {
-        font-size: 2rem;
-        padding: 30px 10px;
-    }
-
-    .section-header {
-        font-size: 1.5rem;
-        width: 90%;
-    }
-
-    .menu-item {
-        flex-direction: column;
-        text-align: center;
-        width: 100%;
-    }
-}
-</style>
-
-<button id="darkModeToggle">Toggle Dark Mode</button>
-
-<Layout title="Breakfast Menu">
     <h1 class="page-title"><span>Breakfast Menu</span></h1>
 
     <h2 class="section-header">NEB Full Breakfast</h2>
     <div class="full-breakfast">
-        <img src="/full-breakfast.jpg" alt="Full Breakfast">
+        <img src="/full-breakfast.jpg" alt="Full Breakfast" loading="lazy">
         <div class="full-breakfast-details">
             <span>Full Breakfast - KSh 1000</span>
         </div>
     </div>
-    
+
     <h2 class="section-header">Teas/Coffees</h2>
     <div class="image-row">
-        <img src="/teas1.jpg" alt="Tea Image 1">
-        <img src="/teas2.jpg" alt="Tea Image 2">
-        <img src="/teas3.jpg" alt="Tea Image 3">
+        <img src="/teas1.jpg" alt="Tea Image 1" loading="lazy">
+        <img src="/teas2.jpg" alt="Tea Image 2" loading="lazy">
+        <img src="/teas3.jpg" alt="Tea Image 3" loading="lazy">
     </div>
     <div class="menu-list">
         <div class="menu-item"><span>English Tea</span> <span>KSh 150</span></div>
         <div class="menu-item"><span>Black Tea</span> <span>KSh 150</span></div>
         <div class="menu-item"><span>Coffee</span> <span>KSh 150</span></div>
+        <div class="menu-item"><span>Plain Milk</span> <span>KSh 150</span></div>
+        <div class="menu-item"><span>Hot Water</span> <span>KSh 150</span></div>
+        <div class="menu-item"><span>Lemon Tea</span> <span>KSh 150</span></div>
+        <div class="menu-item"><span>Chocolate</span> <span>KSh 150</span></div>
+        <div class="menu-item"><span>Nescafe</span> <span>KSh 150</span></div>
+        <div class="menu-item"><span>CLemon Tea</span> <span>KSh 150</span></div>
     </div>
-    
+
     <h2 class="section-header">Snacks</h2>
     <div class="image-row">
-        <img src="/snacks1.jpg" alt="Snack Image 1">
-        <img src="/snacks2.jpg" alt="Snack Image 2">
-        <img src="/snacks3.jpg" alt="Snack Image 3">
+        <img src="/snacks1.jpg" alt="Snack Image 1" loading="lazy">
+        <img src="/snacks2.jpg" alt="Snack Image 2" loading="lazy">
+        <img src="/snacks3.jpg" alt="Snack Image 3" loading="lazy">
     </div>
     <div class="menu-list">
         <div class="menu-item"><span>Mandazi</span> <span>KSh 200</span></div>
         <div class="menu-item"><span>Chapati</span> <span>KSh 200</span></div>
         <div class="menu-item"><span>Beans</span> <span>KSh 200</span></div>
+        <div class="menu-item"><span>Samosa</span> <span>KSh 200</span></div>
+        <div class="menu-item"><span>Sausage</span> <span>KSh 200</span></div>
+        <div class="menu-item"><span>Eggs</span> <span>KSh 200</span></div>
+        <div class="menu-item"><span>Sweet Potatoes</span> <span>KSh 200</span></div>
+        <div class="menu-item"><span>Nduma</span> <span>KSh 200</span></div>
+        <div class="menu-item"><span>Baked Potatoes</span> <span>KSh 200</span></div>
+    </div>
+    <div class="image-row">
+        <img src="/snacks4.jpg" alt="Snack Image 4" loading="lazy">
+        <img src="/snacks5.jpg" alt="Snack Image 5" loading="lazy">
+        <img src="/snacks6.jpg" alt="Snack Image 6" loading="lazy">
     </div>
 </Layout>
-
-<script>
-// Smooth scrolling effect for section headers
-const headers = document.querySelectorAll(".section-header");
-const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-        }
-    });
-}, { threshold: 0.1 });
-
-headers.forEach(header => observer.observe(header));
-
-// Dark mode toggle functionality
-const toggleButton = document.getElementById("darkModeToggle");
-toggleButton.addEventListener("click", () => {
-    document.body.classList.toggle("dark-mode");
-});
-</script>

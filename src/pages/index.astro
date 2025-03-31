@@ -2,32 +2,36 @@
 import Layout from "../layouts/Layout.astro";
 ---
 
-<Layout title="Club Nebraska Menu">
+<Layout title="Club Nebraska Menu" subtitle="Explore Our Culinary Delights">
     <style>
-        .menu {
+        .menu-container {
             width: 100%;
             max-width: 1200px;
-            margin: auto;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            margin: 0 auto;
             padding: 20px;
+            text-align: center;
+        }
+
+        .menu {
+            display: grid;
+            gap: 20px;
+            padding: 20px;
+            justify-items: center;
         }
 
         .nav-item {
-            font-size: 48px;
+            font-size: 2.5rem;
             font-weight: bold;
-            margin: 20px;
             padding: 20px;
             color: white;
-            display: block;
             text-decoration: none;
-            transition: 0.3s;
+            transition: transform 0.3s ease;
             font-family: 'Brush Script MT', cursive;
-            text-align: center;
             position: relative;
             width: 80%;
             max-width: 500px;
+            background: rgba(82, 24, 22, 0.8); /* Matches layout's nav-item */
+            border-radius: 10px;
         }
 
         .nav-item::before {
@@ -38,42 +42,101 @@ import Layout from "../layouts/Layout.astro";
             transform: translateX(-50%);
             width: 110%;
             height: 100%;
-            background: rgba(57, 109, 14, 0.8);
+            background: rgba(57, 109, 14, 0.8); /* Consistent with other pages */
             clip-path: polygon(5% 0%, 95% 0%, 100% 50%, 95% 100%, 5% 100%, 0% 50%);
             z-index: -1;
+            transition: background 0.3s ease;
+        }
+
+        .nav-item:hover {
+            transform: scale(1.05);
         }
 
         .nav-item:hover::before {
-            background: rgba(21, 102, 71, 0.8);
+            background: rgba(21, 102, 71, 0.8); /* Matches layout's hover */
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 2rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: white;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 10px;
         }
 
         @media (max-width: 768px) {
             .nav-item {
-                font-size: 32px;
-                margin: 15px;
+                font-size: 2rem;
                 padding: 15px;
                 width: 90%;
             }
         }
 
         @media (max-width: 480px) {
+            .menu {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.9);
+                z-index: 999;
+                padding-top: 60px;
+            }
+
+            .menu.active {
+                display: grid;
+            }
+
             .nav-item {
-                font-size: 24px;
-                margin: 10px;
+                font-size: 1.5rem;
                 padding: 10px;
+                width: 90%;
+            }
+
+            .hamburger {
+                display: block;
             }
         }
     </style>
 
-    <div class="menu">
-        <a href="/breakfast" class="nav-item">Breakfast</a>
-        <a href="/meals" class="nav-item">Meals</a>
-        <a href="/drinks" class="nav-item">Drinks</a>
-        <a href="/desserts" class="nav-item">Desserts</a>
-        <a href="/specials" class="nav-item">Specials</a>
+    <div class="menu-container">
+        <button class="hamburger" aria-label="Toggle Menu">☰</button>
+        <div class="menu" id="menu">
+            <a href="/breakfast" class="nav-item" aria-label="Breakfast Menu">Breakfast</a>
+            <a href="/meals" class="nav-item" aria-label="Meals Menu">Meals</a>
+            <a href="/drinks" class="nav-item" aria-label="Drinks Menu">Drinks</a>
+            <a href="/desserts" class="nav-item" aria-label="Desserts Menu">Desserts</a>
+            <a href="/specials" class="nav-item" aria-label="Specials Menu">Specials</a>
+        </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const menu = document.getElementById('menu');
+
+            hamburger.addEventListener('click', () => {
+                menu.classList.toggle('active');
+            });
+
+            // Close menu when clicking a nav item on mobile
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.addEventListener('click', () => {
+                    if (window.innerWidth <= 480) {
+                        menu.classList.remove('active');
+                    }
+                });
+            });
+        });
+    </script>
 </Layout>
-
-
-
-

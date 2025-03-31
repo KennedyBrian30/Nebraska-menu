@@ -2,183 +2,229 @@
 import Layout from "../layouts/Layout.astro";
 ---
 
-<style>
-/* General styling for menu sections */
-.menu-section {
-    text-align: center;
-    margin-bottom: 20px;
-    padding: 10px;
-}
+<Layout title="Meals Menu" subtitle="Savor Our Main Courses">
+    <style>
+        /* Menu section styling */
+        .menu-section {
+            text-align: center;
+            margin-bottom: 20px;
+            padding: 10px;
+        }
 
-/* Responsive layout for main dishes */
-.main-dishes {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-}
+        /* Main dishes grid */
+        .main-dishes {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* Two items per row */
+            gap: 10px; /* Reduced from 20px */
+            justify-items: center;
+            padding: 0 10px;
+        }
 
-.main-dish {
-    width: 100%;
-    max-width: 300px;
-    position: relative;
-    text-align: center;
-}
+        .main-dish {
+            position: relative;
+            width: 100%;
+            max-width: 400px; /* Increased from 300px for bigger screens */
+        }
 
-.main-dish img {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
-    display: block;
-}
+        .main-dish img {
+            width: 100%;
+            height: 250px; /* Increased from 200px for bigger screens */
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+            object-fit: cover;
+        }
 
-.main-dish span {
-    display: block;
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: white;
-    background: rgba(0, 0, 0, 0.7);
-    padding: 8px;
-    margin-top: -5px;
-}
+        .main-dish img:hover {
+            transform: scale(1.05);
+        }
 
-/* Overlay styling for pricing */
-.price-overlay {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: rgba(0, 0, 0, 0.7);
-    color: white;
-    padding: 8px;
-    font-size: 1rem;
-    font-weight: bold;
-    text-align: center;
-    border-radius: 8px;
-}
+        .main-dish span {
+            display: block;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: white;
+            background: rgba(82, 24, 22, 0.8);
+            padding: 8px;
+            border-radius: 0 0 10px 10px;
+        }
 
-/* Responsive styling for dishes and accompaniments */
-.dishes-accompaniments {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-}
+        .price-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(21, 102, 71, 0.8);
+            color: white;
+            padding: 10px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 10px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
 
-.more-dishes, .accompaniments {
-    width: 100%;
-    max-width: 400px;
-    text-align: center;
-    font-size: 1.2rem;
-    font-weight: bold;
-    padding: 15px;
-    border-radius: 8px;
-}
+        .main-dish:hover .price-overlay {
+            opacity: 1;
+        }
 
-.more-dishes {
-    background: rgba(85, 107, 47, 0.8);
-}
+        /* Dishes and accompaniments */
+        .dishes-accompaniments {
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* Side by side */
+            gap: 20px;
+            padding: 0 10px;
+            margin: 20px 0;
+        }
 
-.accompaniments {
-    background: rgba(105, 87, 96, 0.8);
-}
+        .more-dishes, .accompaniments {
+            width: 100%;
+            max-width: 400px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            padding: 15px;
+            border-radius: 10px;
+            color: white;
+            margin: 0 auto;
+        }
 
-.image-row {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
-    margin-top: 20px;
-}
+        .more-dishes {
+            background: rgba(57, 109, 14, 0.8);
+        }
 
-.image-row img {
-    width: 100%;
-    max-width: 200px;
-    height: auto;
-    border-radius: 8px;
-}
+        .accompaniments {
+            background: rgba(105, 87, 96, 0.8);
+        }
 
-/* Responsive typography */
-h2, h3 {
-    font-size: 1.5rem;
-    text-align: center;
-    color: white;
-    background: linear-gradient(90deg, rgba(255, 140, 0, 0.8), rgba(255, 69, 0, 0.8));
-    padding: 10px;
-    border-radius: 8px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-}
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px 0;
+        }
 
-@media (min-width: 768px) {
-    .main-dishes {
-        flex-direction: row;
-    }
-    .main-dish {
-        width: 45%;
-    }
-    .dishes-accompaniments {
-        flex-direction: row;
-        justify-content: space-between;
-    }
-    .more-dishes, .accompaniments {
-        flex: 1;
-    }
-    .image-row img {
-        width: 30%;
-    }
-}
-</style>
+        /* Image row */
+        .image-row {
+            display: flex;
+            flex-wrap: nowrap;
+            gap:Fails to parse: 15px; /* Increased from 10px for better spacing */
+            width: 100%;
+            padding: 20px 0; /* Increased padding for aesthetics */
+            justify-content: center;
+        }
 
-<Layout title="Nebraska Menu" subtitle="Meals Menu">
-    <h2>Main Dishes</h2>
-    <div class="main-dishes">
-        <div class="main-dish">
-            <img src="/chicken.jpg" alt="Chicken">
-            <span>Chicken</span>
-            <div class="price-overlay">1/4KG - KSh 400<br>1/2KG - KSh 750<br>1KG - KSh 1400</div>
+        .image-row img {
+            width: 30%; /* Slightly smaller than 33.33% for better fit */
+            height: auto; /* Maintains aspect ratio */
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+            max-height: 300px; /* Caps height for aesthetics */
+        }
+
+        .image-row img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Section headers */
+        h2 {
+            font-size: 2rem;
+            color: rgb(4, 128, 52);
+            font-weight: bold;
+            padding: 10px 20px;
+            margin: 20px auto;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 10px;
+            width: fit-content;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .main-dishes {
+                grid-template-columns: 1fr; /* One item per row */
+            }
+
+            .main-dish img {
+                height: 200px; /* Adjusted for tablets */
+            }
+
+            .dishes-accompaniments {
+                grid-template-columns: 1fr; /* Stacked on smaller screens */
+            }
+
+            .image-row img {
+                width: 30%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-dish img {
+                height: 150px; /* Smaller for mobile */
+            }
+        }
+    </style>
+
+    <section class="menu-section">
+        <h2>Main Dishes</h2>
+        <div class="main-dishes">
+            <div class="main-dish">
+                <img src="/chicken.jpg" alt="Chicken" loading="lazy">
+                <span>Chicken</span>
+                <div class="price-overlay">1/4KG - KSh 400<br>1/2KG - KSh 750<br>1KG - KSh 1400</div>
+            </div>
+            <div class="main-dish">
+                <img src="/beef.jpg" alt="Beef" loading="lazy">
+                <span>Beef</span>
+                <div class="price-overlay">1/4KG - KSh 400<br>1/2KG - KSh 750<br>1KG - KSh 1400</div>
+            </div>
+            <div class="main-dish">
+                <img src="/goat.jpg" alt="Goat Meat" loading="lazy">
+                <span>Goat Meat</span>
+                <div class="price-overlay">1/4KG - KSh 400<br>1/2KG - KSh 750<br>1KG - KSh 1400</div>
+            </div>
+            <div class="main-dish">
+                <img src="/pork.jpg" alt="Pork" loading="lazy">
+                <span>Pork</span>
+                <div class="price-overlay">1/4KG - KSh 400<br>1/2KG - KSh 750<br>1KG - KSh 1400</div>
+            </div>
         </div>
-        <div class="main-dish">
-            <img src="/beef.jpg" alt="Beef">
-            <span>Beef</span>
-            <div class="price-overlay">1/4KG - KSh 400<br>1/2KG - KSh 750<br>1KG - KSh 1400</div>
+    </section>
+
+    <section class="menu-section">
+        <div class="dishes-accompaniments">
+            <div class="more-dishes">
+                <h3>More Dishes</h3>
+                <div class="menu-item"><span>Fish</span> <span>KSh 500</span></div>
+                <div class="menu-item"><span>Liver</span> <span>KSh 500</span></div>
+                <div class="menu-item"><span>Aliya</span> <span>KSh 500</span></div>
+                <div class="menu-item"><span>Aruda</span> <span>KSh 500</span></div>
+                <div class="menu-item"><span>Dek</span> <span>KSh 500</span></div>
+                <div class="menu-item"><span>Omena</span> <span>KSh 500</span></div>
+            </div>
+            <div class="accompaniments">
+                <h3>Accompaniments</h3>
+                <div class="menu-item"><span>Ugali (White)</span> <span>KSh 100</span></div>
+                <div class="menu-item"><span>Ugali (Brown)</span> <span>KSh 100</span></div>
+                <div class="menu-item"><span>Rice</span> <span>KSh 100</span></div>
+                <div class="menu-item"><span>Chapati</span> <span>KSh 100</span></div>
+                <div class="menu-item"><span>Fries/Chips</span> <span>KSh 100</span></div>
+                <div class="menu-item"><span>Matoke</span> <span>KSh 100</span></div>
+                <div class="menu-item"><span>Vegetables</span> <span>KSh 100</span></div>
+            </div>
         </div>
-        <div class="main-dish">
-            <img src="/goat.jpg" alt="Goat Meat">
-            <span>Goat Meat</span>
-            <div class="price-overlay">1/4KG - KSh 400<br>1/2KG - KSh 750<br>1KG - KSh 1400</div>
+    </section>
+
+    <section class="menu-section">
+        <h2>Gallery</h2>
+        <div class="image-row">
+            <img src="/accomp1.jpg" alt="Accompaniment Image 1" loading="lazy">
+            <img src="/accomp2.jpg" alt="Accompaniment Image 2" loading="lazy">
+            <img src="/accomp3.jpg" alt="Accompaniment Image 3" loading="lazy">
         </div>
-        <div class="main-dish">
-            <img src="/pork.jpg" alt="Pork">
-            <span>Pork</span>
-            <div class="price-overlay">1/4KG - KSh 400<br>1/2KG - KSh 750<br>1KG - KSh 1400</div>
-        </div>
-    </div>
-    
-    <div class="dishes-accompaniments">
-        <div class="more-dishes">
-            <h3>More Dishes</h3>
-            <span>Fish - KSh 500</span><br>
-            <span>Liver - KSh 500</span><br>
-            <span>Aliya - KSh 500</span><br>
-            <span>Aruda - KSh 500</span><br>
-            <span>Dek - KSh 500</span><br>
-            <span>Omena - KSh 500</span>
-        </div>
-        <div class="accompaniments">
-            <h3>Accompaniments</h3>
-            <span>Ugali (White) - KSh 100</span><br>
-            <span>Ugali (Brown) - KSh 100</span><br>
-            <span>Rice - KSh 100</span><br>
-            <span>Chapati - KSh 100</span><br>
-            <span>Fries/Chips - KSh 100</span><br>
-            <span>Matoke - KSh 100</span><br>
-            <span>Vegetables - KSh 100</span>
-        </div>
-    </div>
-    
-    <div class="image-row">
-        <img src="/accomp1.jpg" alt="Accompaniment 1">
-        <img src="/accomp2.jpg" alt="Accompaniment 2">
-        <img src="/accomp3.jpg" alt="Accompaniment 3">
-    </div>
+    </section>
 </Layout>

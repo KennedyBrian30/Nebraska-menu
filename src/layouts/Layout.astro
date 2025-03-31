@@ -1,5 +1,5 @@
 ---
-const { title, subtitle } = Astro.props;
+const { title = 'Nebraska Menu', subtitle = 'Welcome to Our Offerings' } = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -9,6 +9,14 @@ const { title, subtitle } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{title}</title>
     <style>
+        :root {
+            --primary-color: #0B3D02;
+            --nav-bg: rgba(0, 0, 0, 0.8);
+            --nav-item-bg: rgb(82, 24, 22);
+            --nav-hover-bg: rgb(21, 102, 71);
+            --welcome-color: rgb(4, 128, 52);
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -16,12 +24,10 @@ const { title, subtitle } = Astro.props;
         }
 
         body {
-            font-family: 'Papyrus', fantasy;
+            font-family: 'Papyrus', fantasy, sans-serif;
             text-align: center;
-            background: url('/background-image.jpg') no-repeat center center fixed;
+            background: #f0f0f0 url('/background-image.jpg') no-repeat center center fixed;
             background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -29,53 +35,52 @@ const { title, subtitle } = Astro.props;
 
         @media (max-width: 768px) {
             body {
-                background-size: contain; /* Adjust for mobile */
-                background-attachment: scroll; /* Prevent cropping */
+                background-size: contain;
+                background-attachment: scroll;
             }
         }
 
         h1 {
-            font-size: 80px;
-            color: #0B3D02;
+            font-size: 3rem;
+            color: var(--primary-color);
             margin-top: 20px;
         }
 
         h2 {
-            font-size: 50px;
+            font-size: 2rem;
             color: rgb(21, 50, 132);
             margin-top: 10px;
         }
 
-        /* Inline Navigation */
+        /* Navigation Bar */
         .nav {
             display: flex;
             justify-content: center;
             align-items: center;
-            flex-wrap: wrap; /* Ensure responsiveness */
+            flex-wrap: wrap;
             gap: 15px;
             padding: 10px 20px;
-            background: rgba(0, 0, 0, 0.8);
+            background: var(--nav-bg);
             border-radius: 10px;
             margin: 10px auto;
             width: fit-content;
         }
 
         .nav-item {
-            font-size: 20px;
+            font-size: 1.2rem;
             font-weight: bold;
             padding: 10px 15px;
             color: white;
             text-decoration: none;
-            background: rgb(82, 24, 22);
+            background: var(--nav-item-bg);
             border-radius: 10px;
-            transition: 0.3s;
+            transition: background 0.3s ease;
         }
 
         .nav-item:hover {
-            background: rgb(21, 102, 71);
+            background: var(--nav-hover-bg);
         }
 
-        /* Responsive navigation for mobile */
         @media (max-width: 600px) {
             .nav {
                 flex-direction: column;
@@ -95,12 +100,17 @@ const { title, subtitle } = Astro.props;
             height: auto;
             margin: 20px auto;
             display: block;
-            border-radius: 15px;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .menu-image:hover {
+            transform: scale(1.05);
         }
 
         .welcome-text {
-            font-size: 50px;
-            color: rgb(4, 128, 52);
+            font-size: 2rem;
+            color: var(--welcome-color);
             font-weight: bold;
             margin-top: 20px;
             font-family: 'Brush Script MT', cursive;
@@ -118,17 +128,17 @@ const { title, subtitle } = Astro.props;
 <body>
     <h1>Nebraska Menu</h1>
 
-    <nav class="nav">
-        <a href="/breakfast" class="nav-item">Breakfast</a>
-        <a href="/meals" class="nav-item">Meals</a>
-        <a href="/drinks" class="nav-item">Drinks</a>
-        <a href="/desserts" class="nav-item">Desserts</a>
-        <a href="/specials" class="nav-item">Specials</a>
+    <nav class="nav" aria-label="Main navigation">
+        <a href="/breakfast" class="nav-item" aria-label="Breakfast Menu">Breakfast</a>
+        <a href="/meals" class="nav-item" aria-label="Meals Menu">Meals</a>
+        <a href="/drinks" class="nav-item" aria-label="Drinks Menu">Drinks</a>
+        <a href="/desserts" class="nav-item" aria-label="Desserts Menu">Desserts</a>
+        <a href="/specials" class="nav-item" aria-label="Specials Menu">Specials</a>
     </nav>
 
     <h2>{subtitle}</h2>
 
-    <img src="/menu-image.jpg" alt="Delicious Menu" class="menu-image">
+    <img src="/menu-image.jpg" alt="Delicious Menu" class="menu-image" loading="lazy">
     <p class="welcome-text">Welcome to Club Nebraska!</p>
 
     <div class="content">
@@ -137,11 +147,9 @@ const { title, subtitle } = Astro.props;
     
     <footer>
         <p>Contact Us: 0700-123-456 | Email: info@clubnebraska.com</p>
-        <p>&copy; 2025 Club Nebraska. All Rights Reserved.</p>
+        <p>© 2025 Club Nebraska. All Rights Reserved.</p>
     </footer>
 </body>
 </html>
-
-
 
 
