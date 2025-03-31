@@ -14,39 +14,54 @@ const { title, subtitle } = Astro.props;
             padding: 0;
             box-sizing: border-box;
         }
+
         body {
             font-family: 'Papyrus', fantasy;
             text-align: center;
             background: url('/background-image.jpg') no-repeat center center fixed;
             background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
-            min-height: 100vh;
         }
+
+        @media (max-width: 768px) {
+            body {
+                background-size: contain; /* Adjust for mobile */
+                background-attachment: scroll; /* Prevent cropping */
+            }
+        }
+
         h1 {
             font-size: 80px;
             color: #0B3D02;
             margin-top: 20px;
         }
+
         h2 {
             font-size: 50px;
             color: rgb(21, 50, 132);
             margin-top: 10px;
         }
-        /* Inline Navigation - moved closer to title */
+
+        /* Inline Navigation */
         .nav {
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 30px;
+            flex-wrap: wrap; /* Ensure responsiveness */
+            gap: 15px;
             padding: 10px 20px;
             background: rgba(0, 0, 0, 0.8);
             border-radius: 10px;
             margin: 10px auto;
             width: fit-content;
         }
+
         .nav-item {
-            font-size: 24px;
+            font-size: 20px;
             font-weight: bold;
             padding: 10px 15px;
             color: white;
@@ -55,21 +70,34 @@ const { title, subtitle } = Astro.props;
             border-radius: 10px;
             transition: 0.3s;
         }
+
         .nav-item:hover {
             background: rgb(21, 102, 71);
         }
+
+        /* Responsive navigation for mobile */
+        @media (max-width: 600px) {
+            .nav {
+                flex-direction: column;
+                width: 90%;
+            }
+        }
+
         .content {
             flex-grow: 1;
             margin-top: 20px;
             width: 100%;
         }
+
         .menu-image {
             width: 100%;
-            max-width: 1500px;
-            margin: 20px auto 0 auto;
+            max-width: 1200px;
+            height: auto;
+            margin: 20px auto;
             display: block;
             border-radius: 15px;
         }
+
         .welcome-text {
             font-size: 50px;
             color: rgb(4, 128, 52);
@@ -77,6 +105,7 @@ const { title, subtitle } = Astro.props;
             margin-top: 20px;
             font-family: 'Brush Script MT', cursive;
         }
+
         footer {
             margin-top: auto;
             padding: 20px;
@@ -89,7 +118,6 @@ const { title, subtitle } = Astro.props;
 <body>
     <h1>Nebraska Menu</h1>
 
-    <!-- Inline Navigation moved closer -->
     <nav class="nav">
         <a href="/breakfast" class="nav-item">Breakfast</a>
         <a href="/meals" class="nav-item">Meals</a>
