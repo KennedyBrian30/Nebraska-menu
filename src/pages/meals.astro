@@ -1,0 +1,160 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<style>
+/* General styling for menu sections */
+.menu-section {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Styling for main dishes section */
+.main-dishes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.main-dish {
+    width: 48%;
+    position: relative;
+    text-align: center;
+}
+
+.main-dish img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    display: block;
+}
+
+.main-dish span {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 10px;
+    margin-top: -5px;
+}
+
+/* Overlay styling for pricing */
+.price-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 10px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 8px;
+}
+
+/* Styling for side-by-side More Dishes and Accompaniments */
+.dishes-accompaniments {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.more-dishes, .accompaniments {
+    flex: 1;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.more-dishes {
+    background: rgba(85, 107, 47, 0.8);
+}
+
+.accompaniments {
+    background: rgba(105, 87, 96, 0.8);
+}
+
+.image-row {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.image-row img {
+    width: 30%;
+    height: auto;
+    border-radius: 8px;
+}
+
+/* Styling for h3 headings */
+h3 {
+    font-size: 2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: white;
+    background: linear-gradient(90deg, rgba(255, 140, 0, 0.8), rgba(255, 69, 0, 0.8));
+    padding: 10px;
+    border-radius: 8px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+</style>
+
+<Layout title="Nebraska Menu" subtitle="Meals Menu">
+    <h2>Main Dishes</h2>
+    <div class="main-dishes">
+        <div class="main-dish">
+            <img src="/chicken.jpg" alt="Chicken">
+            <span>Chicken</span>
+            <div class="price-overlay">1/4KG - KSh 400<br>1/2KG - KSh 750<br>1KG - KSh 1400</div>
+        </div>
+        <div class="main-dish">
+            <img src="/beef.jpg" alt="Beef">
+            <span>Beef</span>
+            <div class="price-overlay">1/4KG - KSh 400<br>1/2KG - KSh 750<br>1KG - KSh 1400</div>
+        </div>
+        <div class="main-dish">
+            <img src="/goat.jpg" alt="Goat Meat">
+            <span>Goat Meat</span>
+            <div class="price-overlay">1/4KG - KSh 400<br>1/2KG - KSh 750<br>1KG - KSh 1400</div>
+        </div>
+        <div class="main-dish">
+            <img src="/pork.jpg" alt="Pork">
+            <span>Pork</span>
+            <div class="price-overlay">1/4KG - KSh 400<br>1/2KG - KSh 750<br>1KG - KSh 1400</div>
+        </div>
+    </div>
+    
+    <div class="dishes-accompaniments">
+        <div class="more-dishes">
+            <h3>More Dishes</h3>
+            <span>Fish - KSh 500</span><br>
+            <span>Liver - KSh 500</span><br>
+            <span>Aliya - KSh 500</span><br>
+            <span>Aruda - KSh 500</span><br>
+            <span>Dek - KSh 500</span><br>
+            <span>Omena - KSh 500</span>
+        </div>
+        <div class="accompaniments">
+            <h3>Accompaniments</h3>
+            <span>Ugali (White) - KSh 100</span><br>
+            <span>Ugali (Brown) - KSh 100</span><br>
+            <span>Rice - KSh 100</span><br>
+            <span>Chapati - KSh 100</span><br>
+            <span>Fries/Chips - KSh 100</span><br>
+            <span>Matoke - KSh 100</span><br>
+            <span>Vegetables - KSh 100</span>
+        </div>
+    </div>
+    
+    <div class="image-row">
+        <img src="/accomp1.jpg" alt="Accompaniment 1">
+        <img src="/accomp2.jpg" alt="Accompaniment 2">
+        <img src="/accomp3.jpg" alt="Accompaniment 3">
+    </div>
+</Layout>

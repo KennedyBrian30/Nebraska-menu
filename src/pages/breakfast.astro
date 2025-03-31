@@ -1,0 +1,190 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<style>
+/* Style for the main page title */
+.page-title {
+    text-align: center;
+    font-size: 3.0rem;
+    font-weight: bold;
+    color: white;
+    padding: 50px 20px;
+    text-transform: uppercase;
+    background: url('/breakfast-bg.jpg') no-repeat center center;
+    background-size: cover;
+    position: relative;
+}
+
+.page-title::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+.page-title span {
+    position: relative;
+    z-index: 2;
+}
+
+/* Styled headers for sections */
+.section-header {
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    color: white;
+    font-size: 3.0rem;
+    font-weight: bold;
+    background: rgba(57, 109, 14, 0.8);
+    clip-path: polygon(5% 0%, 95% 0%, 100% 50%, 95% 100%, 5% 100%, 0% 50%);
+    text-align: left;
+    margin: 20px 0;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.section-header.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Image row styling */
+.image-row {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.image-row img {
+    width: 30%;
+    height: auto;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+.image-row img:hover {
+    transform: scale(1.1);
+}
+
+/* Styled list for items */
+.menu-list {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    background: rgba(105, 87, 96, 0.8);
+    padding: 15px;
+    margin-top: -5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.menu-item {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    max-width: 500px;
+    padding: 5px 0;
+}
+
+/* Full Breakfast Styling */
+.full-breakfast img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.full-breakfast-details {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    background: rgba(124, 12, 68, 0.8);
+    padding: 15px;
+    text-align: center;
+}
+
+/* Dark Mode Toggle */
+.dark-mode {
+    background: #121212;
+    color: white;
+}
+</style>
+
+<button id="darkModeToggle">Toggle Dark Mode</button>
+
+<Layout title="Breakfast Menu">
+    <h1 class="page-title"><span>Breakfast Menu</span></h1>
+
+    <h2 class="section-header">NEB Full Breakfast</h2>
+    <div class="full-breakfast">
+        <img src="/full-breakfast.jpg" alt="Full Breakfast">
+        <div class="full-breakfast-details">
+            <span>Full Breakfast - KSh 1000</span>
+        </div>
+    </div>
+    
+    <h2 class="section-header">Teas/Coffees</h2>
+    <div class="image-row">
+        <img src="/teas1.jpg" alt="Tea Image 1">
+        <img src="/teas2.jpg" alt="Tea Image 2">
+        <img src="/teas3.jpg" alt="Tea Image 3">
+    </div>
+    <div class="menu-list">
+        <div class="menu-item"><span>English Tea</span> <span>KSh 150</span></div>
+        <div class="menu-item"><span>Black Tea</span> <span>KSh 150</span></div>
+        <div class="menu-item"><span>Coffee</span> <span>KSh 150</span></div>
+        <div class="menu-item"><span>Plain Milk</span> <span>KSh 150</span></div>
+        <div class="menu-item"><span>Hot Water</span> <span>KSh 150</span></div>
+        <div class="menu-item"><span>Lemon Tea</span> <span>KSh 150</span></div>
+    </div>
+    
+    <h2 class="section-header">Snacks</h2>
+    <div class="image-row">
+        <img src="/snacks1.jpg" alt="Snack Image 1">
+        <img src="/snacks2.jpg" alt="Snack Image 2">
+        <img src="/snacks3.jpg" alt="Snack Image 3">
+    </div>
+    <div class="menu-list">
+        <div class="menu-item"><span>Mandazi</span> <span>KSh 200</span></div>
+        <div class="menu-item"><span>Chapati</span> <span>KSh 200</span></div>
+        <div class="menu-item"><span>Beans</span> <span>KSh 200</span></div>
+        <div class="menu-item"><span>Samosas</span> <span>KSh 200</span></div>
+        <div class="menu-item"><span>Sausages</span> <span>KSh 200</span></div>
+        <div class="menu-item"><span>Eggs (Fried/Boiled)</span> <span>KSh 200</span></div>
+    </div>
+    <div class="image-row">
+        <img src="/snacks4.jpg" alt="Snack Image 4">
+        <img src="/snacks5.jpg" alt="Snack Image 5">
+        <img src="/snacks6.jpg" alt="Snack Image 6">
+    </div>
+</Layout>
+
+<script>
+// Smooth scrolling effect for section headers
+const headers = document.querySelectorAll(".section-header");
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+        }
+    });
+}, { threshold: 0.1 });
+
+headers.forEach(header => observer.observe(header));
+
+// Dark mode toggle functionality
+const toggleButton = document.getElementById("darkModeToggle");
+toggleButton.addEventListener("click", () => {
+    document.body.classList.toggle("dark-mode");
+});
+</script>

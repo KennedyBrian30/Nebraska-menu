@@ -1,0 +1,129 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<style>
+.menu-section {
+    text-align: center;
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.menu-list {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+
+.image-row {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.image-row img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.intro-image {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.intro-image img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: white;
+    background: linear-gradient(90deg, rgba(255, 140, 0, 0.8), rgba(255, 69, 0, 0.8));
+    padding: 10px;
+    border-radius: 8px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+</style>
+
+<Layout title="Nebraska Menu" subtitle="Drinks Menu">
+    <div class="intro-image">
+        <img src="/introt.jpg" alt="Intro">
+    </div>
+
+    <div class="menu-section" style="background-color: #800000;">
+        <h2>Vodka</h2>
+        <div class="image-row">
+            <img src="/vodka1.jpg" alt="Vodka 1">
+            <img src="/vodka2.jpg" alt="Vodka 2">
+            <img src="/vodka3.jpg" alt="Vodka 3">
+        </div>
+        <div class="menu-list">
+            <span>Smirnoff Red - KSh 500</span><br>
+            <span>Absolut - KSh 700</span><br>
+            <span>Skyy Vodka - KSh 650</span><br>
+            <span>Belvedere - KSh 1200</span><br>
+            <span>Grey Goose - KSh 1500</span><br>
+            <span>Ketel One - KSh 1000</span><br>
+            <span>Ciroc - KSh 1400</span><br>
+            <span>Finlandia - KSh 850</span><br>
+            <span>Russian Standard - KSh 900</span><br>
+            <span>Crystal Head - KSh 1800</span>
+        </div>
+    </div>
+
+    <div class="menu-section" style="background-color: #4B0082;">
+        <h2>Whiskey</h2>
+        <div class="image-row">
+            <img src="/whiskey1.jpg" alt="Whiskey 1">
+            <img src="/whiskey2.jpg" alt="Whiskey 2">
+            <img src="/whiskey3.jpg" alt="Whiskey 3">
+        </div>
+        <div class="menu-list">
+            <span>Jameson - KSh 700</span><br>
+            <span>Johnnie Walker Black - KSh 800</span><br>
+            <span>Jack Daniels - KSh 900</span><br>
+            <span>Chivas Regal - KSh 1000</span><br>
+            <span>Glenfiddich - KSh 1200</span><br>
+            <span>Ballantine's - KSh 750</span><br>
+            <span>Macallan - KSh 1500</span><br>
+            <span>Red Label - KSh 600</span><br>
+            <span>Jameson 18 - KSh 2500</span><br>
+            <span>Monkey Shoulder - KSh 1300</span>
+        </div>
+    </div>
+
+    <div class="menu-section" style="background-color: #8B0000;">
+        <h2>Beer</h2>
+        <div class="image-row">
+            <img src="/beer1.jpg" alt="Beer 1">
+            <img src="/beer2.jpg" alt="Beer 2">
+            <img src="/beer3.jpg" alt="Beer 3">
+        </div>
+        <div class="menu-list">
+            <span>Tusker - KSh 250</span><br>
+            <span>White Cap - KSh 250</span><br>
+            <span>Pilsner - KSh 250</span><br>
+            <span>Guinness - KSh 300</span><br>
+            <span>Heineken - KSh 350</span><br>
+            <span>Summit Lager - KSh 250</span><br>
+            <span>Summit Malt - KSh 250</span><br>
+            <span>Smirnoff Ice - KSh 300</span><br>
+            <span>Castle Lite - KSh 300</span><br>
+            <span>Faxe - KSh 400</span>
+        </div>
+    </div>
+</Layout>
