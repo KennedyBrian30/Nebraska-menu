@@ -56,7 +56,7 @@ import Layout from "../layouts/Layout.astro";
 
         .image-row img {
             width: 33.33%; /* Equal width for 3 images to fit page */
-            height: auto; /* Maintains natural aspect ratio */
+            height: auto;
             border-radius: 10px;
             transition: transform 0.3s ease;
         }
@@ -88,15 +88,14 @@ import Layout from "../layouts/Layout.astro";
         }
 
         .full-breakfast {
-            width: 100%;
-            max-width: 600px;
+            width: 100%; /* Full width of the screen */
             margin: 0 auto;
         }
 
         .full-breakfast img {
             width: 100%;
             height: auto;
-            border-radius: 10px;
+            border-radius: 10px 10px 0 0; /* Adjusted for detail box */
             display: block;
             transition: transform 0.3s ease;
         }
@@ -115,9 +114,33 @@ import Layout from "../layouts/Layout.astro";
             width: 100%;
             border-radius: 0 0 10px 10px;
         }
-    </style>
 
-    <h1 class="page-title"><span>Breakfast Menu</span></h1>
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .full-breakfast img {
+                height: auto; /* Keeps aspect ratio */
+            }
+
+            .image-row {
+                flex-wrap: wrap; /* Allows wrapping on smaller screens */
+            }
+
+            .image-row img {
+                width: clamp(150px, 33.33%, 250px); /* Adjusts for tablets */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .full-breakfast-details {
+                font-size: 1rem; /* Slightly smaller for mobile */
+            }
+
+            .image-row img {
+                width: 100%; /* Full width on mobile */
+                max-height: 200px;
+            }
+        }
+    </style>
 
     <h2 class="section-header">NEB Full Breakfast</h2>
     <div class="full-breakfast">

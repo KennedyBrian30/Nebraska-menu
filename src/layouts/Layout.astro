@@ -1,5 +1,5 @@
 ---
-const { title = 'Nebraska Menu', subtitle = 'Welcome to Our Offerings' } = Astro.props;
+const { title = 'Nebraska Lounge & Grill', subtitle = 'Welcome to Our Offerings' } = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -64,6 +64,7 @@ const { title = 'Nebraska Menu', subtitle = 'Welcome to Our Offerings' } = Astro
             border-radius: 10px;
             margin: 10px auto;
             width: fit-content;
+            position: relative;
         }
 
         .nav-item {
@@ -81,10 +82,48 @@ const { title = 'Nebraska Menu', subtitle = 'Welcome to Our Offerings' } = Astro
             background: var(--nav-hover-bg);
         }
 
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            font-size: 2rem;
+            color: white;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        #nav-toggle {
+            display: none;
+        }
+
         @media (max-width: 600px) {
+            .hamburger {
+                display: block;
+            }
+
             .nav {
-                flex-direction: column;
                 width: 90%;
+                flex-direction: column;
+                padding: 0;
+            }
+
+            .nav-items {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                gap: 10px;
+                padding: 10px 0;
+            }
+
+            #nav-toggle:checked ~ .nav-items {
+                display: flex;
+            }
+
+            .nav-item {
+                width: 100%;
+                border-radius: 0;
+                margin: 0;
             }
         }
 
@@ -126,20 +165,24 @@ const { title = 'Nebraska Menu', subtitle = 'Welcome to Our Offerings' } = Astro
     </style>
 </head>
 <body>
-    <h1>Nebraska Menu</h1>
+    <h1>Nebraska Lounge & Grill</h1>
 
     <nav class="nav" aria-label="Main navigation">
-        <a href="/breakfast" class="nav-item" aria-label="Breakfast Menu">Breakfast</a>
-        <a href="/meals" class="nav-item" aria-label="Meals Menu">Meals</a>
-        <a href="/drinks" class="nav-item" aria-label="Drinks Menu">Drinks</a>
-        <a href="/desserts" class="nav-item" aria-label="Desserts Menu">Desserts</a>
-        <a href="/specials" class="nav-item" aria-label="Specials Menu">Specials</a>
+        <input type="checkbox" id="nav-toggle" aria-label="Toggle navigation">
+        <label for="nav-toggle" class="hamburger">☰</label>
+        <div class="nav-items">
+            <a href="/breakfast" class="nav-item" aria-label="Breakfast Menu">Breakfast</a>
+            <a href="/meals" class="nav-item" aria-label="Meals Menu">Meals</a>
+            <a href="/drinks" class="nav-item" aria-label="Drinks Menu">Drinks</a>
+            <a href="/desserts" class="nav-item" aria-label="Desserts Menu">Desserts</a>
+            <a href="/specials" class="nav-item" aria-label="Specials Menu">Specials</a>
+        </div>
     </nav>
 
     <h2>{subtitle}</h2>
 
     <img src="/menu-image.jpg" alt="Delicious Menu" class="menu-image" loading="lazy">
-    <p class="welcome-text">Welcome to Club Nebraska!</p>
+    <p class="welcome-text">Welcome to The Nebraska!</p>
 
     <div class="content">
         <slot />
@@ -151,5 +194,4 @@ const { title = 'Nebraska Menu', subtitle = 'Welcome to Our Offerings' } = Astro
     </footer>
 </body>
 </html>
-
 

@@ -4,22 +4,34 @@ import Layout from "../layouts/Layout.astro";
 
 <Layout title="Drinks Menu" subtitle="Refresh Your Day">
     <style>
-        /* Menu section styling */
+        /* General Section Styling */
         .menu-section {
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
             padding: 20px;
             border-radius: 10px;
+            background: rgba(0, 0, 0, 0.7);
         }
 
-        /* Intro image */
+        h2 {
+            font-size: 2rem;
+            color: rgb(4, 128, 52);
+            font-weight: bold;
+            padding: 10px 20px;
+            margin: 0 auto 20px;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 10px;
+            width: fit-content;
+        }
+
+        /* Intro Image */
         .intro-image {
             margin-bottom: 20px;
         }
 
         .intro-image img {
             width: 100%;
-            max-width: 1200px; /* Matches layout's menu-image */
+            max-width: 1200px;
             height: auto;
             border-radius: 10px;
             display: block;
@@ -31,39 +43,65 @@ import Layout from "../layouts/Layout.astro";
             transform: scale(1.05);
         }
 
-        /* Menu list */
+        /* Menu List */
         .menu-list {
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: white;
-            background: rgba(105, 87, 96, 0.8); /* Consistent with Breakfast/Meals */
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
             padding: 15px;
             border-radius: 10px;
             margin-top: 10px;
             width: 100%;
-            max-width: 400px;
+            max-width: 1200px;
             margin-left: auto;
             margin-right: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .menu-list:hover {
+            transform: scale(1.02);
         }
 
         .menu-item {
             display: flex;
             justify-content: space-between;
-            padding: 5px 0;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: white;
+            padding: 8px 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            max-width: 300px;
         }
 
-        /* Image row */
+        /* Category-Specific Backgrounds */
+        .vodka { background: rgba(82, 24, 22, 0.8); }
+        .whiskey { background: rgba(105, 87, 96, 0.8); }
+        .beer { background: rgba(57, 109, 14, 0.8); }
+        .gin { background: rgba(21, 102, 71, 0.8); }
+        .cocktails { background: rgba(255, 87, 34, 0.8); }
+        .juices { background: rgba(255, 215, 0, 0.8); }
+        .soft-drinks { background: rgba(70, 130, 180, 0.8); }
+        .rum-tots { background: rgba(139, 69, 19, 0.8); }
+        .wines { background: rgba(128, 0, 128, 0.8); }
+        .liqueur { background: rgba(0, 128, 128, 0.8); }
+
+        /* Image Row */
         .image-row {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 10px;
+            display: flex;
+            flex-wrap: nowrap; /* Prevents wrapping on larger screens */
+            gap: 15px;
+            width: 100%;
             padding: 10px;
             margin-bottom: 20px;
+            justify-content: space-between; /* Spreads images across full width */
         }
 
         .image-row img {
-            width: 100%;
+            width: calc(33.33% - 10px); /* Three images, accounting for gap */
             height: auto;
+            max-height: 250px;
+            object-fit: cover;
             border-radius: 10px;
             transition: transform 0.3s ease;
         }
@@ -72,137 +110,246 @@ import Layout from "../layouts/Layout.astro";
             transform: scale(1.05);
         }
 
-        /* Section headers */
-        h2 {
-            font-size: 2rem;
-            color: rgb(4, 128, 52); /* Matches layout's welcome-text */
-            font-weight: bold;
-            padding: 10px 20px;
-            margin: 0 auto 20px;
-            text-align: center;
-            background: rgba(0, 0, 0, 0.8); /* Matches layout's nav */
-            border-radius: 10px;
-            width: fit-content;
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .intro-image img {
+                max-width: 100%;
+            }
+
+            .menu-list {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+
+            .menu-item {
+                font-size: 1.1rem;
+                padding: 6px 8px;
+            }
+
+            .image-row {
+                flex-wrap: wrap; /* Allows wrapping on tablets */
+            }
+
+            .image-row img {
+                width: clamp(150px, 30%, 250px);
+                max-height: 200px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .menu-section {
+                padding: 15px;
+            }
+
+            .menu-list {
+                grid-template-columns: 1fr;
+            }
+
+            .menu-item {
+                font-size: 1rem;
+                padding: 5px 6px;
+                max-width: none;
+            }
+
+            .image-row img {
+                width: clamp(120px, 45%, 200px);
+                max-height: 150px;
+            }
         }
     </style>
 
     <div class="intro-image">
-        <img src="/introt.jpg" alt="Drinks Introduction">
+        <img src="/introt.jpg" alt="Drinks Introduction" loading="lazy">
     </div>
 
-    <section class="menu-section" style="background-color: #800000;">
+    <section class="menu-section">
         <h2>Vodka</h2>
         <div class="image-row">
-            <img src="/vodka1.jpg" alt="Vodka Image 1">
-            <img src="/vodka2.jpg" alt="Vodka Image 2">
-            <img src="/vodka3.jpg" alt="Vodka Image 3">
+            <img src="/vodka1.jpg" alt="Vodka Image 1" loading="lazy">
+            <img src="/vodka2.jpg" alt="Vodka Image 2" loading="lazy">
+            <img src="/vodka3.jpg" alt="Vodka Image 3" loading="lazy">
         </div>
-        <div class="menu-list">
-            <div class="menu-item"><span>Smirnoff Red</span> <span>KSh 500</span></div>
-            <div class="menu-item"><span>Absolut</span> <span>KSh 700</span></div>
-            <div class="menu-item"><span>Skyy Vodka</span> <span>KSh 650</span></div>
-            <div class="menu-item"><span>Belvedere</span> <span>KSh 1200</span></div>
-            <div class="menu-item"><span>Grey Goose</span> <span>KSh 1500</span></div>
-            <div class="menu-item"><span>Ketel One</span> <span>KSh 1000</span></div>
-            <div class="menu-item"><span>Ciroc</span> <span>KSh 1400</span></div>
-            <div class="menu-item"><span>Finlandia</span> <span>KSh 850</span></div>
-            <div class="menu-item"><span>Russian Standard</span> <span>KSh 900</span></div>
-            <div class="menu-item"><span>Crystal Head</span> <span>KSh 1800</span></div>
+        <div class="menu-list vodka">
+            <div class="menu-item"><span>Absolute Vodka 750ML</span> <span>KSh 3,500</span></div>
+            <div class="menu-item"><span>Best Vodka 750ML</span> <span>KSh 2,000</span></div>
+            <div class="menu-item"><span>Kibao 250ML</span> <span>KSh 600</span></div>
+            <div class="menu-item"><span>Kibao 350ML</span> <span>KSh 850</span></div>
+            <div class="menu-item"><span>Kibao 750ML</span> <span>KSh 1,300</span></div>
+            <div class="menu-item"><span>S. Blueberry 750ML</span> <span>KSh 2,500</span></div>
+            <div class="menu-item"><span>Sminorf Vodka 250ML</span> <span>KSh 600</span></div>
+            <div class="menu-item"><span>Sminorf Vodka 350ML</span> <span>KSh 1,000</span></div>
+            <div class="menu-item"><span>Sminorf Vodka 750ML</span> <span>KSh 2,000</span></div>
+            <div class="menu-item"><span>Smirnoff Gold</span> <span>KSh 2,800</span></div>
+            <div class="menu-item"><span>Smirnoff Gold 350ML</span> <span>KSh 1,500</span></div>
+            <div class="menu-item"><span>Smirnoff Gold 750ML</span> <span>KSh 2,800</span></div>
+            <div class="menu-item"><span>Smirnoff Vodka 1LTR</span> <span>KSh 2,500</span></div>
+            <div class="menu-item"><span>Smirnoff Lime 750ML</span> <span>KSh 3,000</span></div>
+            <div class="menu-item"><span>Tripple Ace 250ML</span> <span>KSh 400</span></div>
+            <div class="menu-item"><span>Tripple Ace 750ML</span> <span>KSh 1,300</span></div>
         </div>
     </section>
 
-    <section class="menu-section" style="background-color: #4B0082;">
+    <section class="menu-section">
         <h2>Whiskey</h2>
         <div class="image-row">
-            <img src="/whiskey1.jpg" alt="Whiskey Image 1">
-            <img src="/whiskey2.jpg" alt="Whiskey Image 2">
-            <img src="/whiskey3.jpg" alt="Whiskey Image 3">
+            <img src="/whiskey1.jpg" alt="Whiskey Image 1" loading="lazy">
+            <img src="/whiskey2.jpg" alt="Whiskey Image 2" loading="lazy">
+            <img src="/whiskey3.jpg" alt="Whiskey Image 3" loading="lazy">
         </div>
-        <div class="menu-list">
-            <div class="menu-item"><span>Jameson</span> <span>KSh 700</span></div>
-            <div class="menu-item"><span>Johnnie Walker Black</span> <span>KSh 800</span></div>
-            <div class="menu-item"><span>Jack Daniels</span> <span>KSh 900</span></div>
-            <div class="menu-item"><span>Chivas Regal</span> <span>KSh 1000</span></div>
-            <div class="menu-item"><span>Glenfiddich</span> <span>KSh 1200</span></div>
-            <div class="menu-item"><span>Ballantine's</span> <span>KSh 750</span></div>
-            <div class="menu-item"><span>Macallan</span> <span>KSh 1500</span></div>
-            <div class="menu-item"><span>Red Label</span> <span>KSh 600</span></div>
-            <div class="menu-item"><span>Jameson 18</span> <span>KSh 2500</span></div>
-            <div class="menu-item"><span>Monkey Shoulder</span> <span>KSh 1300</span></div>
+        <div class="menu-list whiskey">
+            <div class="menu-item"><span>8 PM 1LTR</span> <span>KSh 2,000</span></div>
+            <div class="menu-item"><span>All Seasons 750ML</span> <span>KSh 2,000</span></div>
+            <div class="menu-item"><span>Ballentines 10YRS</span> <span>KSh 4,000</span></div>
+            <div class="menu-item"><span>Ballentines 1LTR</span> <span>KSh 4,700</span></div>
+            <div class="menu-item"><span>Ballentines 750ML</span> <span>KSh 3,500</span></div>
+            <div class="menu-item"><span>Belaire Lux White 750ML</span> <span>KSh 7,500</span></div>
+            <div class="menu-item"><span>Best Whiskey 250ML</span> <span>KSh 600</span></div>
+            <div class="menu-item"><span>Best Whiskey 750ML</span> <span>KSh 1,800</span></div>
+            <div class="menu-item"><span>Black & White 350ML</span> <span>KSh 1,000</span></div>
+            <div class="menu-item"><span>Black & White 750ML</span> <span>KSh 2,000</span></div>
+            <div class="menu-item"><span>Black & White 1LTR</span> <span>KSh 2,400</span></div>
+            <div class="menu-item"><span>Black & White 250ML</span> <span>KSh 600</span></div>
+            <div class="menu-item"><span>Black Label 350ML</span> <span>KSh 2,400</span></div>
+            <div class="menu-item"><span>Black Label 750ML</span> <span>KSh 5,000</span></div>
+            <div class="menu-item"><span>Black Label 1LTR</span> <span>KSh 6,000</span></div>
+            <div class="menu-item"><span>Black Label TOT</span> <span>KSh 250</span></div>
+            <div class="menu-item"><span>Black Whiskey</span> <span>KSh 1,700</span></div>
+            <div class="menu-item"><span>Bond 7 250ML</span> <span>KSh 600</span></div>
+            <div class="menu-item"><span>Bond 7 350ML</span> <span>KSh 1,000</span></div>
+            <div class="menu-item"><span>Bond 7 750ML</span> <span>KSh 2,200</span></div>
+            <div class="menu-item"><span>Captain Morgan Dark Rum</span> <span>KSh 4,000</span></div>
+            <div class="menu-item"><span>Chivas Regal 12YRS</span> <span>KSh 6,000</span></div>
+            <div class="menu-item"><span>Don Julio</span> <span>KSh 10,000</span></div>
+            <div class="menu-item"><span>Double Black 1LTR</span> <span>KSh 9,500</span></div>
+            <div class="menu-item"><span>Double Black 750ML</span> <span>KSh 8,000</span></div>
+            <div class="menu-item"><span>Double Black TOT</span> <span>KSh 250</span></div>
+            <div class="menu-item"><span>Drambuie 750ML</span> <span>KSh 6,000</span></div>
+            <div class="menu-item"><span>Famous Grouse 750ML</span> <span>KSh 3,000</span></div>
+            <div class="menu-item"><span>Famous Grouse 1LTR</span> <span>KSh 3,500</span></div>
+            <div class="menu-item"><span>Famous Grouse 350ML</span> <span>KSh 900</span></div>
+            <div class="menu-item"><span>Glenfiddich 15YRS</span> <span>KSh 14,000</span></div>
+            <div class="menu-item"><span>Glenfiddich 18YRS</span> <span>KSh 16,000</span></div>
+            <div class="menu-item"><span>Glenfiddich 12YRS</span> <span>KSh 6,500</span></div>
+            <div class="menu-item"><span>Glenlivet 12YRS</span> <span>KSh 8,500</span></div>
+            <div class="menu-item"><span>Glenlivet 15YRS</span> <span>KSh 8,500</span></div>
+            <div class="menu-item"><span>Glenlivet Founders Reserve 750ML</span> <span>KSh 6,500</span></div>
+            <div class="menu-item"><span>Gold Label 750ML</span> <span>KSh 9,500</span></div>
+            <div class="menu-item"><span>Grain Whiskey 750ML</span> <span>KSh 1,700</span></div>
+            <div class="menu-item"><span>Grants 18YRS</span> <span>KSh 7,000</span></div>
+            <div class="menu-item"><span>Grants 1LTR</span> <span>KSh 3,500</span></div>
+            <div class="menu-item"><span>Grants 350ML</span> <span>KSh 1,400</span></div>
+            <div class="menu-item"><span>Grants 750ML</span> <span>KSh 3,000</span></div>
+            <div class="menu-item"><span>Green Label 1LTR</span> <span>KSh 9,000</span></div>
+            <div class="menu-item"><span>Hennessy 1LTR</span> <span>KSh 14,000</span></div>
+            <div class="menu-item"><span>Hennessy 750ML</span> <span>KSh 8,500</span></div>
+            <div class="menu-item"><span>Jack Daniels 1LTR</span> <span>KSh 6,000</span></div>
+            <div class="menu-item"><span>Jack Daniels 750ML</span> <span>KSh 5,500</span></div>
+            <div class="menu-item"><span>Jack Daniels Legacy Edition 750ML</span> <span>KSh 4,800</span></div>
+            <div class="menu-item"><span>Jack Daniels Rye 1LTR</span> <span>KSh 6,500</span></div>
+            <div class="menu-item"><span>Jack Daniels TOT</span> <span>KSh 250</span></div>
+            <div class="menu-item"><span>Jameson 1LTR</span> <span>KSh 4,700</span></div>
+            <div class="menu-item"><span>Jameson 750ML</span> <span>KSh 4,000</span></div>
+            <div class="menu-item"><span>Jameson Black Barrel 750ML</span> <span>KSh 6,500</span></div>
+            <div class="menu-item"><span>Martell VSOP</span> <span>KSh 13,000</span></div>
+            <div class="menu-item"><span>Martell 1LTR</span> <span>KSh 9,500</span></div>
+            <div class="menu-item"><span>Martell VS 750ML</span> <span>KSh 8,500</span></div>
+            <div class="menu-item"><span>Red Label 750ML</span> <span>KSh 3,000</span></div>
+            <div class="menu-item"><span>VAT 69 750ML</span> <span>KSh 2,300</span></div>
+            <div class="menu-item"><span>Ameson 1L</span> <span>KSh 3,000</span></div>
+            <div class="menu-item"><span>William Lawsons 750ML</span> <span>KSh 3,000</span></div>
         </div>
     </section>
 
-    <section class="menu-section" style="background-color: #8B0000;">
+    <section class="menu-section">
         <h2>Beer</h2>
         <div class="image-row">
-            <img src="/beer1.jpg" alt="Beer Image 1">
-            <img src="/beer2.jpg" alt="Beer Image 2">
-            <img src="/beer3.jpg" alt="Beer Image 3">
+            <img src="/beer1.jpg" alt="Beer Image 1" loading="lazy">
+            <img src="/beer2.jpg" alt="Beer Image 2" loading="lazy">
+            <img src="/beer3.jpg" alt="Beer Image 3" loading="lazy">
         </div>
-        <div class="menu-list">
-            <div class="menu-item"><span>Tusker</span> <span>KSh 250</span></div>
-            <div class="menu-item"><span>White Cap</span> <span>KSh 250</span></div>
-            <div class="menu-item"><span>Pilsner</span> <span>KSh 250</span></div>
-            <div class="menu-item"><span>Guinness</span> <span>KSh 300</span></div>
-            <div class="menu-item"><span>Heineken</span> <span>KSh 350</span></div>
-            <div class="menu-item"><span>Summit Lager</span> <span>KSh 250</span></div>
-            <div class="menu-item"><span>Summit Malt</span> <span>KSh 250</span></div>
-            <div class="menu-item"><span>Smirnoff Ice</span> <span>KSh 300</span></div>
-            <div class="menu-item"><span>Castle Lite</span> <span>KSh 300</span></div>
-            <div class="menu-item"><span>Faxe</span> <span>KSh 400</span></div>
+        <div class="menu-list beer">
+            <div class="menu-item"><span>ATLAS SUPER STRONG</span> <span>KSh 350</span></div>
+            <div class="menu-item"><span>BALOZI</span> <span>KSh 250</span></div>
+            <div class="menu-item"><span>BLACK ICE</span> <span>KSh 250</span></div>
+            <div class="menu-item"><span>GUINESS</span> <span>KSh 250</span></div>
+            <div class="menu-item"><span>GUINNESS SMOOTH S</span> <span>KSh 200</span></div>
+            <div class="menu-item"><span>HEINEKEN</span> <span>KSh 400</span></div>
+            <div class="menu-item"><span>HUNTERS DRY</span> <span>KSh 300</span></div>
+            <div class="menu-item"><span>T. LITE CAN</span> <span>KSh 300</span></div>
+            <div class="menu-item"><span>MANYATTA BEER</span> <span>KSh 300</span></div>
+            <div class="menu-item"><span>PILSNER</span> <span>KSh 250</span></div>
+            <div class="menu-item"><span>SAVANNA CIDER S</span> <span>KSh 320</span></div>
+            <div class="menu-item"><span>SNAP S</span> <span>KSh 250</span></div>
+            <div class="menu-item"><span>TUSKER CIDER</span> <span>KSh 250</span></div>
+            <div class="menu-item"><span>TUSKER LARGER</span> <span>KSh 250</span></div>
+            <div class="menu-item"><span>TUSKER LITE</span> <span>KSh 250</span></div>
+            <div class="menu-item"><span>WHITECAP</span> <span>KSh 250</span></div>
         </div>
     </section>
 
-    <section class="menu-section" style="background-color: #228B22;">
+    <section class="menu-section">
         <h2>Gin</h2>
         <div class="image-row">
-            <img src="/gin1.jpg" alt="Gin Image 1">
-            <img src="/gin2.jpg" alt="Gin Image 2">
-            <img src="/gin3.jpg" alt="Gin Image 3">
+            <img src="/gin1.jpg" alt="Gin Image 1" loading="lazy">
+            <img src="/gin2.jpg" alt="Gin Image 2" loading="lazy">
+            <img src="/gin3.jpg" alt="Gin Image 3" loading="lazy">
         </div>
-        <div class="menu-list">
-            <div class="menu-item"><span>Gordon's</span> <span>KSh 700</span></div>
-            <div class="menu-item"><span>Beefeater</span> <span>KSh 800</span></div>
-            <div class="menu-item"><span>Tanqueray</span> <span>KSh 900</span></div>
-            <div class="menu-item"><span>Bombay Sapphire</span> <span>KSh 1000</span></div>
-            <div class="menu-item"><span>Hendrick's</span> <span>KSh 1200</span></div>
-            <div class="menu-item"><span>Gilbey's</span> <span>KSh 600</span></div>
-            <div class="menu-item"><span>Monkey 47</span> <span>KSh 1500</span></div>
-            <div class="menu-item"><span>Bulldog</span> <span>KSh 1100</span></div>
-            <div class="menu-item"><span>The Botanist</span> <span>KSh 1300</span></div>
-            <div class="menu-item"><span>Tanqueray No. 10</span> <span>KSh 1400</span></div>
+        <div class="menu-list gin">
+            <div class="menu-item"><span>Barcady Gin</span> <span>KSh 2,800</span></div>
+            <div class="menu-item"><span>Beefeater 750ML</span> <span>KSh 3,500</span></div>
+            <div class="menu-item"><span>Best Gin 250ML</span> <span>KSh 550</span></div>
+            <div class="menu-item"><span>Best Gin 750ML</span> <span>KSh 1,800</span></div>
+            <div class="menu-item"><span>Chrome 250ML</span> <span>KSh 450</span></div>
+            <div class="menu-item"><span>Chrome 750ML</span> <span>KSh 1,300</span></div>
+            <div class="menu-item"><span>Gilbeys 250ML</span> <span>KSh 600</span></div>
+            <div class="menu-item"><span>Gilbeys 350ML</span> <span>KSh 1,000</span></div>
+            <div class="menu-item"><span>Gilbeys 750ML</span> <span>KSh 2,000</span></div>
+            <div class="menu-item"><span>Gin Society</span> <span>KSh 4,800</span></div>
+            <div class="menu-item"><span>Gordons 1LTR</span> <span>KSh 3,500</span></div>
+            <div class="menu-item"><span>Gordons 750ML</span> <span>KSh 3,000</span></div>
+            <div class="menu-item"><span>Gordon Gin 350ML</span> <span>KSh 1,300</span></div>
+            <div class="menu-item"><span>Hendricks 1LTR</span> <span>KSh 7,500</span></div>
+            <div class="menu-item"><span>Tanqueray 750ML</span> <span>KSh 4,000</span></div>
+            <div class="menu-item"><span>Tanqueray 10 750ML</span> <span>KSh 6,000</span></div>
+            <div class="menu-item"><span>Origin 250ML</span> <span>KSh 400</span></div>
         </div>
     </section>
 
-    <section class="menu-section" style="background-color: #FF4500;">
+    <section class="menu-section">
         <h2>Cocktails</h2>
         <div class="image-row">
-            <img src="/cocktail1.jpg" alt="Cocktail Image 1">
-            <img src="/cocktail2.jpg" alt="Cocktail Image 2">
-            <img src="/cocktail3.jpg" alt="Cocktail Image 3">
+            <img src="/cocktail1.jpg" alt="Cocktail Image 1" loading="lazy">
+            <img src="/cocktail2.jpg" alt="Cocktail Image 2" loading="lazy">
+            <img src="/cocktail3.jpg" alt="Cocktail Image 3" loading="lazy">
         </div>
-        <div class="menu-list">
-            <div class="menu-item"><span>Mojito</span> <span>KSh 500</span></div>
-            <div class="menu-item"><span>Margarita</span> <span>KSh 600</span></div>
-            <div class="menu-item"><span>Cosmopolitan</span> <span>KSh 700</span></div>
-            <div class="menu-item"><span>Long Island Iced Tea</span> <span>KSh 800</span></div>
-            <div class="menu-item"><span>Whiskey Sour</span> <span>KSh 750</span></div>
-            <div class="menu-item"><span>Mai Tai</span> <span>KSh 700</span></div>
-            <div class="menu-item"><span>Pina Colada</span> <span>KSh 600</span></div>
-            <div class="menu-item"><span>Manhattan</span> <span>KSh 850</span></div>
-            <div class="menu-item"><span>Negroni</span> <span>KSh 900</span></div>
-            <div class="menu-item"><span>Old Fashioned</span> <span>KSh 950</span></div>
+        <div class="menu-list cocktails">
+            <div class="menu-item"><span>Blue Neb</span> <span>KSh 350</span></div>
+            <div class="menu-item"><span>Dawa</span> <span>KSh 350</span></div>
+            <div class="menu-item"><span>Easy Town</span> <span>KSh 400</span></div>
+            <div class="menu-item"><span>Fleur De Lis</span> <span>KSh 450</span></div>
+            <div class="menu-item"><span>Game Time</span> <span>KSh 450</span></div>
+            <div class="menu-item"><span>Long Island Iced Tea</span> <span>KSh 500</span></div>
+            <div class="menu-item"><span>Margarita</span> <span>KSh 400</span></div>
+            <div class="menu-item"><span>Manhattan</span> <span>KSh 450</span></div>
+            <div class="menu-item"><span>Mob Hit</span> <span>KSh 350</span></div>
+            <div class="menu-item"><span>Mojito</span> <span>KSh 350</span></div>
+            <div class="menu-item"><span>Negroni</span> <span>KSh 400</span></div>
+            <div class="menu-item"><span>Pink Pussy</span> <span>KSh 350</span></div>
+            <div class="menu-item"><span>Screw Driver</span> <span>KSh 350</span></div>
+            <div class="menu-item"><span>Sex on the Beach</span> <span>KSh 450</span></div>
+            <div class="menu-item"><span>Summer Time</span> <span>KSh 350</span></div>
+            <div class="menu-item"><span>Tempo</span> <span>KSh 300</span></div>
+            <div class="menu-item"><span>Tequila Sunrise</span> <span>KSh 350</span></div>
         </div>
     </section>
 
-    <section class="menu-section" style="background-color: #FFD700;">
+    <section class="menu-section">
         <h2>Juices</h2>
         <div class="image-row">
-            <img src="/juice1.jpg" alt="Juice Image 1">
-            <img src="/juice2.jpg" alt="Juice Image 2">
-            <img src="/juice3.jpg" alt="Juice Image 3">
+            <img src="/juice1.jpg" alt="Juice Image 1" loading="lazy">
+            <img src="/juice2.jpg" alt="Juice Image 2" loading="lazy">
+            <img src="/juice3.jpg" alt="Juice Image 3" loading="lazy">
         </div>
-        <div class="menu-list">
+        <div class="menu-list juices">
             <div class="menu-item"><span>Delmonte</span> <span>KSh 250</span></div>
             <div class="menu-item"><span>Fresh Fruit Juice</span> <span>KSh 300</span></div>
             <div class="menu-item"><span>Minute Maid</span> <span>KSh 250</span></div>
@@ -216,14 +363,14 @@ import Layout from "../layouts/Layout.astro";
         </div>
     </section>
 
-    <section class="menu-section" style="background-color: #4682B4;">
+    <section class="menu-section">
         <h2>Soft Drinks</h2>
         <div class="image-row">
-            <img src="/soft1.jpg" alt="Soft Drink Image 1">
-            <img src="/soft2.jpg" alt="Soft Drink Image 2">
-            <img src="/soft3.jpg" alt="Soft Drink Image 3">
+            <img src="/soft1.jpg" alt="Soft Drink Image 1" loading="lazy">
+            <img src="/soft2.jpg" alt="Soft Drink Image 2" loading="lazy">
+            <img src="/soft3.jpg" alt="Soft Drink Image 3" loading="lazy">
         </div>
-        <div class="menu-list">
+        <div class="menu-list soft-drinks">
             <div class="menu-item"><span>Coca-Cola</span> <span>KSh 150</span></div>
             <div class="menu-item"><span>Pepsi</span> <span>KSh 150</span></div>
             <div class="menu-item"><span>Sprite</span> <span>KSh 150</span></div>
@@ -234,6 +381,87 @@ import Layout from "../layouts/Layout.astro";
             <div class="menu-item"><span>Keringet</span> <span>KSh 120</span></div>
             <div class="menu-item"><span>Soda Water</span> <span>KSh 130</span></div>
             <div class="menu-item"><span>Schweppes Tonic</span> <span>KSh 140</span></div>
+        </div>
+    </section>
+
+    <section class="menu-section">
+        <h2>Rum/Tots</h2>
+        <div class="image-row">
+            <img src="/rum1.jpg" alt="Rum Image 1" loading="lazy">
+            <img src="/rum2.jpg" alt="Rum Image 2" loading="lazy">
+            <img src="/rum3.jpg" alt="Rum Image 3" loading="lazy">
+        </div>
+        <div class="menu-list rum-tots">
+            <div class="menu-item"><span>Captain Morgan</span> <span>KSh 700</span></div>
+            <div class="menu-item"><span>Bacardi</span> <span>KSh 750</span></div>
+            <div class="menu-item"><span>Havana Club</span> <span>KSh 800</span></div>
+            <div class="menu-item"><span>Malibu</span> <span>KSh 900</span></div>
+            <div class="menu-item"><span>Myers's Rum</span> <span>KSh 850</span></div>
+        </div>
+    </section>
+
+    <section class="menu-section">
+        <h2>Wines</h2>
+        <div class="image-row">
+            <img src="/wine1.jpg" alt="Wine Image 1" loading="lazy">
+            <img src="/wine2.jpg" alt="Wine Image 2" loading="lazy">
+            <img src="/wine3.jpg" alt="Wine Image 3" loading="lazy">
+        </div>
+        <div class="menu-list wines">
+            <div class="menu-item"><span>4TH STREET RED</span> <span>KSh 18,000</span></div>
+            <div class="menu-item"><span>4TH STREET WHITE</span> <span>KSh 1,800</span></div>
+            <div class="menu-item"><span>5 LITRES WINE</span> <span>KSh 7,500</span></div>
+            <div class="menu-item"><span>AMANI SWEET WHITE S</span> <span>KSh 1,500</span></div>
+            <div class="menu-item"><span>ANCESTORS SWEET WINE S</span> <span>KSh 1,500</span></div>
+            <div class="menu-item"><span>ASCONI WINE</span> <span>KSh 2,500</span></div>
+            <div class="menu-item"><span>BLACK BIRD 750ML S</span> <span>KSh 0</span></div>
+            <div class="menu-item"><span>CAPRICE</span> <span>KSh 1,800</span></div>
+            <div class="menu-item"><span>CARLO ROSSI S</span> <span>KSh 1,500</span></div>
+            <div class="menu-item"><span>CASA BUENA S</span> <span>KSh 1,500</span></div>
+            <div class="menu-item"><span>CELLAR CASK RED</span> <span>KSh 1,800</span></div>
+            <div class="menu-item"><span>CELLAR CASK WHITE</span> <span>KSh 1,800</span></div>
+            <div class="menu-item"><span>DROSTDY</span> <span>KSh 1,800</span></div>
+            <div class="menu-item"><span>FLONTERA SWEET</span> <span>KSh 1,800</span></div>
+            <div class="menu-item"><span>FOUR COUSINS RED</span> <span>KSh 1,800</span></div>
+            <div class="menu-item"><span>FOUR COUSINS WHITE</span> <span>KSh 1,800</span></div>
+            <div class="menu-item"><span>GRAND FRANCE AND WHITE 750ML</span> <span>KSh 3,000</span></div>
+            <div class="menu-item"><span>NAMAQUA RED S</span> <span>KSh 1,500</span></div>
+            <div class="menu-item"><span>PENASOL 1 LTR S</span> <span>KSh 1,500</span></div>
+            <div class="menu-item"><span>ROBERTSON RED</span> <span>KSh 2,000</span></div>
+            <div class="menu-item"><span>ROSSO NOBLE 750ML</span> <span>KSh 3,000</span></div>
+            <div class="menu-item"><span>VERSUS RED S</span> <span>KSh 1,500</span></div>
+            <div class="menu-item"><span>VERSUS WHITE S</span> <span>KSh 1,500</span></div>
+            <div class="menu-item"><span>WINE GLASS</span> <span>KSh 250</span></div>
+        </div>
+    </section>
+
+    <section class="menu-section">
+        <h2>Liqueur</h2>
+        <div class="image-row">
+            <img src="/liqueur1.jpg" alt="Liqueur Image 1" loading="lazy">
+            <img src="/liqueur2.jpg" alt="Liqueur Image 2" loading="lazy">
+            <img src="/liqueur3.jpg" alt="Liqueur Image 3" loading="lazy">
+        </div>
+        <div class="menu-list liqueur">
+            <div class="menu-item"><span>blue coracao 750ml</span> <span>KSh 2,500.00</span></div>
+            <div class="menu-item"><span>chamdor</span> <span>KSh 1,600.00</span></div> 
+            <div class="menu-item"><span>malibu</span> <span>KSh 2,800.00</span></div> 
+            <div class="menu-item"><span>martini extra 750ml</span> <span>KSh 3,000.00</span></div>
+            <div class="menu-item"><span>martini rosso 750ml</span> <span>KSh 3,000.00</span></div>
+            <div class="menu-item"><span>tequila blanco 750ml</span> <span>KSh 4,000.00</span></div> 
+            <div class="menu-item"><span>tequila blue s</span> <span>KSh 200.00</span></div> 
+            <div class="menu-item"><span>tequila camino</span> <span>KSh 4,000.00</span></div> 
+            <div class="menu-item"><span>tequila chocolate 750ml</span> <span>KSh 4,000.00</span></div> 
+            <div class="menu-item"><span>tequila gold 750ml</span> <span>KSh 4,000.00</span></div>
+            <div class="menu-item"><span>triple sec 750ml</span> <span>KSh 2,500.00</span></div>
+            <div class="menu-item"><span>v & a 750ml</span> <span>KSh 1,500.00</span></div> 
+            <div class="menu-item"><span>v& a 250ml s</span> <span>KSh 500.00</span></div> 
+            <div class="menu-item"><span>zappa</span> <span>KSh 3,500.00</span></div> 
+            <div class="menu-item"><span>jose quava</span> <span>KSh 200.00</span></div> 
+            <div class="menu-item"><span>saint celline s</span> <span>KSh 1,500.00</span></div> 
+            <div class="menu-item"><span>st.red s</span> <span>KSh 0.00</span></div> 
+            <div class="menu-item"><span>trust</span> <span>KSh 100.00</span></div> 
+            <div class="menu-item"><span>wild turkey s</span> <span>KSh 2,800.00</span></div>
         </div>
     </section>
 </Layout>
