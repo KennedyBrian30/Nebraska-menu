@@ -47,18 +47,21 @@ import Layout from "../layouts/Layout.astro";
 
         .image-row {
             display: flex;
-            flex-wrap: nowrap;
+            flex-wrap: nowrap; /* Keeps images horizontal on all sizes */
             gap: 10px;
             width: 100%;
+            max-width: 1200px; /* Consistent with other pages */
             padding: 10px 0;
-            justify-content: center;
+            margin: 0 auto; /* Centers the row */
+            justify-content: space-between; /* Spreads images evenly */
         }
 
         .image-row img {
-            width: 33.33%; /* Equal width for 3 images to fit page */
+            width: calc(33.33% - 6.67px); /* 3 images, accounting for gap */
             height: auto;
             border-radius: 10px;
             transition: transform 0.3s ease;
+            object-fit: cover; /* Ensures proper scaling */
         }
 
         .image-row img:hover {
@@ -88,14 +91,14 @@ import Layout from "../layouts/Layout.astro";
         }
 
         .full-breakfast {
-            width: 100%; /* Full width of the screen */
+            width: 100%;
             margin: 0 auto;
         }
 
         .full-breakfast img {
             width: 100%;
             height: auto;
-            border-radius: 10px 10px 0 0; /* Adjusted for detail box */
+            border-radius: 10px 10px 0 0;
             display: block;
             transition: transform 0.3s ease;
         }
@@ -118,26 +121,21 @@ import Layout from "../layouts/Layout.astro";
         /* Responsive adjustments */
         @media (max-width: 768px) {
             .full-breakfast img {
-                height: auto; /* Keeps aspect ratio */
-            }
-
-            .image-row {
-                flex-wrap: wrap; /* Allows wrapping on smaller screens */
+                height: auto;
             }
 
             .image-row img {
-                width: clamp(150px, 33.33%, 250px); /* Adjusts for tablets */
+                height: 150px; /* Fixed height for tablets */
             }
         }
 
         @media (max-width: 480px) {
             .full-breakfast-details {
-                font-size: 1rem; /* Slightly smaller for mobile */
+                font-size: 1rem;
             }
 
             .image-row img {
-                width: 100%; /* Full width on mobile */
-                max-height: 200px;
+                height: 100px; /* Fixed height for mobile */
             }
         }
     </style>

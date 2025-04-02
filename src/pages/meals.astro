@@ -47,7 +47,7 @@ import Layout from "../layouts/Layout.astro";
             justify-items: center;
             padding: 0 10px;
             width: 100%;
-            max-width: 1200px; /* Matches gallery-container */
+            max-width: 1200px;
             margin: 0 auto;
         }
 
@@ -142,7 +142,7 @@ import Layout from "../layouts/Layout.astro";
         /* Image row */
         .image-row {
             display: flex;
-            flex-wrap: nowrap;
+            flex-wrap: nowrap; /* Keeps images horizontal on all sizes */
             gap: 15px;
             width: 100%;
             max-width: 1200px;
@@ -156,7 +156,6 @@ import Layout from "../layouts/Layout.astro";
             height: auto;
             border-radius: 10px;
             transition: transform 0.3s ease;
-            max-height: 300px;
             object-fit: cover;
         }
 
@@ -191,7 +190,7 @@ import Layout from "../layouts/Layout.astro";
             }
 
             .main-dishes {
-                grid-template-columns: repeat(2, 1fr); /* Still 2 columns on tablets */
+                grid-template-columns: repeat(2, 1fr);
             }
 
             .main-dish img {
@@ -202,12 +201,8 @@ import Layout from "../layouts/Layout.astro";
                 grid-template-columns: 1fr;
             }
 
-            .image-row {
-                flex-wrap: wrap;
-            }
-
             .image-row img {
-                width: 30%;
+                height: 150px; /* Fixed height for tablets */
             }
         }
 
@@ -217,16 +212,24 @@ import Layout from "../layouts/Layout.astro";
             }
 
             .main-dishes {
-                grid-template-columns: 1fr; /* 1 column on mobile */
+                grid-template-columns: 1fr;
             }
 
             .main-dish img {
                 height: 150px;
             }
 
+            .more-dishes, .accompaniments {
+                font-size: 1rem; /* Smaller text for mobile */
+                padding: 10px; /* Reduced padding */
+            }
+
+            .menu-item {
+                font-size: 1rem; /* Consistent with parent */
+            }
+
             .image-row img {
-                width: 100%;
-                max-height: 200px;
+                height: 100px; /* Fixed height for mobile */
             }
         }
     </style>
@@ -288,7 +291,7 @@ import Layout from "../layouts/Layout.astro";
             <div class="more-dishes">
                 <h3>More Dishes</h3>
                 <div class="menu-item"><span>Fish</span> <span>KSh 500</span></div>
-                <div class="menu-item"><span>L FAMILYiver</span> <span>KSh 500</span></div>
+                <div class="menu-item"><span>Liver</span> <span>KSh 500</span></div>
                 <div class="menu-item"><span>Aliya</span> <span>KSh 500</span></div>
                 <div class="menu-item"><span>Aruda</span> <span>KSh 500</span></div>
                 <div class="menu-item"><span>Dek</span> <span>KSh 500</span></div>

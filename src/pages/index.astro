@@ -56,27 +56,11 @@ import Layout from "../layouts/Layout.astro";
             background: rgba(21, 102, 71, 0.8);
         }
 
-        .hamburger {
-            display: none;
-            font-size: 2rem;
-            cursor: pointer;
-            background: none;
-            border: none;
-            color: white;
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 1000;
-            padding: 10px;
-            background: rgba(0, 0, 0, 0.8);
-            border-radius: 10px;
-        }
-
         /* Gallery Styles */
         .gallery-container {
             width: 100%;
             max-width: 1200px;
-            margin: 40px auto;
+            margin: 20px auto 0; /* Reduced top margin */
             position: relative;
             overflow: hidden;
             border-radius: 10px;
@@ -84,11 +68,12 @@ import Layout from "../layouts/Layout.astro";
 
         .gallery {
             display: flex;
-            animation: slide 20s infinite linear;
+            width: calc(100% * 12); /* 12 images total */
+            animation: slide 24s infinite linear; /* Adjusted duration */
         }
 
         .gallery img {
-            width: 100%;
+            width: calc(100% / 12); /* Each image takes 1/12th of total width */
             height: 400px;
             object-fit: cover;
             flex-shrink: 0;
@@ -96,45 +81,27 @@ import Layout from "../layouts/Layout.astro";
 
         @keyframes slide {
             0% { transform: translateX(0); }
-            100% { transform: translateX(-100%); }
+            100% { transform: translateX(-100%); } /* Full width of unique images */
         }
 
+        /* Responsive adjustments */
         @media (max-width: 768px) {
             .nav-item {
                 font-size: 2rem;
                 padding: 15px;
                 width: 90%;
             }
+
             .gallery img {
                 height: 300px;
             }
         }
 
         @media (max-width: 480px) {
-            .menu {
-                display: none;
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: rgba(0, 0, 0, 0.9);
-                z-index: 999;
-                padding-top: 60px;
-            }
-
-            .menu.active {
-                display: grid;
-            }
-
             .nav-item {
                 font-size: 1.5rem;
                 padding: 10px;
                 width: 90%;
-            }
-
-            .hamburger {
-                display: block;
             }
 
             .gallery img {
@@ -144,7 +111,6 @@ import Layout from "../layouts/Layout.astro";
     </style>
 
     <div class="menu-container">
-        <button class="hamburger" aria-label="Toggle Menu">☰</button>
         <div class="menu" id="menu">
             <a href="/breakfast" class="nav-item" aria-label="Breakfast Menu">Breakfast</a>
             <a href="/meals" class="nav-item" aria-label="Meals Menu">Meals</a>
@@ -169,22 +135,4 @@ import Layout from "../layouts/Layout.astro";
             <img src="/nebs12.jpg" alt="Gallery Image 12" loading="lazy">
         </div>
     </div>
-        <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const hamburger = document.querySelector('.hamburger');
-            const menu = document.getElementById('menu');
-
-            hamburger.addEventListener('click', () => {
-                menu.classList.toggle('active');
-            });
-
-            document.querySelectorAll('.nav-item').forEach(item => {
-                item.addEventListener('click', () => {
-                    if (window.innerWidth <= 480) {
-                        menu.classList.remove('active');
-                    }
-                });
-            });
-        });
-    </script>
 </Layout>

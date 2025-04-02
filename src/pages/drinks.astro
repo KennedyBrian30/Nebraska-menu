@@ -89,21 +89,21 @@ import Layout from "../layouts/Layout.astro";
         /* Image Row */
         .image-row {
             display: flex;
-            flex-wrap: nowrap; /* Prevents wrapping on larger screens */
+            flex-wrap: nowrap; /* Keeps images horizontal on all sizes */
             gap: 15px;
             width: 100%;
+            max-width: 1200px; /* Consistent with other pages */
             padding: 10px;
-            margin-bottom: 20px;
-            justify-content: space-between; /* Spreads images across full width */
+            margin: 0 auto 20px; /* Centered with bottom margin */
+            justify-content: space-between;
         }
 
         .image-row img {
             width: calc(33.33% - 10px); /* Three images, accounting for gap */
             height: auto;
-            max-height: 250px;
-            object-fit: cover;
             border-radius: 10px;
             transition: transform 0.3s ease;
+            object-fit: cover;
         }
 
         .image-row img:hover {
@@ -125,13 +125,8 @@ import Layout from "../layouts/Layout.astro";
                 padding: 6px 8px;
             }
 
-            .image-row {
-                flex-wrap: wrap; /* Allows wrapping on tablets */
-            }
-
             .image-row img {
-                width: clamp(150px, 30%, 250px);
-                max-height: 200px;
+                height: 150px; /* Fixed height for tablets */
             }
         }
 
@@ -151,8 +146,7 @@ import Layout from "../layouts/Layout.astro";
             }
 
             .image-row img {
-                width: clamp(120px, 45%, 200px);
-                max-height: 150px;
+                height: 100px; /* Fixed height for mobile */
             }
         }
     </style>
