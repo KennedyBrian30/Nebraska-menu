@@ -1,5 +1,5 @@
 ---
-const { title = 'Nebraska Lounge & Grill', subtitle = 'Welcome to Our Offerings' } = Astro.props;
+const { title, subtitle } = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -7,16 +7,9 @@ const { title = 'Nebraska Lounge & Grill', subtitle = 'Welcome to Our Offerings'
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{title}</title>
+    <title>{title} | Club Nebraska</title>
     <style>
-        :root {
-            --primary-color: #0B3D02;
-            --nav-bg: rgba(0, 0, 0, 0.8);
-            --nav-item-bg: rgb(82, 24, 22);
-            --nav-hover-bg: rgb(21, 102, 71);
-            --welcome-color: rgb(4, 128, 52);
-        }
-
+        /* Global Reset */
         * {
             margin: 0;
             padding: 0;
@@ -24,174 +17,254 @@ const { title = 'Nebraska Lounge & Grill', subtitle = 'Welcome to Our Offerings'
         }
 
         body {
-            font-family: 'Papyrus', fantasy, sans-serif;
-            text-align: center;
-            background: #f0f0f0 url('/background-image.jpg') no-repeat center center fixed;
-            background-size: cover;
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Main Container */
+        .main-container {
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            justify-content: space-between;
         }
 
-        @media (max-width: 768px) {
-            body {
-                background-size: contain;
-                background-attachment: scroll;
-            }
+        /* Header Styling */
+        header {
+            background: url('/header-bg.jpg') no-repeat center center;
+            background-size: cover;
+            padding: 40px 20px;
+            text-align: center;
+            position: relative;
+            color: white;
         }
 
-        h1 {
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+
+        header h1, header p {
+            position: relative;
+            z-index: 2;
+        }
+
+        header h1 {
             font-size: 3rem;
-            color: var(--primary-color);
-            margin-top: 20px;
+            font-weight: bold;
+            text-transform: uppercase;
         }
 
-        h2 {
-            font-size: 2rem;
-            color: rgb(21, 50, 132);
+        header p {
+            font-size: 1.5rem;
             margin-top: 10px;
         }
 
-        /* Navigation Bar */
-        .nav {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 15px;
-            padding: 10px 20px;
-            background: var(--nav-bg);
-            border-radius: 10px;
-            margin: 10px auto;
-            width: fit-content;
-            position: relative;
-        }
-
-        .nav-item {
-            font-size: 1.2rem;
-            font-weight: bold;
-            padding: 10px 15px;
-            color: white;
-            text-decoration: none;
-            background: var(--nav-item-bg);
-            border-radius: 10px;
-            transition: background 0.3s ease;
-        }
-
-        .nav-item:hover {
-            background: var(--nav-hover-bg);
-        }
-
-        /* Hamburger Menu */
-        .hamburger {
-            display: none;
-            font-size: 2rem;
-            color: white;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 10px;
-        }
-
-        #nav-toggle {
-            display: none;
-        }
-
-        @media (max-width: 600px) {
-            .hamburger {
-                display: block;
-            }
-
-            .nav {
-                width: 90%;
-                flex-direction: column;
-                padding: 0;
-            }
-
-            .nav-items {
-                display: none;
-                width: 100%;
-                flex-direction: column;
-                gap: 10px;
-                padding: 10px 0;
-            }
-
-            #nav-toggle:checked ~ .nav-items {
-                display: flex;
-            }
-
-            .nav-item {
-                width: 100%;
-                border-radius: 0;
-                margin: 0;
-            }
-        }
-
+        /* Content Wrapper */
         .content {
-            flex-grow: 1;
-            margin-top: 20px;
-            width: 100%;
+            flex: 1;
+            padding: 20px;
         }
 
-        .menu-image {
+        /* Upcoming Events Slideshow */
+        .events-container {
             width: 100%;
             max-width: 1200px;
-            height: auto;
-            margin: 20px auto;
-            display: block;
+            margin: 20px auto 0;
+            position: relative;
+            overflow: hidden;
             border-radius: 10px;
-            transition: transform 0.3s ease;
-        }
-
-        .menu-image:hover {
-            transform: scale(1.05);
-        }
-
-        .welcome-text {
-            font-size: 2rem;
-            color: var(--welcome-color);
-            font-weight: bold;
-            margin-top: 20px;
-            font-family: 'Brush Script MT', cursive;
-        }
-
-        footer {
-            margin-top: auto;
+            background: rgba(0, 0, 0, 0.8);
             padding: 20px;
-            background: rgba(0, 0, 0, 0.7);
-            color: white;
+        }
+
+        .events-container h2 {
+            font-size: 2rem;
+            color: rgb(4, 128, 52);
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        .events-slideshow {
+            display: flex;
+            width: calc(100% * 5); /* 5 events total */
+            animation: events-slide 20s infinite linear;
+        }
+
+        .event-slide {
+            width: calc(100% / 5); /* Each event takes 1/5th of total width */
+            flex-shrink: 0;
+            position: relative;
+            text-align: center;
+        }
+
+        .event-slide img {
             width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .event-details {
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            right: 0;
+            background: rgba(57, 109, 14, 0.8);
+            color: white;
+            padding: 10px;
+            border-radius: 0 0 10px 10px;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        @keyframes events-slide {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); } /* Full width of unique slides */
+        }
+
+        /* Footer Styling */
+        footer {
+            background: rgba(82, 24, 22, 0.9);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 1rem;
+            border-top: 4px solid rgba(57, 109, 14, 0.8);
+        }
+
+        footer p {
+            margin: 5px 0;
+        }
+
+        footer a {
+            color: #ffd700;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: #fff;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5rem;
+            }
+
+            header p {
+                font-size: 1.2rem;
+            }
+
+            .events-container h2 {
+                font-size: 1.8rem;
+            }
+
+            .event-slide img {
+                height: 200px;
+            }
+
+            .event-details {
+                font-size: 1rem;
+                padding: 8px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                padding: 20px 10px;
+            }
+
+            header h1 {
+                font-size: 2rem;
+            }
+
+            header p {
+                font-size: 1rem;
+            }
+
+            .events-container {
+                padding: 10px;
+            }
+
+            .events-container h2 {
+                font-size: 1.5rem;
+                padding: 8px;
+            }
+
+            .event-slide img {
+                height: 150px;
+            }
+
+            .event-details {
+                font-size: 0.9rem;
+                padding: 6px;
+            }
+
+            footer {
+                padding: 15px;
+                font-size: 0.9rem;
+            }
         }
     </style>
 </head>
 <body>
-    <h1>Nebraska Lounge & Grill</h1>
+    <div class="main-container">
+        <header>
+            <h1>{title}</h1>
+            <p>{subtitle}</p>
+        </header>
 
-    <nav class="nav" aria-label="Main navigation">
-        <input type="checkbox" id="nav-toggle" aria-label="Toggle navigation">
-        <label for="nav-toggle" class="hamburger">☰</label>
-        <div class="nav-items">
-            <a href="/breakfast" class="nav-item" aria-label="Breakfast Menu">Breakfast</a>
-            <a href="/meals" class="nav-item" aria-label="Meals Menu">Meals</a>
-            <a href="/drinks" class="nav-item" aria-label="Drinks Menu">Drinks</a>
-            <a href="/desserts" class="nav-item" aria-label="Desserts Menu">Desserts</a>
-            <a href="/specials" class="nav-item" aria-label="Specials Menu">Specials</a>
+        <div class="content">
+            <slot /> <!-- Page-specific content goes here -->
         </div>
-    </nav>
 
-    <h2>{subtitle}</h2>
+        <!-- Upcoming Events Slideshow -->
+        <section class="events-container">
+            <h2>Upcoming Events</h2>
+            <div class="events-slideshow">
+                <div class="event-slide">
+                    <img src="/event1.jpg" alt="Event 1" loading="lazy">
+                    <div class="event-details">Johnny Junior - April 10, 2025</div>
+                </div>
+                <div class="event-slide">
+                    <img src="/event2.jpg" alt="Event 2" loading="lazy">
+                    <div class="event-details">Rhumba Night - April 15, 2025</div>
+                </div>
+                <div class="event-slide">
+                    <img src="/event3.jpg" alt="Event 3" loading="lazy">
+                    <div class="event-details">Karaoke Party - April 20, 2025</div>
+                </div>
+                <div class="event-slide">
+                    <img src="/event4.jpg" alt="Event 4" loading="lazy">
+                    <div class="event-details">Matopare Siaya Edition - April 25, 2025</div>
+                </div>
+                <div class="event-slide">
+                    <img src="/event5.jpg" alt="Event 5" loading="lazy">
+                    <div class="event-details">Ladies'Night - April 30, 2025</div>
+                </div>
+            </div>
+        </section>
 
-    <img src="/menu-image.jpg" alt="Delicious Menu" class="menu-image" loading="lazy">
-    <p class="welcome-text">Welcome to The Nebraska!</p>
-
-    <div class="content">
-        <slot />
+        <!-- Footer -->
+        <footer>
+            <p>&copy; 2025 Club Nebraska. All rights reserved.</p>
+            <p>Designed By <a href="https://winkdevsolutions.com" target="_blank">WinKDev Solutions</a></p>
+        </footer>
     </div>
-    
-    <footer>
-        <p>Contact Us: 0700-123-456 | Email: info@clubnebraska.com</p>
-        <p>© 2025 Club Nebraska. All Rights Reserved.</p>
-    </footer>
 </body>
 </html>
 
