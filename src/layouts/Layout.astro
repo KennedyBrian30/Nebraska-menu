@@ -279,7 +279,7 @@ const { title = 'Nebraska Lounge & Grill', subtitle = 'Welcome to Our Offerings'
             background: rgba(57, 109, 14, 0.8);
         }
 
-        /* Cart (Updated) */
+        /* Cart (Updated for Readability) */
         .cart {
             position: fixed;
             bottom: 20px;
@@ -323,13 +323,26 @@ const { title = 'Nebraska Lounge & Grill', subtitle = 'Welcome to Our Offerings'
             color: white;
             padding: 15px;
             border-radius: 10px;
-            max-width: 300px;
-            width: 100%;
+            width: 100%; /* Ensure it takes available width */
+            max-width: 300px; /* Default max-width */
             max-height: 50vh;
             overflow-y: auto;
             position: absolute;
             bottom: 60px;
             right: 0;
+        }
+
+        .cart-content ul {
+            list-style-type: none;
+            margin: 10px 0;
+            white-space: normal; /* Allow text wrapping */
+            word-wrap: break-word; /* Break long words if needed */
+        }
+
+        .cart-content li {
+            margin: 5px 0;
+            font-size: 1rem; /* Readable font size */
+            line-height: 1.4; /* Improve readability */
         }
 
         .cart-expanded .cart-content {
@@ -374,7 +387,7 @@ const { title = 'Nebraska Lounge & Grill', subtitle = 'Welcome to Our Offerings'
             }
         }
 
-        /* Mobile Adjustments */
+        /* Mobile Adjustments (Updated for Wider Cart) */
         @media (max-width: 768px) {
             .cart {
                 bottom: 10px;
@@ -394,8 +407,11 @@ const { title = 'Nebraska Lounge & Grill', subtitle = 'Welcome to Our Offerings'
             }
 
             .cart-content {
-                max-width: 90vw;
+                max-width: 80vw; /* Increased from 90vw for better fit */
+                width: 320px; /* Fixed width, approx 4x previous effective width */
+                min-width: 280px; /* Ensure it doesn’t shrink too much */
                 bottom: 50px;
+                right: 0;
             }
         }
 
@@ -501,7 +517,7 @@ const { title = 'Nebraska Lounge & Grill', subtitle = 'Welcome to Our Offerings'
         </div>
     </div>
 
-    <!-- Cart (Updated) -->
+    <!-- Cart -->
     <div id="cart" class="cart">
         <div class="cart-icon">🛒<span id="cart-count" class="cart-count">0</span></div>
         <div class="cart-content">
