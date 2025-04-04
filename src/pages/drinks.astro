@@ -72,6 +72,26 @@ import Layout from "../layouts/Layout.astro";
             background: rgba(255, 255, 255, 0.1);
             border-radius: 5px;
             max-width: 300px;
+            flex-direction: column; /* Updated for button placement */
+            align-items: flex-start; /* Align text left */
+        }
+
+        /* Order Button Styling (New) */
+        .order-btn {
+            background: rgba(57, 109, 14, 0.8);
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 5px;
+            transition: background 0.3s ease;
+            width: 100%;
+        }
+
+        .order-btn:hover {
+            background: rgba(21, 102, 71, 1);
         }
 
         /* Category-Specific Backgrounds */
@@ -128,6 +148,11 @@ import Layout from "../layouts/Layout.astro";
             .image-row img {
                 height: 150px; /* Fixed height for tablets */
             }
+
+            .order-btn {
+                padding: 5px 10px;
+                font-size: 1rem;
+            }
         }
 
         @media (max-width: 480px) {
@@ -148,6 +173,11 @@ import Layout from "../layouts/Layout.astro";
             .image-row img {
                 height: 100px; /* Fixed height for mobile */
             }
+
+            .order-btn {
+                padding: 4px 8px;
+                font-size: 0.9rem;
+            }
         }
     </style>
 
@@ -163,22 +193,22 @@ import Layout from "../layouts/Layout.astro";
             <img src="/vodka3.jpg" alt="Vodka Image 3" loading="lazy">
         </div>
         <div class="menu-list vodka">
-            <div class="menu-item"><span>Absolute Vodka 750ML</span> <span>KSh 3,500</span></div>
-            <div class="menu-item"><span>Best Vodka 750ML</span> <span>KSh 2,000</span></div>
-            <div class="menu-item"><span>Kibao 250ML</span> <span>KSh 600</span></div>
-            <div class="menu-item"><span>Kibao 350ML</span> <span>KSh 850</span></div>
-            <div class="menu-item"><span>Kibao 750ML</span> <span>KSh 1,300</span></div>
-            <div class="menu-item"><span>S. Blueberry 750ML</span> <span>KSh 2,500</span></div>
-            <div class="menu-item"><span>Sminorf Vodka 250ML</span> <span>KSh 600</span></div>
-            <div class="menu-item"><span>Sminorf Vodka 350ML</span> <span>KSh 1,000</span></div>
-            <div class="menu-item"><span>Sminorf Vodka 750ML</span> <span>KSh 2,000</span></div>
-            <div class="menu-item"><span>Smirnoff Gold</span> <span>KSh 2,800</span></div>
-            <div class="menu-item"><span>Smirnoff Gold 350ML</span> <span>KSh 1,500</span></div>
-            <div class="menu-item"><span>Smirnoff Gold 750ML</span> <span>KSh 2,800</span></div>
-            <div class="menu-item"><span>Smirnoff Vodka 1LTR</span> <span>KSh 2,500</span></div>
-            <div class="menu-item"><span>Smirnoff Lime 750ML</span> <span>KSh 3,000</span></div>
-            <div class="menu-item"><span>Tripple Ace 250ML</span> <span>KSh 400</span></div>
-            <div class="menu-item"><span>Tripple Ace 750ML</span> <span>KSh 1,300</span></div>
+            <div class="menu-item"><span>Absolute Vodka 750ML</span> <span>KSh 3,500</span><button class="order-btn" data-item="Absolute Vodka 750ML" data-prices='{"750ML": 3500}'>Order</button></div>
+            <div class="menu-item"><span>Best Vodka 750ML</span> <span>KSh 2,000</span><button class="order-btn" data-item="Best Vodka 750ML" data-prices='{"750ML": 2000}'>Order</button></div>
+            <div class="menu-item"><span>Kibao 250ML</span> <span>KSh 600</span><button class="order-btn" data-item="Kibao 250ML" data-prices='{"250ML": 600}'>Order</button></div>
+            <div class="menu-item"><span>Kibao 350ML</span> <span>KSh 850</span><button class="order-btn" data-item="Kibao 350ML" data-prices='{"350ML": 850}'>Order</button></div>
+            <div class="menu-item"><span>Kibao 750ML</span> <span>KSh 1,300</span><button class="order-btn" data-item="Kibao 750ML" data-prices='{"750ML": 1300}'>Order</button></div>
+            <div class="menu-item"><span>S. Blueberry 750ML</span> <span>KSh 2,500</span><button class="order-btn" data-item="S. Blueberry 750ML" data-prices='{"750ML": 2500}'>Order</button></div>
+            <div class="menu-item"><span>Sminorf Vodka 250ML</span> <span>KSh 600</span><button class="order-btn" data-item="Sminorf Vodka 250ML" data-prices='{"250ML": 600}'>Order</button></div>
+            <div class="menu-item"><span>Sminorf Vodka 350ML</span> <span>KSh 1,000</span><button class="order-btn" data-item="Sminorf Vodka 350ML" data-prices='{"350ML": 1000}'>Order</button></div>
+            <div class="menu-item"><span>Sminorf Vodka 750ML</span> <span>KSh 2,000</span><button class="order-btn" data-item="Sminorf Vodka 750ML" data-prices='{"750ML": 2000}'>Order</button></div>
+            <div class="menu-item"><span>Smirnoff Gold</span> <span>KSh 2,800</span><button class="order-btn" data-item="Smirnoff Gold" data-prices='{"Default": 2800}'>Order</button></div>
+            <div class="menu-item"><span>Smirnoff Gold 350ML</span> <span>KSh 1,500</span><button class="order-btn" data-item="Smirnoff Gold 350ML" data-prices='{"350ML": 1500}'>Order</button></div>
+            <div class="menu-item"><span>Smirnoff Gold 750ML</span> <span>KSh 2,800</span><button class="order-btn" data-item="Smirnoff Gold 750ML" data-prices='{"750ML": 2800}'>Order</button></div>
+            <div class="menu-item"><span>Smirnoff Vodka 1LTR</span> <span>KSh 2,500</span><button class="order-btn" data-item="Smirnoff Vodka 1LTR" data-prices='{"1LTR": 2500}'>Order</button></div>
+            <div class="menu-item"><span>Smirnoff Lime 750ML</span> <span>KSh 3,000</span><button class="order-btn" data-item="Smirnoff Lime 750ML" data-prices='{"750ML": 3000}'>Order</button></div>
+            <div class="menu-item"><span>Tripple Ace 250ML</span> <span>KSh 400</span><button class="order-btn" data-item="Tripple Ace 250ML" data-prices='{"250ML": 400}'>Order</button></div>
+            <div class="menu-item"><span>Tripple Ace 750ML</span> <span>KSh 1,300</span><button class="order-btn" data-item="Tripple Ace 750ML" data-prices='{"750ML": 1300}'>Order</button></div>
         </div>
     </section>
 
@@ -190,66 +220,66 @@ import Layout from "../layouts/Layout.astro";
             <img src="/whiskey3.jpg" alt="Whiskey Image 3" loading="lazy">
         </div>
         <div class="menu-list whiskey">
-            <div class="menu-item"><span>8 PM 1LTR</span> <span>KSh 2,000</span></div>
-            <div class="menu-item"><span>All Seasons 750ML</span> <span>KSh 2,000</span></div>
-            <div class="menu-item"><span>Ballentines 10YRS</span> <span>KSh 4,000</span></div>
-            <div class="menu-item"><span>Ballentines 1LTR</span> <span>KSh 4,700</span></div>
-            <div class="menu-item"><span>Ballentines 750ML</span> <span>KSh 3,500</span></div>
-            <div class="menu-item"><span>Belaire Lux White 750ML</span> <span>KSh 7,500</span></div>
-            <div class="menu-item"><span>Best Whiskey 250ML</span> <span>KSh 600</span></div>
-            <div class="menu-item"><span>Best Whiskey 750ML</span> <span>KSh 1,800</span></div>
-            <div class="menu-item"><span>Black & White 350ML</span> <span>KSh 1,000</span></div>
-            <div class="menu-item"><span>Black & White 750ML</span> <span>KSh 2,000</span></div>
-            <div class="menu-item"><span>Black & White 1LTR</span> <span>KSh 2,400</span></div>
-            <div class="menu-item"><span>Black & White 250ML</span> <span>KSh 600</span></div>
-            <div class="menu-item"><span>Black Label 350ML</span> <span>KSh 2,400</span></div>
-            <div class="menu-item"><span>Black Label 750ML</span> <span>KSh 5,000</span></div>
-            <div class="menu-item"><span>Black Label 1LTR</span> <span>KSh 6,000</span></div>
-            <div class="menu-item"><span>Black Label TOT</span> <span>KSh 250</span></div>
-            <div class="menu-item"><span>Black Whiskey</span> <span>KSh 1,700</span></div>
-            <div class="menu-item"><span>Bond 7 250ML</span> <span>KSh 600</span></div>
-            <div class="menu-item"><span>Bond 7 350ML</span> <span>KSh 1,000</span></div>
-            <div class="menu-item"><span>Bond 7 750ML</span> <span>KSh 2,200</span></div>
-            <div class="menu-item"><span>Captain Morgan Dark Rum</span> <span>KSh 4,000</span></div>
-            <div class="menu-item"><span>Chivas Regal 12YRS</span> <span>KSh 6,000</span></div>
-            <div class="menu-item"><span>Don Julio</span> <span>KSh 10,000</span></div>
-            <div class="menu-item"><span>Double Black 1LTR</span> <span>KSh 9,500</span></div>
-            <div class="menu-item"><span>Double Black 750ML</span> <span>KSh 8,000</span></div>
-            <div class="menu-item"><span>Double Black TOT</span> <span>KSh 250</span></div>
-            <div class="menu-item"><span>Drambuie 750ML</span> <span>KSh 6,000</span></div>
-            <div class="menu-item"><span>Famous Grouse 750ML</span> <span>KSh 3,000</span></div>
-            <div class="menu-item"><span>Famous Grouse 1LTR</span> <span>KSh 3,500</span></div>
-            <div class="menu-item"><span>Famous Grouse 350ML</span> <span>KSh 900</span></div>
-            <div class="menu-item"><span>Glenfiddich 15YRS</span> <span>KSh 14,000</span></div>
-            <div class="menu-item"><span>Glenfiddich 18YRS</span> <span>KSh 16,000</span></div>
-            <div class="menu-item"><span>Glenfiddich 12YRS</span> <span>KSh 6,500</span></div>
-            <div class="menu-item"><span>Glenlivet 12YRS</span> <span>KSh 8,500</span></div>
-            <div class="menu-item"><span>Glenlivet 15YRS</span> <span>KSh 8,500</span></div>
-            <div class="menu-item"><span>Glenlivet Founders Reserve 750ML</span> <span>KSh 6,500</span></div>
-            <div class="menu-item"><span>Gold Label 750ML</span> <span>KSh 9,500</span></div>
-            <div class="menu-item"><span>Grain Whiskey 750ML</span> <span>KSh 1,700</span></div>
-            <div class="menu-item"><span>Grants 18YRS</span> <span>KSh 7,000</span></div>
-            <div class="menu-item"><span>Grants 1LTR</span> <span>KSh 3,500</span></div>
-            <div class="menu-item"><span>Grants 350ML</span> <span>KSh 1,400</span></div>
-            <div class="menu-item"><span>Grants 750ML</span> <span>KSh 3,000</span></div>
-            <div class="menu-item"><span>Green Label 1LTR</span> <span>KSh 9,000</span></div>
-            <div class="menu-item"><span>Hennessy 1LTR</span> <span>KSh 14,000</span></div>
-            <div class="menu-item"><span>Hennessy 750ML</span> <span>KSh 8,500</span></div>
-            <div class="menu-item"><span>Jack Daniels 1LTR</span> <span>KSh 6,000</span></div>
-            <div class="menu-item"><span>Jack Daniels 750ML</span> <span>KSh 5,500</span></div>
-            <div class="menu-item"><span>Jack Daniels Legacy Edition 750ML</span> <span>KSh 4,800</span></div>
-            <div class="menu-item"><span>Jack Daniels Rye 1LTR</span> <span>KSh 6,500</span></div>
-            <div class="menu-item"><span>Jack Daniels TOT</span> <span>KSh 250</span></div>
-            <div class="menu-item"><span>Jameson 1LTR</span> <span>KSh 4,700</span></div>
-            <div class="menu-item"><span>Jameson 750ML</span> <span>KSh 4,000</span></div>
-            <div class="menu-item"><span>Jameson Black Barrel 750ML</span> <span>KSh 6,500</span></div>
-            <div class="menu-item"><span>Martell VSOP</span> <span>KSh 13,000</span></div>
-            <div class="menu-item"><span>Martell 1LTR</span> <span>KSh 9,500</span></div>
-            <div class="menu-item"><span>Martell VS 750ML</span> <span>KSh 8,500</span></div>
-            <div class="menu-item"><span>Red Label 750ML</span> <span>KSh 3,000</span></div>
-            <div class="menu-item"><span>VAT 69 750ML</span> <span>KSh 2,300</span></div>
-            <div class="menu-item"><span>Ameson 1L</span> <span>KSh 3,000</span></div>
-            <div class="menu-item"><span>William Lawsons 750ML</span> <span>KSh 3,000</span></div>
+            <div class="menu-item"><span>8 PM 1LTR</span> <span>KSh 2,000</span><button class="order-btn" data-item="8 PM 1LTR" data-prices='{"1LTR": 2000}'>Order</button></div>
+            <div class="menu-item"><span>All Seasons 750ML</span> <span>KSh 2,000</span><button class="order-btn" data-item="All Seasons 750ML" data-prices='{"750ML": 2000}'>Order</button></div>
+            <div class="menu-item"><span>Ballentines 10YRS</span> <span>KSh 4,000</span><button class="order-btn" data-item="Ballentines 10YRS" data-prices='{"Default": 4000}'>Order</button></div>
+            <div class="menu-item"><span>Ballentines 1LTR</span> <span>KSh 4,700</span><button class="order-btn" data-item="Ballentines 1LTR" data-prices='{"1LTR": 4700}'>Order</button></div>
+            <div class="menu-item"><span>Ballentines 750ML</span> <span>KSh 3,500</span><button class="order-btn" data-item="Ballentines 750ML" data-prices='{"750ML": 3500}'>Order</button></div>
+            <div class="menu-item"><span>Belaire Lux White 750ML</span> <span>KSh 7,500</span><button class="order-btn" data-item="Belaire Lux White 750ML" data-prices='{"750ML": 7500}'>Order</button></div>
+            <div class="menu-item"><span>Best Whiskey 250ML</span> <span>KSh 600</span><button class="order-btn" data-item="Best Whiskey 250ML" data-prices='{"250ML": 600}'>Order</button></div>
+            <div class="menu-item"><span>Best Whiskey 750ML</span> <span>KSh 1,800</span><button class="order-btn" data-item="Best Whiskey 750ML" data-prices='{"750ML": 1800}'>Order</button></div>
+            <div class="menu-item"><span>Black & White 350ML</span> <span>KSh 1,000</span><button class="order-btn" data-item="Black & White 350ML" data-prices='{"350ML": 1000}'>Order</button></div>
+            <div class="menu-item"><span>Black & White 750ML</span> <span>KSh 2,000</span><button class="order-btn" data-item="Black & White 750ML" data-prices='{"750ML": 2000}'>Order</button></div>
+            <div class="menu-item"><span>Black & White 1LTR</span> <span>KSh 2,400</span><button class="order-btn" data-item="Black & White 1LTR" data-prices='{"1LTR": 2400}'>Order</button></div>
+            <div class="menu-item"><span>Black & White 250ML</span> <span>KSh 600</span><button class="order-btn" data-item="Black & White 250ML" data-prices='{"250ML": 600}'>Order</button></div>
+            <div class="menu-item"><span>Black Label 350ML</span> <span>KSh 2,400</span><button class="order-btn" data-item="Black Label 350ML" data-prices='{"350ML": 2400}'>Order</button></div>
+            <div class="menu-item"><span>Black Label 750ML</span> <span>KSh 5,000</span><button class="order-btn" data-item="Black Label 750ML" data-prices='{"750ML": 5000}'>Order</button></div>
+            <div class="menu-item"><span>Black Label 1LTR</span> <span>KSh 6,000</span><button class="order-btn" data-item="Black Label 1LTR" data-prices='{"1LTR": 6000}'>Order</button></div>
+            <div class="menu-item"><span>Black Label TOT</span> <span>KSh 250</span><button class="order-btn" data-item="Black Label TOT" data-prices='{"TOT": 250}'>Order</button></div>
+            <div class="menu-item"><span>Black Whiskey</span> <span>KSh 1,700</span><button class="order-btn" data-item="Black Whiskey" data-prices='{"Default": 1700}'>Order</button></div>
+            <div class="menu-item"><span>Bond 7 250ML</span> <span>KSh 600</span><button class="order-btn" data-item="Bond 7 250ML" data-prices='{"250ML": 600}'>Order</button></div>
+            <div class="menu-item"><span>Bond 7 350ML</span> <span>KSh 1,000</span><button class="order-btn" data-item="Bond 7 350ML" data-prices='{"350ML": 1000}'>Order</button></div>
+            <div class="menu-item"><span>Bond 7 750ML</span> <span>KSh 2,200</span><button class="order-btn" data-item="Bond 7 750ML" data-prices='{"750ML": 2200}'>Order</button></div>
+            <div class="menu-item"><span>Captain Morgan Dark Rum</span> <span>KSh 4,000</span><button class="order-btn" data-item="Captain Morgan Dark Rum" data-prices='{"Default": 4000}'>Order</button></div>
+            <div class="menu-item"><span>Chivas Regal 12YRS</span> <span>KSh 6,000</span><button class="order-btn" data-item="Chivas Regal 12YRS" data-prices='{"Default": 6000}'>Order</button></div>
+            <div class="menu-item"><span>Don Julio</span> <span>KSh 10,000</span><button class="order-btn" data-item="Don Julio" data-prices='{"Default": 10000}'>Order</button></div>
+            <div class="menu-item"><span>Double Black 1LTR</span> <span>KSh 9,500</span><button class="order-btn" data-item="Double Black 1LTR" data-prices='{"1LTR": 9500}'>Order</button></div>
+            <div class="menu-item"><span>Double Black 750ML</span> <span>KSh 8,000</span><button class="order-btn" data-item="Double Black 750ML" data-prices='{"750ML": 8000}'>Order</button></div>
+            <div class="menu-item"><span>Double Black TOT</span> <span>KSh 250</span><button class="order-btn" data-item="Double Black TOT" data-prices='{"TOT": 250}'>Order</button></div>
+            <div class="menu-item"><span>Drambuie 750ML</span> <span>KSh 6,000</span><button class="order-btn" data-item="Drambuie 750ML" data-prices='{"750ML": 6000}'>Order</button></div>
+            <div class="menu-item"><span>Famous Grouse 750ML</span> <span>KSh 3,000</span><button class="order-btn" data-item="Famous Grouse 750ML" data-prices='{"750ML": 3000}'>Order</button></div>
+            <div class="menu-item"><span>Famous Grouse 1LTR</span> <span>KSh 3,500</span><button class="order-btn" data-item="Famous Grouse 1LTR" data-prices='{"1LTR": 3500}'>Order</button></div>
+            <div class="menu-item"><span>Famous Grouse 350ML</span> <span>KSh 900</span><button class="order-btn" data-item="Famous Grouse 350ML" data-prices='{"350ML": 900}'>Order</button></div>
+            <div class="menu-item"><span>Glenfiddich 15YRS</span> <span>KSh 14,000</span><button class="order-btn" data-item="Glenfiddich 15YRS" data-prices='{"Default": 14000}'>Order</button></div>
+            <div class="menu-item"><span>Glenfiddich 18YRS</span> <span>KSh 16,000</span><button class="order-btn" data-item="Glenfiddich 18YRS" data-prices='{"Default": 16000}'>Order</button></div>
+            <div class="menu-item"><span>Glenfiddich 12YRS</span> <span>KSh 6,500</span><button class="order-btn" data-item="Glenfiddich 12YRS" data-prices='{"Default": 6500}'>Order</button></div>
+            <div class="menu-item"><span>Glenlivet 12YRS</span> <span>KSh 8,500</span><button class="order-btn" data-item="Glenlivet 12YRS" data-prices='{"Default": 8500}'>Order</button></div>
+            <div class="menu-item"><span>Glenlivet 15YRS</span> <span>KSh 8,500</span><button class="order-btn" data-item="Glenlivet 15YRS" data-prices='{"Default": 8500}'>Order</button></div>
+            <div class="menu-item"><span>Glenlivet Founders Reserve 750ML</span> <span>KSh 6,500</span><button class="order-btn" data-item="Glenlivet Founders Reserve 750ML" data-prices='{"750ML": 6500}'>Order</button></div>
+            <div class="menu-item"><span>Gold Label 750ML</span> <span>KSh 9,500</span><button class="order-btn" data-item="Gold Label 750ML" data-prices='{"750ML": 9500}'>Order</button></div>
+            <div class="menu-item"><span>Grain Whiskey 750ML</span> <span>KSh 1,700</span><button class="order-btn" data-item="Grain Whiskey 750ML" data-prices='{"750ML": 1700}'>Order</button></div>
+            <div class="menu-item"><span>Grants 18YRS</span> <span>KSh 7,000</span><button class="order-btn" data-item="Grants 18YRS" data-prices='{"Default": 7000}'>Order</button></div>
+            <div class="menu-item"><span>Grants 1LTR</span> <span>KSh 3,500</span><button class="order-btn" data-item="Grants 1LTR" data-prices='{"1LTR": 3500}'>Order</button></div>
+            <div class="menu-item"><span>Grants 350ML</span> <span>KSh 1,400</span><button class="order-btn" data-item="Grants 350ML" data-prices='{"350ML": 1400}'>Order</button></div>
+            <div class="menu-item"><span>Grants 750ML</span> <span>KSh 3,000</span><button class="order-btn" data-item="Grants 750ML" data-prices='{"750ML": 3000}'>Order</button></div>
+            <div class="menu-item"><span>Green Label 1LTR</span> <span>KSh 9,000</span><button class="order-btn" data-item="Green Label 1LTR" data-prices='{"1LTR": 9000}'>Order</button></div>
+            <div class="menu-item"><span>Hennessy 1LTR</span> <span>KSh 14,000</span><button class="order-btn" data-item="Hennessy 1LTR" data-prices='{"1LTR": 14000}'>Order</button></div>
+            <div class="menu-item"><span>Hennessy 750ML</span> <span>KSh 8,500</span><button class="order-btn" data-item="Hennessy 750ML" data-prices='{"750ML": 8500}'>Order</button></div>
+            <div class="menu-item"><span>Jack Daniels 1LTR</span> <span>KSh 6,000</span><button class="order-btn" data-item="Jack Daniels 1LTR" data-prices='{"1LTR": 6000}'>Order</button></div>
+            <div class="menu-item"><span>Jack Daniels 750ML</span> <span>KSh 5,500</span><button class="order-btn" data-item="Jack Daniels 750ML" data-prices='{"750ML": 5500}'>Order</button></div>
+            <div class="menu-item"><span>Jack Daniels Legacy Edition 750ML</span> <span>KSh 4,800</span><button class="order-btn" data-item="Jack Daniels Legacy Edition 750ML" data-prices='{"750ML": 4800}'>Order</button></div>
+            <div class="menu-item"><span>Jack Daniels Rye 1LTR</span> <span>KSh 6,500</span><button class="order-btn" data-item="Jack Daniels Rye 1LTR" data-prices='{"1LTR": 6500}'>Order</button></div>
+            <div class="menu-item"><span>Jack Daniels TOT</span> <span>KSh 250</span><button class="order-btn" data-item="Jack Daniels TOT" data-prices='{"TOT": 250}'>Order</button></div>
+            <div class="menu-item"><span>Jameson 1LTR</span> <span>KSh 4,700</span><button class="order-btn" data-item="Jameson 1LTR" data-prices='{"1LTR": 4700}'>Order</button></div>
+            <div class="menu-item"><span>Jameson 750ML</span> <span>KSh 4,000</span><button class="order-btn" data-item="Jameson 750ML" data-prices='{"750ML": 4000}'>Order</button></div>
+            <div class="menu-item"><span>Jameson Black Barrel 750ML</span> <span>KSh 6,500</span><button class="order-btn" data-item="Jameson Black Barrel 750ML" data-prices='{"750ML": 6500}'>Order</button></div>
+            <div class="menu-item"><span>Martell VSOP</span> <span>KSh 13,000</span><button class="order-btn" data-item="Martell VSOP" data-prices='{"Default": 13000}'>Order</button></div>
+            <div class="menu-item"><span>Martell 1LTR</span> <span>KSh 9,500</span><button class="order-btn" data-item="Martell 1LTR" data-prices='{"1LTR": 9500}'>Order</button></div>
+            <div class="menu-item"><span>Martell VS 750ML</span> <span>KSh 8,500</span><button class="order-btn" data-item="Martell VS 750ML" data-prices='{"750ML": 8500}'>Order</button></div>
+            <div class="menu-item"><span>Red Label 750ML</span> <span>KSh 3,000</span><button class="order-btn" data-item="Red Label 750ML" data-prices='{"750ML": 3000}'>Order</button></div>
+            <div class="menu-item"><span>VAT 69 750ML</span> <span>KSh 2,300</span><button class="order-btn" data-item="VAT 69 750ML" data-prices='{"750ML": 2300}'>Order</button></div>
+            <div class="menu-item"><span>Ameson 1L</span> <span>KSh 3,000</span><button class="order-btn" data-item="Ameson 1L" data-prices='{"1L": 3000}'>Order</button></div>
+            <div class="menu-item"><span>William Lawsons 750ML</span> <span>KSh 3,000</span><button class="order-btn" data-item="William Lawsons 750ML" data-prices='{"750ML": 3000}'>Order</button></div>
         </div>
     </section>
 
@@ -261,22 +291,22 @@ import Layout from "../layouts/Layout.astro";
             <img src="/beer3.jpg" alt="Beer Image 3" loading="lazy">
         </div>
         <div class="menu-list beer">
-            <div class="menu-item"><span>ATLAS SUPER STRONG</span> <span>KSh 350</span></div>
-            <div class="menu-item"><span>BALOZI</span> <span>KSh 250</span></div>
-            <div class="menu-item"><span>BLACK ICE</span> <span>KSh 250</span></div>
-            <div class="menu-item"><span>GUINESS</span> <span>KSh 250</span></div>
-            <div class="menu-item"><span>GUINNESS SMOOTH S</span> <span>KSh 200</span></div>
-            <div class="menu-item"><span>HEINEKEN</span> <span>KSh 400</span></div>
-            <div class="menu-item"><span>HUNTERS DRY</span> <span>KSh 300</span></div>
-            <div class="menu-item"><span>T. LITE CAN</span> <span>KSh 300</span></div>
-            <div class="menu-item"><span>MANYATTA BEER</span> <span>KSh 300</span></div>
-            <div class="menu-item"><span>PILSNER</span> <span>KSh 250</span></div>
-            <div class="menu-item"><span>SAVANNA CIDER S</span> <span>KSh 320</span></div>
-            <div class="menu-item"><span>SNAP S</span> <span>KSh 250</span></div>
-            <div class="menu-item"><span>TUSKER CIDER</span> <span>KSh 250</span></div>
-            <div class="menu-item"><span>TUSKER LARGER</span> <span>KSh 250</span></div>
-            <div class="menu-item"><span>TUSKER LITE</span> <span>KSh 250</span></div>
-            <div class="menu-item"><span>WHITECAP</span> <span>KSh 250</span></div>
+            <div class="menu-item"><span>ATLAS SUPER STRONG</span> <span>KSh 350</span><button class="order-btn" data-item="ATLAS SUPER STRONG" data-prices='{"Default": 350}'>Order</button></div>
+            <div class="menu-item"><span>BALOZI</span> <span>KSh 250</span><button class="order-btn" data-item="BALOZI" data-prices='{"Default": 250}'>Order</button></div>
+            <div class="menu-item"><span>BLACK ICE</span> <span>KSh 250</span><button class="order-btn" data-item="BLACK ICE" data-prices='{"Default": 250}'>Order</button></div>
+            <div class="menu-item"><span>GUINESS</span> <span>KSh 250</span><button class="order-btn" data-item="GUINESS" data-prices='{"Default": 250}'>Order</button></div>
+            <div class="menu-item"><span>GUINNESS SMOOTH S</span> <span>KSh 200</span><button class="order-btn" data-item="GUINNESS SMOOTH S" data-prices='{"Default": 200}'>Order</button></div>
+            <div class="menu-item"><span>HEINEKEN</span> <span>KSh 400</span><button class="order-btn" data-item="HEINEKEN" data-prices='{"Default": 400}'>Order</button></div>
+            <div class="menu-item"><span>HUNTERS DRY</span> <span>KSh 300</span><button class="order-btn" data-item="HUNTERS DRY" data-prices='{"Default": 300}'>Order</button></div>
+            <div class="menu-item"><span>T. LITE CAN</span> <span>KSh 300</span><button class="order-btn" data-item="T. LITE CAN" data-prices='{"Default": 300}'>Order</button></div>
+            <div class="menu-item"><span>MANYATTA BEER</span> <span>KSh 300</span><button class="order-btn" data-item="MANYATTA BEER" data-prices='{"Default": 300}'>Order</button></div>
+            <div class="menu-item"><span>PILSNER</span> <span>KSh 250</span><button class="order-btn" data-item="PILSNER" data-prices='{"Default": 250}'>Order</button></div>
+            <div class="menu-item"><span>SAVANNA CIDER S</span> <span>KSh 320</span><button class="order-btn" data-item="SAVANNA CIDER S" data-prices='{"Default": 320}'>Order</button></div>
+            <div class="menu-item"><span>SNAP S</span> <span>KSh 250</span><button class="order-btn" data-item="SNAP S" data-prices='{"Default": 250}'>Order</button></div>
+            <div class="menu-item"><span>TUSKER CIDER</span> <span>KSh 250</span><button class="order-btn" data-item="TUSKER CIDER" data-prices='{"Default": 250}'>Order</button></div>
+            <div class="menu-item"><span>TUSKER LARGER</span> <span>KSh 250</span><button class="order-btn" data-item="TUSKER LARGER" data-prices='{"Default": 250}'>Order</button></div>
+            <div class="menu-item"><span>TUSKER LITE</span> <span>KSh 250</span><button class="order-btn" data-item="TUSKER LITE" data-prices='{"Default": 250}'>Order</button></div>
+            <div class="menu-item"><span>WHITECAP</span> <span>KSh 250</span><button class="order-btn" data-item="WHITECAP" data-prices='{"Default": 250}'>Order</button></div>
         </div>
     </section>
 
@@ -288,23 +318,23 @@ import Layout from "../layouts/Layout.astro";
             <img src="/gin3.jpg" alt="Gin Image 3" loading="lazy">
         </div>
         <div class="menu-list gin">
-            <div class="menu-item"><span>Barcady Gin</span> <span>KSh 2,800</span></div>
-            <div class="menu-item"><span>Beefeater 750ML</span> <span>KSh 3,500</span></div>
-            <div class="menu-item"><span>Best Gin 250ML</span> <span>KSh 550</span></div>
-            <div class="menu-item"><span>Best Gin 750ML</span> <span>KSh 1,800</span></div>
-            <div class="menu-item"><span>Chrome 250ML</span> <span>KSh 450</span></div>
-            <div class="menu-item"><span>Chrome 750ML</span> <span>KSh 1,300</span></div>
-            <div class="menu-item"><span>Gilbeys 250ML</span> <span>KSh 600</span></div>
-            <div class="menu-item"><span>Gilbeys 350ML</span> <span>KSh 1,000</span></div>
-            <div class="menu-item"><span>Gilbeys 750ML</span> <span>KSh 2,000</span></div>
-            <div class="menu-item"><span>Gin Society</span> <span>KSh 4,800</span></div>
-            <div class="menu-item"><span>Gordons 1LTR</span> <span>KSh 3,500</span></div>
-            <div class="menu-item"><span>Gordons 750ML</span> <span>KSh 3,000</span></div>
-            <div class="menu-item"><span>Gordon Gin 350ML</span> <span>KSh 1,300</span></div>
-            <div class="menu-item"><span>Hendricks 1LTR</span> <span>KSh 7,500</span></div>
-            <div class="menu-item"><span>Tanqueray 750ML</span> <span>KSh 4,000</span></div>
-            <div class="menu-item"><span>Tanqueray 10 750ML</span> <span>KSh 6,000</span></div>
-            <div class="menu-item"><span>Origin 250ML</span> <span>KSh 400</span></div>
+            <div class="menu-item"><span>Barcady Gin</span> <span>KSh 2,800</span><button class="order-btn" data-item="Barcady Gin" data-prices='{"Default": 2800}'>Order</button></div>
+            <div class="menu-item"><span>Beefeater 750ML</span> <span>KSh 3,500</span><button class="order-btn" data-item="Beefeater 750ML" data-prices='{"750ML": 3500}'>Order</button></div>
+            <div class="menu-item"><span>Best Gin 250ML</span> <span>KSh 550</span><button class="order-btn" data-item="Best Gin 250ML" data-prices='{"250ML": 550}'>Order</button></div>
+            <div class="menu-item"><span>Best Gin 750ML</span> <span>KSh 1,800</span><button class="order-btn" data-item="Best Gin 750ML" data-prices='{"750ML": 1800}'>Order</button></div>
+            <div class="menu-item"><span>Chrome 250ML</span> <span>KSh 450</span><button class="order-btn" data-item="Chrome 250ML" data-prices='{"250ML": 450}'>Order</button></div>
+            <div class="menu-item"><span>Chrome 750ML</span> <span>KSh 1,300</span><button class="order-btn" data-item="Chrome 750ML" data-prices='{"750ML": 1300}'>Order</button></div>
+            <div class="menu-item"><span>Gilbeys 250ML</span> <span>KSh 600</span><button class="order-btn" data-item="Gilbeys 250ML" data-prices='{"250ML": 600}'>Order</button></div>
+            <div class="menu-item"><span>Gilbeys 350ML</span> <span>KSh 1,000</span><button class="order-btn" data-item="Gilbeys 350ML" data-prices='{"350ML": 1000}'>Order</button></div>
+            <div class="menu-item"><span>Gilbeys 750ML</span> <span>KSh 2,000</span><button class="order-btn" data-item="Gilbeys 750ML" data-prices='{"750ML": 2000}'>Order</button></div>
+            <div class="menu-item"><span>Gin Society</span> <span>KSh 4,800</span><button class="order-btn" data-item="Gin Society" data-prices='{"Default": 4800}'>Order</button></div>
+            <div class="menu-item"><span>Gordons 1LTR</span> <span>KSh 3,500</span><button class="order-btn" data-item="Gordons 1LTR" data-prices='{"1LTR": 3500}'>Order</button></div>
+            <div class="menu-item"><span>Gordons 750ML</span> <span>KSh 3,000</span><button class="order-btn" data-item="Gordons 750ML" data-prices='{"750ML": 3000}'>Order</button></div>
+            <div class="menu-item"><span>Gordon Gin 350ML</span> <span>KSh 1,300</span><button class="order-btn" data-item="Gordon Gin 350ML" data-prices='{"350ML": 1300}'>Order</button></div>
+            <div class="menu-item"><span>Hendricks 1LTR</span> <span>KSh 7,500</span><button class="order-btn" data-item="Hendricks 1LTR" data-prices='{"1LTR": 7500}'>Order</button></div>
+            <div class="menu-item"><span>Tanqueray 750ML</span> <span>KSh 4,000</span><button class="order-btn" data-item="Tanqueray 750ML" data-prices='{"750ML": 4000}'>Order</button></div>
+            <div class="menu-item"><span>Tanqueray 10 750ML</span> <span>KSh 6,000</span><button class="order-btn" data-item="Tanqueray 10 750ML" data-prices='{"750ML": 6000}'>Order</button></div>
+            <div class="menu-item"><span>Origin 250ML</span> <span>KSh 400</span><button class="order-btn" data-item="Origin 250ML" data-prices='{"250ML": 400}'>Order</button></div>
         </div>
     </section>
 
@@ -316,23 +346,23 @@ import Layout from "../layouts/Layout.astro";
             <img src="/cocktail3.jpg" alt="Cocktail Image 3" loading="lazy">
         </div>
         <div class="menu-list cocktails">
-            <div class="menu-item"><span>Blue Neb</span> <span>KSh 350</span></div>
-            <div class="menu-item"><span>Dawa</span> <span>KSh 350</span></div>
-            <div class="menu-item"><span>Easy Town</span> <span>KSh 400</span></div>
-            <div class="menu-item"><span>Fleur De Lis</span> <span>KSh 450</span></div>
-            <div class="menu-item"><span>Game Time</span> <span>KSh 450</span></div>
-            <div class="menu-item"><span>Long Island Iced Tea</span> <span>KSh 500</span></div>
-            <div class="menu-item"><span>Margarita</span> <span>KSh 400</span></div>
-            <div class="menu-item"><span>Manhattan</span> <span>KSh 450</span></div>
-            <div class="menu-item"><span>Mob Hit</span> <span>KSh 350</span></div>
-            <div class="menu-item"><span>Mojito</span> <span>KSh 350</span></div>
-            <div class="menu-item"><span>Negroni</span> <span>KSh 400</span></div>
-            <div class="menu-item"><span>Pink Pussy</span> <span>KSh 350</span></div>
-            <div class="menu-item"><span>Screw Driver</span> <span>KSh 350</span></div>
-            <div class="menu-item"><span>Sex on the Beach</span> <span>KSh 450</span></div>
-            <div class="menu-item"><span>Summer Time</span> <span>KSh 350</span></div>
-            <div class="menu-item"><span>Tempo</span> <span>KSh 300</span></div>
-            <div class="menu-item"><span>Tequila Sunrise</span> <span>KSh 350</span></div>
+            <div class="menu-item"><span>Blue Neb</span> <span>KSh 350</span><button class="order-btn" data-item="Blue Neb" data-prices='{"Default": 350}'>Order</button></div>
+            <div class="menu-item"><span>Dawa</span> <span>KSh 350</span><button class="order-btn" data-item="Dawa" data-prices='{"Default": 350}'>Order</button></div>
+            <div class="menu-item"><span>Easy Town</span> <span>KSh 400</span><button class="order-btn" data-item="Easy Town" data-prices='{"Default": 400}'>Order</button></div>
+            <div class="menu-item"><span>Fleur De Lis</span> <span>KSh 450</span><button class="order-btn" data-item="Fleur De Lis" data-prices='{"Default": 450}'>Order</button></div>
+            <div class="menu-item"><span>Game Time</span> <span>KSh 450</span><button class="order-btn" data-item="Game Time" data-prices='{"Default": 450}'>Order</button></div>
+            <div class="menu-item"><span>Long Island Iced Tea</span> <span>KSh 500</span><button class="order-btn" data-item="Long Island Iced Tea" data-prices='{"Default": 500}'>Order</button></div>
+            <div class="menu-item"><span>Margarita</span> <span>KSh 400</span><button class="order-btn" data-item="Margarita" data-prices='{"Default": 400}'>Order</button></div>
+            <div class="menu-item"><span>Manhattan</span> <span>KSh 450</span><button class="order-btn" data-item="Manhattan" data-prices='{"Default": 450}'>Order</button></div>
+            <div class="menu-item"><span>Mob Hit</span> <span>KSh 350</span><button class="order-btn" data-item="Mob Hit" data-prices='{"Default": 350}'>Order</button></div>
+            <div class="menu-item"><span>Mojito</span> <span>KSh 350</span><button class="order-btn" data-item="Mojito" data-prices='{"Default": 350}'>Order</button></div>
+            <div class="menu-item"><span>Negroni</span> <span>KSh 400</span><button class="order-btn" data-item="Negroni" data-prices='{"Default": 400}'>Order</button></div>
+            <div class="menu-item"><span>Pink Pussy</span> <span>KSh 350</span><button class="order-btn" data-item="Pink Pussy" data-prices='{"Default": 350}'>Order</button></div>
+            <div class="menu-item"><span>Screw Driver</span> <span>KSh 350</span><button class="order-btn" data-item="Screw Driver" data-prices='{"Default": 350}'>Order</button></div>
+            <div class="menu-item"><span>Sex on the Beach</span> <span>KSh 450</span><button class="order-btn" data-item="Sex on the Beach" data-prices='{"Default": 450}'>Order</button></div>
+            <div class="menu-item"><span>Summer Time</span> <span>KSh 350</span><button class="order-btn" data-item="Summer Time" data-prices='{"Default": 350}'>Order</button></div>
+            <div class="menu-item"><span>Tempo</span> <span>KSh 300</span><button class="order-btn" data-item="Tempo" data-prices='{"Default": 300}'>Order</button></div>
+            <div class="menu-item"><span>Tequila Sunrise</span> <span>KSh 350</span><button class="order-btn" data-item="Tequila Sunrise" data-prices='{"Default": 350}'>Order</button></div>
         </div>
     </section>
 
@@ -344,16 +374,16 @@ import Layout from "../layouts/Layout.astro";
             <img src="/juice3.jpg" alt="Juice Image 3" loading="lazy">
         </div>
         <div class="menu-list juices">
-            <div class="menu-item"><span>Delmonte</span> <span>KSh 250</span></div>
-            <div class="menu-item"><span>Fresh Fruit Juice</span> <span>KSh 300</span></div>
-            <div class="menu-item"><span>Minute Maid</span> <span>KSh 250</span></div>
-            <div class="menu-item"><span>Afia</span> <span>KSh 200</span></div>
-            <div class="menu-item"><span>Pick n Peel</span> <span>KSh 300</span></div>
-            <div class="menu-item"><span>Fresha</span> <span>KSh 250</span></div>
-            <div class="menu-item"><span>Tropicana</span> <span>KSh 350</span></div>
-            <div class="menu-item"><span>Apple Juice</span> <span>KSh 280</span></div>
-            <div class="menu-item"><span>Orange Juice</span> <span>KSh 280</span></div>
-            <div class="menu-item"><span>Mango Juice</span> <span>KSh 280</span></div>
+            <div class="menu-item"><span>Delmonte</span> <span>KSh 250</span><button class="order-btn" data-item="Delmonte" data-prices='{"Default": 250}'>Order</button></div>
+            <div class="menu-item"><span>Fresh Fruit Juice</span> <span>KSh 300</span><button class="order-btn" data-item="Fresh Fruit Juice" data-prices='{"Default": 300}'>Order</button></div>
+            <div class="menu-item"><span>Minute Maid</span> <span>KSh 250</span><button class="order-btn" data-item="Minute Maid" data-prices='{"Default": 250}'>Order</button></div>
+            <div class="menu-item"><span>Afia</span> <span>KSh 200</span><button class="order-btn" data-item="Afia" data-prices='{"Default": 200}'>Order</button></div>
+            <div class="menu-item"><span>Pick n Peel</span> <span>KSh 300</span><button class="order-btn" data-item="Pick n Peel" data-prices='{"Default": 300}'>Order</button></div>
+            <div class="menu-item"><span>Fresha</span> <span>KSh 250</span><button class="order-btn" data-item="Fresha" data-prices='{"Default": 250}'>Order</button></div>
+            <div class="menu-item"><span>Tropicana</span> <span>KSh 350</span><button class="order-btn" data-item="Tropicana" data-prices='{"Default": 350}'>Order</button></div>
+            <div class="menu-item"><span>Apple Juice</span> <span>KSh 280</span><button class="order-btn" data-item="Apple Juice" data-prices='{"Default": 280}'>Order</button></div>
+            <div class="menu-item"><span>Orange Juice</span> <span>KSh 280</span><button class="order-btn" data-item="Orange Juice" data-prices='{"Default": 280}'>Order</button></div>
+            <div class="menu-item"><span>Mango Juice</span> <span>KSh 280</span><button class="order-btn" data-item="Mango Juice" data-prices='{"Default": 280}'>Order</button></div>
         </div>
     </section>
 
@@ -365,16 +395,16 @@ import Layout from "../layouts/Layout.astro";
             <img src="/soft3.jpg" alt="Soft Drink Image 3" loading="lazy">
         </div>
         <div class="menu-list soft-drinks">
-            <div class="menu-item"><span>Coca-Cola</span> <span>KSh 150</span></div>
-            <div class="menu-item"><span>Pepsi</span> <span>KSh 150</span></div>
-            <div class="menu-item"><span>Sprite</span> <span>KSh 150</span></div>
-            <div class="menu-item"><span>Fanta</span> <span>KSh 150</span></div>
-            <div class="menu-item"><span>Monster</span> <span>KSh 250</span></div>
-            <div class="menu-item"><span>Red Bull</span> <span>KSh 300</span></div>
-            <div class="menu-item"><span>Dasani</span> <span>KSh 100</span></div>
-            <div class="menu-item"><span>Keringet</span> <span>KSh 120</span></div>
-            <div class="menu-item"><span>Soda Water</span> <span>KSh 130</span></div>
-            <div class="menu-item"><span>Schweppes Tonic</span> <span>KSh 140</span></div>
+            <div class="menu-item"><span>Coca-Cola</span> <span>KSh 150</span><button class="order-btn" data-item="Coca-Cola" data-prices='{"Default": 150}'>Order</button></div>
+            <div class="menu-item"><span>Pepsi</span> <span>KSh 150</span><button class="order-btn" data-item="Pepsi" data-prices='{"Default": 150}'>Order</button></div>
+            <div class="menu-item"><span>Sprite</span> <span>KSh 150</span><button class="order-btn" data-item="Sprite" data-prices='{"Default": 150}'>Order</button></div>
+            <div class="menu-item"><span>Fanta</span> <span>KSh 150</span><button class="order-btn" data-item="Fanta" data-prices='{"Default": 150}'>Order</button></div>
+            <div class="menu-item"><span>Monster</span> <span>KSh 250</span><button class="order-btn" data-item="Monster" data-prices='{"Default": 250}'>Order</button></div>
+            <div class="menu-item"><span>Red Bull</span> <span>KSh 300</span><button class="order-btn" data-item="Red Bull" data-prices='{"Default": 300}'>Order</button></div>
+            <div class="menu-item"><span>Dasani</span> <span>KSh 100</span><button class="order-btn" data-item="Dasani" data-prices='{"Default": 100}'>Order</button></div>
+            <div class="menu-item"><span>Keringet</span> <span>KSh 120</span><button class="order-btn" data-item="Keringet" data-prices='{"Default": 120}'>Order</button></div>
+            <div class="menu-item"><span>Soda Water</span> <span>KSh 130</span><button class="order-btn" data-item="Soda Water" data-prices='{"Default": 130}'>Order</button></div>
+            <div class="menu-item"><span>Schweppes Tonic</span> <span>KSh 140</span><button class="order-btn" data-item="Schweppes Tonic" data-prices='{"Default": 140}'>Order</button></div>
         </div>
     </section>
 
@@ -386,11 +416,11 @@ import Layout from "../layouts/Layout.astro";
             <img src="/rum3.jpg" alt="Rum Image 3" loading="lazy">
         </div>
         <div class="menu-list rum-tots">
-            <div class="menu-item"><span>Captain Morgan</span> <span>KSh 700</span></div>
-            <div class="menu-item"><span>Bacardi</span> <span>KSh 750</span></div>
-            <div class="menu-item"><span>Havana Club</span> <span>KSh 800</span></div>
-            <div class="menu-item"><span>Malibu</span> <span>KSh 900</span></div>
-            <div class="menu-item"><span>Myers's Rum</span> <span>KSh 850</span></div>
+            <div class="menu-item"><span>Captain Morgan</span> <span>KSh 700</span><button class="order-btn" data-item="Captain Morgan" data-prices='{"Default": 700}'>Order</button></div>
+            <div class="menu-item"><span>Bacardi</span> <span>KSh 750</span><button class="order-btn" data-item="Bacardi" data-prices='{"Default": 750}'>Order</button></div>
+            <div class="menu-item"><span>Havana Club</span> <span>KSh 800</span><button class="order-btn" data-item="Havana Club" data-prices='{"Default": 800}'>Order</button></div>
+            <div class="menu-item"><span>Malibu</span> <span>KSh 900</span><button class="order-btn" data-item="Malibu" data-prices='{"Default": 900}'>Order</button></div>
+            <div class="menu-item"><span>Myers's Rum</span> <span>KSh 850</span><button class="order-btn" data-item="Myers's Rum" data-prices='{"Default": 850}'>Order</button></div>
         </div>
     </section>
 
@@ -402,30 +432,30 @@ import Layout from "../layouts/Layout.astro";
             <img src="/wine3.jpg" alt="Wine Image 3" loading="lazy">
         </div>
         <div class="menu-list wines">
-            <div class="menu-item"><span>4TH STREET RED</span> <span>KSh 18,000</span></div>
-            <div class="menu-item"><span>4TH STREET WHITE</span> <span>KSh 1,800</span></div>
-            <div class="menu-item"><span>5 LITRES WINE</span> <span>KSh 7,500</span></div>
-            <div class="menu-item"><span>AMANI SWEET WHITE S</span> <span>KSh 1,500</span></div>
-            <div class="menu-item"><span>ANCESTORS SWEET WINE S</span> <span>KSh 1,500</span></div>
-            <div class="menu-item"><span>ASCONI WINE</span> <span>KSh 2,500</span></div>
-            <div class="menu-item"><span>BLACK BIRD 750ML S</span> <span>KSh 0</span></div>
-            <div class="menu-item"><span>CAPRICE</span> <span>KSh 1,800</span></div>
-            <div class="menu-item"><span>CARLO ROSSI S</span> <span>KSh 1,500</span></div>
-            <div class="menu-item"><span>CASA BUENA S</span> <span>KSh 1,500</span></div>
-            <div class="menu-item"><span>CELLAR CASK RED</span> <span>KSh 1,800</span></div>
-            <div class="menu-item"><span>CELLAR CASK WHITE</span> <span>KSh 1,800</span></div>
-            <div class="menu-item"><span>DROSTDY</span> <span>KSh 1,800</span></div>
-            <div class="menu-item"><span>FLONTERA SWEET</span> <span>KSh 1,800</span></div>
-            <div class="menu-item"><span>FOUR COUSINS RED</span> <span>KSh 1,800</span></div>
-            <div class="menu-item"><span>FOUR COUSINS WHITE</span> <span>KSh 1,800</span></div>
-            <div class="menu-item"><span>GRAND FRANCE AND WHITE 750ML</span> <span>KSh 3,000</span></div>
-            <div class="menu-item"><span>NAMAQUA RED S</span> <span>KSh 1,500</span></div>
-            <div class="menu-item"><span>PENASOL 1 LTR S</span> <span>KSh 1,500</span></div>
-            <div class="menu-item"><span>ROBERTSON RED</span> <span>KSh 2,000</span></div>
-            <div class="menu-item"><span>ROSSO NOBLE 750ML</span> <span>KSh 3,000</span></div>
-            <div class="menu-item"><span>VERSUS RED S</span> <span>KSh 1,500</span></div>
-            <div class="menu-item"><span>VERSUS WHITE S</span> <span>KSh 1,500</span></div>
-            <div class="menu-item"><span>WINE GLASS</span> <span>KSh 250</span></div>
+            <div class="menu-item"><span>4TH STREET RED</span> <span>KSh 18,000</span><button class="order-btn" data-item="4TH STREET RED" data-prices='{"Default": 18000}'>Order</button></div>
+            <div class="menu-item"><span>4TH STREET WHITE</span> <span>KSh 1,800</span><button class="order-btn" data-item="4TH STREET WHITE" data-prices='{"Default": 1800}'>Order</button></div>
+            <div class="menu-item"><span>5 LITRES WINE</span> <span>KSh 7,500</span><button class="order-btn" data-item="5 LITRES WINE" data-prices='{"5L": 7500}'>Order</button></div>
+            <div class="menu-item"><span>AMANI SWEET WHITE S</span> <span>KSh 1,500</span><button class="order-btn" data-item="AMANI SWEET WHITE S" data-prices='{"Default": 1500}'>Order</button></div>
+            <div class="menu-item"><span>ANCESTORS SWEET WINE S</span> <span>KSh 1,500</span><button class="order-btn" data-item="ANCESTORS SWEET WINE S" data-prices='{"Default": 1500}'>Order</button></div>
+            <div class="menu-item"><span>ASCONI WINE</span> <span>KSh 2,500</span><button class="order-btn" data-item="ASCONI WINE" data-prices='{"Default": 2500}'>Order</button></div>
+            <div class="menu-item"><span>BLACK BIRD 750ML S</span> <span>KSh 0</span><button class="order-btn" data-item="BLACK BIRD 750ML S" data-prices='{"750ML": 0}'>Order</button></div>
+            <div class="menu-item"><span>CAPRICE</span> <span>KSh 1,800</span><button class="order-btn" data-item="CAPRICE" data-prices='{"Default": 1800}'>Order</button></div>
+            <div class="menu-item"><span>CARLO ROSSI S</span> <span>KSh 1,500</span><button class="order-btn" data-item="CARLO ROSSI S" data-prices='{"Default": 1500}'>Order</button></div>
+            <div class="menu-item"><span>CASA BUENA S</span> <span>KSh 1,500</span><button class="order-btn" data-item="CASA BUENA S" data-prices='{"Default": 1500}'>Order</button></div>
+            <div class="menu-item"><span>CELLAR CASK RED</span> <span>KSh 1,800</span><button class="order-btn" data-item="CELLAR CASK RED" data-prices='{"Default": 1800}'>Order</button></div>
+            <div class="menu-item"><span>CELLAR CASK WHITE</span> <span>KSh 1,800</span><button class="order-btn" data-item="CELLAR CASK WHITE" data-prices='{"Default": 1800}'>Order</button></div>
+            <div class="menu-item"><span>DROSTDY</span> <span>KSh 1,800</span><button class="order-btn" data-item="DROSTDY" data-prices='{"Default": 1800}'>Order</button></div>
+            <div class="menu-item"><span>FLONTERA SWEET</span> <span>KSh 1,800</span><button class="order-btn" data-item="FLONTERA SWEET" data-prices='{"Default": 1800}'>Order</button></div>
+            <div class="menu-item"><span>FOUR COUSINS RED</span> <span>KSh 1,800</span><button class="order-btn" data-item="FOUR COUSINS RED" data-prices='{"Default": 1800}'>Order</button></div>
+            <div class="menu-item"><span>FOUR COUSINS WHITE</span> <span>KSh 1,800</span><button class="order-btn" data-item="FOUR COUSINS WHITE" data-prices='{"Default": 1800}'>Order</button></div>
+            <div class="menu-item"><span>GRAND FRANCE AND WHITE 750ML</span> <span>KSh 3,000</span><button class="order-btn" data-item="GRAND FRANCE AND WHITE 750ML" data-prices='{"750ML": 3000}'>Order</button></div>
+            <div class="menu-item"><span>NAMAQUA RED S</span> <span>KSh 1,500</span><button class="order-btn" data-item="NAMAQUA RED S" data-prices='{"Default": 1500}'>Order</button></div>
+            <div class="menu-item"><span>PENASOL 1 LTR S</span> <span>KSh 1,500</span><button class="order-btn" data-item="PENASOL 1 LTR S" data-prices='{"1LTR": 1500}'>Order</button></div>
+            <div class="menu-item"><span>ROBERTSON RED</span> <span>KSh 2,000</span><button class="order-btn" data-item="ROBERTSON RED" data-prices='{"Default": 2000}'>Order</button></div>
+            <div class="menu-item"><span>ROSSO NOBLE 750ML</span> <span>KSh 3,000</span><button class="order-btn" data-item="ROSSO NOBLE 750ML" data-prices='{"750ML": 3000}'>Order</button></div>
+            <div class="menu-item"><span>VERSUS RED S</span> <span>KSh 1,500</span><button class="order-btn" data-item="VERSUS RED S" data-prices='{"Default": 1500}'>Order</button></div>
+            <div class="menu-item"><span>VERSUS WHITE S</span> <span>KSh 1,500</span><button class="order-btn" data-item="VERSUS WHITE S" data-prices='{"Default": 1500}'>Order</button></div>
+            <div class="menu-item"><span>WINE GLASS</span> <span>KSh 250</span><button class="order-btn" data-item="WINE GLASS" data-prices='{"Default": 250}'>Order</button></div>
         </div>
     </section>
 
@@ -437,25 +467,25 @@ import Layout from "../layouts/Layout.astro";
             <img src="/liqueur3.jpg" alt="Liqueur Image 3" loading="lazy">
         </div>
         <div class="menu-list liqueur">
-            <div class="menu-item"><span>blue coracao 750ml</span> <span>KSh 2,500.00</span></div>
-            <div class="menu-item"><span>chamdor</span> <span>KSh 1,600.00</span></div> 
-            <div class="menu-item"><span>malibu</span> <span>KSh 2,800.00</span></div> 
-            <div class="menu-item"><span>martini extra 750ml</span> <span>KSh 3,000.00</span></div>
-            <div class="menu-item"><span>martini rosso 750ml</span> <span>KSh 3,000.00</span></div>
-            <div class="menu-item"><span>tequila blanco 750ml</span> <span>KSh 4,000.00</span></div> 
-            <div class="menu-item"><span>tequila blue s</span> <span>KSh 200.00</span></div> 
-            <div class="menu-item"><span>tequila camino</span> <span>KSh 4,000.00</span></div> 
-            <div class="menu-item"><span>tequila chocolate 750ml</span> <span>KSh 4,000.00</span></div> 
-            <div class="menu-item"><span>tequila gold 750ml</span> <span>KSh 4,000.00</span></div>
-            <div class="menu-item"><span>triple sec 750ml</span> <span>KSh 2,500.00</span></div>
-            <div class="menu-item"><span>v & a 750ml</span> <span>KSh 1,500.00</span></div> 
-            <div class="menu-item"><span>v& a 250ml s</span> <span>KSh 500.00</span></div> 
-            <div class="menu-item"><span>zappa</span> <span>KSh 3,500.00</span></div> 
-            <div class="menu-item"><span>jose quava</span> <span>KSh 200.00</span></div> 
-            <div class="menu-item"><span>saint celline s</span> <span>KSh 1,500.00</span></div> 
-            <div class="menu-item"><span>st.red s</span> <span>KSh 0.00</span></div> 
-            <div class="menu-item"><span>trust</span> <span>KSh 100.00</span></div> 
-            <div class="menu-item"><span>wild turkey s</span> <span>KSh 2,800.00</span></div>
+            <div class="menu-item"><span>blue coracao 750ml</span> <span>KSh 2,500.00</span><button class="order-btn" data-item="blue coracao 750ml" data-prices='{"750ML": 2500}'>Order</button></div>
+            <div class="menu-item"><span>chamdor</span> <span>KSh 1,600.00</span><button class="order-btn" data-item="chamdor" data-prices='{"Default": 1600}'>Order</button></div>
+            <div class="menu-item"><span>malibu</span> <span>KSh 2,800.00</span><button class="order-btn" data-item="malibu" data-prices='{"Default": 2800}'>Order</button></div>
+            <div class="menu-item"><span>martini extra 750ml</span> <span>KSh 3,000.00</span><button class="order-btn" data-item="martini extra 750ml" data-prices='{"750ML": 3000}'>Order</button></div>
+            <div class="menu-item"><span>martini rosso 750ml</span> <span>KSh 3,000.00</span><button class="order-btn" data-item="martini rosso 750ml" data-prices='{"750ML": 3000}'>Order</button></div>
+            <div class="menu-item"><span>tequila blanco 750ml</span> <span>KSh 4,000.00</span><button class="order-btn" data-item="tequila blanco 750ml" data-prices='{"750ML": 4000}'>Order</button></div>
+            <div class="menu-item"><span>tequila blue s</span> <span>KSh 200.00</span><button class="order-btn" data-item="tequila blue s" data-prices='{"Default": 200}'>Order</button></div>
+            <div class="menu-item"><span>tequila camino</span> <span>KSh 4,000.00</span><button class="order-btn" data-item="tequila camino" data-prices='{"Default": 4000}'>Order</button></div>
+            <div class="menu-item"><span>tequila chocolate 750ml</span> <span>KSh 4,000.00</span><button class="order-btn" data-item="tequila chocolate 750ml" data-prices='{"750ML": 4000}'>Order</button></div>
+            <div class="menu-item"><span>tequila gold 750ml</span> <span>KSh 4,000.00</span><button class="order-btn" data-item="tequila gold 750ml" data-prices='{"750ML": 4000}'>Order</button></div>
+            <div class="menu-item"><span>triple sec 750ml</span> <span>KSh 2,500.00</span><button class="order-btn" data-item="triple sec 750ml" data-prices='{"750ML": 2500}'>Order</button></div>
+            <div class="menu-item"><span>v & a 750ml</span> <span>KSh 1,500.00</span><button class="order-btn" data-item="v & a 750ml" data-prices='{"750ML": 1500}'>Order</button></div>
+            <div class="menu-item"><span>v& a 250ml s</span> <span>KSh 500.00</span><button class="order-btn" data-item="v& a 250ml s" data-prices='{"250ML": 500}'>Order</button></div>
+            <div class="menu-item"><span>zappa</span> <span>KSh 3,500.00</span><button class="order-btn" data-item="zappa" data-prices='{"Default": 3500}'>Order</button></div>
+            <div class="menu-item"><span>jose quava</span> <span>KSh 200.00</span><button class="order-btn" data-item="jose quava" data-prices='{"Default": 200}'>Order</button></div>
+            <div class="menu-item"><span>saint celline s</span> <span>KSh 1,500.00</span><button class="order-btn" data-item="saint celline s" data-prices='{"Default": 1500}'>Order</button></div>
+            <div class="menu-item"><span>st.red s</span> <span>KSh 0.00</span><button class="order-btn" data-item="st.red s" data-prices='{"Default": 0}'>Order</button></div>
+            <div class="menu-item"><span>trust</span> <span>KSh 100.00</span><button class="order-btn" data-item="trust" data-prices='{"Default": 100}'>Order</button></div>
+            <div class="menu-item"><span>wild turkey s</span> <span>KSh 2,800.00</span><button class="order-btn" data-item="wild turkey s" data-prices='{"Default": 2800}'>Order</button></div>
         </div>
     </section>
 </Layout>
