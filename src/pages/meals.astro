@@ -136,7 +136,19 @@ import Layout from "../layouts/Layout.astro";
         .menu-item {
             display: flex;
             justify-content: space-between;
+            align-items: center; /* Vertically center items */
             padding: 5px 0;
+            gap: 10px; /* Space between name, price, and button */
+        }
+
+        .menu-item span:first-child {
+            flex: 1; /* Name takes available space */
+            text-align: left;
+        }
+
+        .menu-item span:nth-child(2) {
+            min-width: 70px; /* Fixed width for price */
+            text-align: right;
         }
 
         /* Image row */
@@ -183,18 +195,27 @@ import Layout from "../layouts/Layout.astro";
             text-align: center;
         }
 
-        /* Order Button Styling (New) */
+        /* Order Button Styling */
         .order-btn {
             background: rgba(57, 109, 14, 0.8);
             color: white;
             border: none;
-            padding: 8px 15px;
+            padding: 6px 12px; /* Smaller padding for listings */
             border-radius: 5px;
             font-weight: bold;
+            font-size: 0.9rem; /* Smaller font for listings */
             cursor: pointer;
-            margin-top: 10px;
             transition: background 0.3s ease;
-            width: 100%;
+            width: auto; /* Compact width */
+            min-width: 80px; /* Uniform minimum width */
+            text-align: center;
+        }
+
+        .main-dish .order-btn {
+            padding: 8px 15px; /* Larger padding for main dishes */
+            font-size: 1rem; /* Larger font for main dishes */
+            margin-top: 10px;
+            width: 100%; /* Full width for main dishes */
         }
 
         .order-btn:hover {
@@ -221,6 +242,17 @@ import Layout from "../layouts/Layout.astro";
 
             .image-row img {
                 height: 150px; /* Fixed height for tablets */
+            }
+
+            .order-btn {
+                padding: 5px 10px;
+                font-size: 0.85rem;
+                min-width: 70px;
+            }
+
+            .main-dish .order-btn {
+                padding: 8px 15px; /* Keep main dish button size */
+                font-size: 1rem;
             }
         }
 
@@ -251,7 +283,13 @@ import Layout from "../layouts/Layout.astro";
             }
 
             .order-btn {
-                padding: 6px 10px;
+                padding: 4px 8px;
+                font-size: 0.8rem;
+                min-width: 60px;
+            }
+
+            .main-dish .order-btn {
+                padding: 6px 10px; /* Slightly smaller but still prominent */
                 font-size: 0.9rem;
             }
         }
