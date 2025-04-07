@@ -216,6 +216,44 @@ const { title = 'Nebraska Lounge & Grill', subtitle = 'Welcome to Our Offerings'
             100% { transform: translateX(-100%); } /* Full width of unique slides */
         }
 
+        /* Order Button Styling */
+        .order-btn {
+            background: rgba(57, 109, 14, 0.8);
+            color: white;
+            border: none;
+            padding: 6px 12px; /* Reduced padding for minimal size */
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 0.9rem; /* Slightly smaller text */
+            cursor: pointer;
+            transition: background 0.3s ease;
+            width: auto; /* Fixed width instead of 100% */
+            min-width: 80px; /* Minimal width for readability */
+            display: inline-block; /* Prevents full-width stretch */
+            text-align: center;
+        }
+
+        .order-btn:hover {
+            background: rgba(21, 102, 71, 1);
+        }
+
+        /* Responsive adjustments for Order Button */
+        @media (max-width: 768px) {
+            .order-btn {
+                padding: 5px 10px;
+                font-size: 0.85rem;
+                min-width: 70px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .order-btn {
+                padding: 4px 8px;
+                font-size: 0.8rem;
+                min-width: 60px;
+            }
+        }
+
         /* Order Modal */
         .modal {
             position: fixed;

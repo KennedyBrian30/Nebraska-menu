@@ -145,6 +145,7 @@ import Layout from "../layouts/Layout.astro";
         <img src="/full-breakfast.jpg" alt="Full Breakfast" loading="lazy">
         <div class="full-breakfast-details">
             <span>Full Breakfast - KSh 1000</span>
+            <button class="order-btn" data-item="Full Breakfast" data-prices='{"Default": 1000}'>Order</button>
         </div>
     </div>
 
@@ -155,15 +156,42 @@ import Layout from "../layouts/Layout.astro";
         <img src="/teas3.jpg" alt="Tea Image 3" loading="lazy">
     </div>
     <div class="menu-list">
-        <div class="menu-item"><span>English Tea</span> <span>KSh 150</span></div>
-        <div class="menu-item"><span>Black Tea</span> <span>KSh 150</span></div>
-        <div class="menu-item"><span>Coffee</span> <span>KSh 150</span></div>
-        <div class="menu-item"><span>Plain Milk</span> <span>KSh 150</span></div>
-        <div class="menu-item"><span>Hot Water</span> <span>KSh 150</span></div>
-        <div class="menu-item"><span>Lemon Tea</span> <span>KSh 150</span></div>
-        <div class="menu-item"><span>Chocolate</span> <span>KSh 150</span></div>
-        <div class="menu-item"><span>Nescafe</span> <span>KSh 150</span></div>
-        <div class="menu-item"><span>CLemon Tea</span> <span>KSh 150</span></div>
+        <div class="menu-item">
+            <span>English Tea</span> <span>KSh 150</span>
+            <button class="order-btn" data-item="English Tea" data-prices='{"Default": 150}'>Order</button>
+        </div>
+        <div class="menu-item">
+            <span>Black Tea</span> <span>KSh 150</span>
+            <button class="order-btn" data-item="Black Tea" data-prices='{"Default": 150}'>Order</button>
+        </div>
+        <div class="menu-item">
+            <span>Coffee</span> <span>KSh 150</span>
+            <button class="order-btn" data-item="Coffee" data-prices='{"Default": 150}'>Order</button>
+        </div>
+        <div class="menu-item">
+            <span>Plain Milk</span> <span>KSh 150</span>
+            <button class="order-btn" data-item="Plain Milk" data-prices='{"Default": 150}'>Order</button>
+        </div>
+        <div class="menu-item">
+            <span>Hot Water</span> <span>KSh 150</span>
+            <button class="order-btn" data-item="Hot Water" data-prices='{"Default": 150}'>Order</button>
+        </div>
+        <div class="menu-item">
+            <span>Lemon Tea</span> <span>KSh 150</span>
+            <button class="order-btn" data-item="Lemon Tea" data-prices='{"Default": 150}'>Order</button>
+        </div>
+        <div class="menu-item">
+            <span>Chocolate</span> <span>KSh 150</span>
+            <button class="order-btn" data-item="Chocolate" data-prices='{"Default": 150}'>Order</button>
+        </div>
+        <div class="menu-item">
+            <span>Nescafe</span> <span>KSh 150</span>
+            <button class="order-btn" data-item="Nescafe" data-prices='{"Default": 150}'>Order</button>
+        </div>
+        <div class="menu-item">
+            <span>CLemon Tea</span> <span>KSh 150</span>
+            <button class="order-btn" data-item="CLemon Tea" data-prices='{"Default": 150}'>Order</button>
+        </div>
     </div>
 
     <h2 class="section-header">Snacks</h2>
@@ -173,15 +201,42 @@ import Layout from "../layouts/Layout.astro";
         <img src="/snacks3.jpg" alt="Snack Image 3" loading="lazy">
     </div>
     <div class="menu-list">
-        <div class="menu-item"><span>Mandazi</span> <span>KSh 200</span></div>
-        <div class="menu-item"><span>Chapati</span> <span>KSh 200</span></div>
-        <div class="menu-item"><span>Beans</span> <span>KSh 200</span></div>
-        <div class="menu-item"><span>Samosa</span> <span>KSh 200</span></div>
-        <div class="menu-item"><span>Sausage</span> <span>KSh 200</span></div>
-        <div class="menu-item"><span>Eggs</span> <span>KSh 200</span></div>
-        <div class="menu-item"><span>Sweet Potatoes</span> <span>KSh 200</span></div>
-        <div class="menu-item"><span>Nduma</span> <span>KSh 200</span></div>
-        <div class="menu-item"><span>Baked Potatoes</span> <span>KSh 200</span></div>
+        <div class="menu-item">
+            <span>Mandazi</span> <span>KSh 200</span>
+            <button class="order-btn" data-item="Mandazi" data-prices='{"Default": 200}'>Order</button>
+        </div>
+        <div class="menu-item">
+            <span>Chapati</span> <span>KSh 200</span>
+            <button class="order-btn" data-item="Chapati" data-prices='{"Default": 200}'>Order</button>
+        </div>
+        <div class="menu-item">
+            <span>Beans</span> <span>KSh 200</span>
+            <button class="order-btn" data-item="Beans" data-prices='{"Default": 200}'>Order</button>
+        </div>
+        <div class="menu-item">
+            <span>Samosa</span> <span>KSh 200</span>
+            <button class="order-btn" data-item="Samosa" data-prices='{"Default": 200}'>Order</button>
+        </div>
+        <div class="menu-item">
+            <span>Sausage</span> <span>KSh 200</span>
+            <button class="order-btn" data-item="Sausage" data-prices='{"Default": 200}'>Order</button>
+        </div>
+        <div class="menu-item">
+            <span>Eggs</span> <span>KSh 200</span>
+            <button class="order-btn" data-item="Eggs" data-prices='{"Default": 200}'>Order</button>
+        </div>
+        <div class="menu-item">
+            <span>Sweet Potatoes</span> <span>KSh 200</span>
+            <button class="order-btn" data-item="Sweet Potatoes" data-prices='{"Default": 200}'>Order</button>
+        </div>
+        <div class="menu-item">
+            <span>Nduma</span> <span>KSh 200</span>
+            <button class="order-btn" data-item="Nduma" data-prices='{"Default": 200}'>Order</button>
+        </div>
+        <div class="menu-item">
+            <span>Baked Potatoes</span> <span>KSh 200</span>
+            <button class="order-btn" data-item="Baked Potatoes" data-prices='{"Default": 200}'>Order</button>
+        </div>
     </div>
     <div class="image-row">
         <img src="/snacks4.jpg" alt="Snack Image 4" loading="lazy">
