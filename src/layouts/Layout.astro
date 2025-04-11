@@ -51,7 +51,7 @@ const { title = 'Nebraska Lounge & Grill', subtitle = 'Welcome to Our Offerings'
             color: rgb(21, 50, 132);
             margin-top: 10px;
         }
-
+        
         /* Navigation Bar */
         .nav {
             display: flex;
@@ -169,7 +169,7 @@ const { title = 'Nebraska Lounge & Grill', subtitle = 'Welcome to Our Offerings'
 
         .events-container h2 {
             font-size: 2rem;
-            color: rgb(4, 128, 52);
+            color: rgb(21, 50, 132);;
             font-weight: bold;
             text-align: center;
             margin-bottom: 20px;
@@ -530,7 +530,7 @@ const { title = 'Nebraska Lounge & Grill', subtitle = 'Welcome to Our Offerings'
 
     <h2>{subtitle}</h2>
 
-    <img src="/menu-image.jpg" alt="Delicious Menu" class="menu-image" loading="lazy">
+    <img src="/menu-image1.jpg" alt="Delicious Menu" class="menu-image" loading="lazy">
     <p class="welcome-text">Your Club of Choice!</p>
 
     <div class="content">
@@ -572,23 +572,23 @@ const { title = 'Nebraska Lounge & Grill', subtitle = 'Welcome to Our Offerings'
         <div class="events-slideshow">
             <div class="event-slide">
                 <img src="/event1.jpg" alt="Event 1" loading="lazy">
-                <div class="event-details">Live Music Night - April 10, 2025</div>
+                <div class="event-details">Beats & Bliss - Apri 11, 2025</div>
             </div>
             <div class="event-slide">
                 <img src="/event2.jpg" alt="Event 2" loading="lazy">
-                <div class="event-details">Trivia Night - April 15, 2025</div>
+                <div class="event-details">Touch Down - Sat,April 12, 2025</div>
             </div>
             <div class="event-slide">
                 <img src="/event3.jpg" alt="Event 3" loading="lazy">
-                <div class="event-details">Karaoke Party - April 20, 2025</div>
+                <div class="event-details">Sunday Night Live- April 11, 2025</div>
             </div>
             <div class="event-slide">
                 <img src="/event4.jpg" alt="Event 4" loading="lazy">
-                <div class="event-details">Dance Night - April 25, 2025</div>
+                <div class="event-details">Easter Fest- Music/Comedy- April 19, 2025</div>
             </div>
             <div class="event-slide">
                 <img src="/event5.jpg" alt="Event 5" loading="lazy">
-                <div class="event-details">Comedy Show - April 30, 2025</div>
+                <div class="event-details">Easter Music/Comedy Show - April 19, 2025</div>
             </div>
         </div>
     </section>
@@ -600,9 +600,11 @@ const { title = 'Nebraska Lounge & Grill', subtitle = 'Welcome to Our Offerings'
     </footer>
 
     <!-- JavaScript for Ordering -->
+    
     <script>
         let cart = [];
 
+        // Order button click - Opens modal (unchanged)
         document.querySelectorAll('.order-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 const item = btn.dataset.item;
@@ -624,10 +626,12 @@ const { title = 'Nebraska Lounge & Grill', subtitle = 'Welcome to Our Offerings'
             });
         });
 
+        // Close modal (unchanged)
         document.querySelector('.close-modal').addEventListener('click', () => {
             document.getElementById('order-modal').style.display = 'none';
         });
 
+        // Add to cart (unchanged)
         document.getElementById('add-to-cart').addEventListener('click', () => {
             const item = document.getElementById('item-name').textContent;
             const quantity = parseInt(document.getElementById('quantity').value);
@@ -642,35 +646,45 @@ const { title = 'Nebraska Lounge & Grill', subtitle = 'Welcome to Our Offerings'
             document.getElementById('order-modal').style.display = 'none';
         });
 
+        // Submit order to WhatsApp (modified)
         document.getElementById('submit-order').addEventListener('click', () => {
             if (cart.length === 0) {
                 alert('Your cart is empty!');
                 return;
             }
-            const orderDetails = cart.map(i => `${i.quantity}x ${i.item} (${i.size}) - KSh ${i.total}${i.notes ? ` [Notes: ${i.notes}]` : ''}`).join('\n');
+
+            // Replace with your WhatsApp number (international format, e.g., 254712345678)
+            const whatsappNumber = "254720226517";
+
+            // Construct order details
+            const orderDetails = cart.map(i => 
+                `${i.quantity}x ${i.item} (${i.size}) - KSh ${i.total}${i.notes ? ` [Notes: ${i.notes}]` : ''}`
+            ).join('\n');
             const total = cart.reduce((sum, i) => sum + i.total, 0);
-            const form = document.createElement('form');
-            form.method = 'POST';
-            form.action = 'https://formspree.io/f/your-form-id'; // Replace with your Formspree ID
-            form.innerHTML = `
-                <input type="hidden" name="order" value="${orderDetails}">
-                <input type="hidden" name="total" value="KSh ${total}">
-                <input type="text" name="name" placeholder="Your Name" required style="width: 100%; padding: 5px; margin: 5px 0;">
-                <input type="tel" name="phone" placeholder="Your Phone" required style="width: 100%; padding: 5px; margin: 5px 0;">
-            `;
-            document.body.appendChild(form);
-            form.submit();
+            const message = `Hello! Here’s my order:\n\n${orderDetails}\n\nTotal: KSh ${total.toLocaleString()}\n\nPlease confirm availability and delivery details. Thank you!`;
+
+            // Encode and create WhatsApp URL
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+
+            // Open WhatsApp
+            window.open(whatsappUrl, '_blank');
+
+            // Optional: Clear cart after submission
+            // cart = [];
+            // updateCart();
         });
 
-        // Toggle cart visibility on mobile
+        // Toggle cart visibility on mobile (unchanged)
         const cartElement = document.getElementById('cart');
         const cartIcon = cartElement.querySelector('.cart-icon');
         cartIcon.addEventListener('click', () => {
             cartElement.classList.toggle('cart-expanded');
         });
 
+        // Update cart display (unchanged)
         function updateCart() {
-            const cartItems = document.getElementById('cart-items');
+        const cartItems = document.getElementById('cart-items');
             const cartCount = document.getElementById('cart-count');
             const cartTotal = document.getElementById('cart-total');
             cartItems.innerHTML = cart.map(i => `<li>${i.quantity}x ${i.item} (${i.size}) - KSh ${i.total}</li>`).join('');
@@ -678,5 +692,5 @@ const { title = 'Nebraska Lounge & Grill', subtitle = 'Welcome to Our Offerings'
             cartTotal.textContent = cart.reduce((sum, i) => sum + i.total, 0);
         }
     </script>
-</body>
-</html>
+    </body>
+    </html>
