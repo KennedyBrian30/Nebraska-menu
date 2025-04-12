@@ -1,0 +1,371 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Specials Menu" subtitle="Exclusive Offers">
+    <style>
+        .page-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: white;
+            padding: 50px 20px;
+            text-transform: uppercase;
+            background: url('/specials-bg.jpg') no-repeat center center;
+            background-size: cover;
+            position: relative;
+            width: 100%;
+        }
+
+        .page-title::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+
+        .page-title span {
+            position: relative;
+            z-index: 2;
+        }
+
+        .section-header {
+            display: block;
+            text-align: center;
+            padding: 10px 20px;
+            color: white;
+            font-size: 2rem;
+            font-weight: bold;
+            background: rgba(57, 109, 14, 0.8);
+            margin: 20px auto;
+            width: fit-content;
+            border-radius: 10px;
+        }
+
+        .image-row {
+            display: flex;
+            flex-wrap: nowrap;
+            gap: 10px;
+            width: 100%;
+            max-width: 1200px;
+            padding: 10px 0;
+            margin: 0 auto;
+            justify-content: space-between;
+        }
+
+        .image-row img {
+            width: calc(33.33% - 6.67px);
+            height: auto;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+            object-fit: cover;
+        }
+
+        .image-row img:hover {
+            transform: scale(1.05);
+        }
+
+        .menu-list {
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: white;
+            background: rgba(105, 87, 96, 0.8);
+            padding: 15px;
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+            border-radius: 10px;
+        }
+
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 90%;
+            padding: 5px 0;
+            margin: 0 auto;
+            gap: 10px;
+        }
+
+        .menu-item span:first-child {
+            flex: 1;
+            text-align: left;
+        }
+
+        .menu-item span:nth-child(2) {
+            min-width: 70px;
+            text-align: right;
+        }
+
+        .full-breakfast {
+            width: 100%;
+            max-width: 600px;
+            margin: 20px auto;
+        }
+
+        .full-breakfast img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px 10px 0 0;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .full-breakfast img:hover {
+            transform: scale(1.05);
+        }
+
+        .full-breakfast-details {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: white;
+            background: rgba(124, 12, 68, 0.8);
+            padding: 15px;
+            text-align: center;
+            width: 100%;
+            border-radius: 0 0 10px 10px;
+        }
+
+        .full-breakfast-details p {
+            font-size: 1rem;
+            font-weight: normal;
+            margin: 10px 0;
+        }
+
+        /* Order Button Styling */
+        .order-btn {
+            background: rgba(57, 109, 14, 0.8);
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            width: auto;
+            min-width: 80px;
+            text-align: center;
+        }
+
+        .full-breakfast .order-btn {
+            padding: 8px 15px;
+            font-size: 1rem;
+            margin-top: 10px;
+            width: 100%;
+        }
+
+        .order-btn:hover {
+            background: rgba(21, 102, 71, 1);
+        }
+
+        /* Gallery Styling */
+        .gallery {
+            width: 100%;
+            max-width: 1200px;
+            margin: 20px auto;
+            overflow: hidden;
+        }
+
+        .gallery-track {
+            display: flex;
+            animation: scroll 30s linear infinite;
+        }
+
+        .gallery-track img {
+            width: 300px;
+            height: 200px;
+            object-fit: cover;
+            margin-right: 10px;
+            border-radius: 10px;
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .full-breakfast img {
+                height: auto;
+            }
+
+            .image-row img {
+                height: 150px;
+            }
+
+            .order-btn {
+                padding: 5px 10px;
+                font-size: 0.85rem;
+                min-width: 70px;
+            }
+
+            .full-breakfast .order-btn {
+                padding: 8px 15px;
+                font-size: 1rem;
+            }
+
+            .gallery-track img {
+                width: 200px;
+                height: 150px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .full-breakfast-details {
+                font-size: 1rem;
+            }
+
+            .image-row img {
+                height: 100px;
+            }
+
+            .menu-list {
+                font-size: 1rem;
+                padding: 10px;
+            }
+
+            .menu-item {
+                font-size: 1rem;
+            }
+
+            .order-btn {
+                padding: 4px 8px;
+                font-size: 0.8rem;
+                min-width: 60px;
+            }
+
+            .full-breakfast .order-btn {
+                padding: 6px 10px;
+                font-size: 0.9rem;
+            }
+
+            .gallery-track img {
+                width: 150px;
+                height: 100px;
+            }
+        }
+    </style>
+
+    <!-- Section 1: Unbeatable Specials -->
+    <h2 class="section-header">Unbeatable Specials</h2>
+    <div class="full-breakfast">
+        <img src="/sizzling3.jpg" alt="NEB Special Platter" loading="lazy">
+        <div class="full-breakfast-details">
+            <span>NEB Special Platter - KSh 3000</span>
+            <p>Contains beef, chicken, fish grilled veges, choice of ugali, chips rice, and a side of kachumbari.</p>
+            <p>Ideal for 5-8 people.</p>
+            <button class="order-btn" data-item="NEB Special Platter" data-prices='{"Default": 3000}'>Order</button>
+        </div>
+    </div>
+    <div class="full-breakfast">
+        <img src="/sizzling1.jpg" alt="NEB Sizzling" loading="lazy">
+        <div class="full-breakfast-details">
+            <span>NEB Sizzling - KSh 1000</span>
+            <p>Served with mashed potatoes, ugali, seasonal greens, and a rich pepper sauce.</p>
+            <button class="order-btn" data-item="NEB Sizzling" data-prices='{"Default": 1000}'>Order</button>
+        </div>
+    </div>
+    <div class="full-breakfast">
+        <img src="/beef-boil.jpg" alt="Beef Boil Ganga with Ojuri" loading="lazy">
+        <div class="full-breakfast-details">
+            <span>Beef Boil Ganga with Ojuri - KSh 600</span>
+            <p>Served with veges.</p>
+            <button class="order-btn" data-item="Beef Boil Ganga with Ojuri" data-prices='{"Default": 60}'>Order</button>
+        </div>
+    </div>
+    <div class="full-breakfast">
+        <img src="/specials1.jpg" alt="NEB Birthday Packages" loading="lazy">
+        <div class="full-breakfast-details">
+            <span>NEB Birthday Packages - KSh 5000</span>
+            <p>Served with a custom cake, assorted drinks, and a festive platter for your group.</p>
+            <button class="order-btn" data-item="NEB Birthday Packages" data-prices='{"Default": 5000}'>Order</button>
+        </div>
+    </div>
+
+    <!-- Section 2: More Specials -->
+    <h2 class="section-header">More Specials</h2>
+    <div class="image-row">
+        <img src="/specials1.jpg" alt="Specials Image 1" loading="lazy">
+        <img src="/specials2.jpg" alt="Specials Image 2" loading="lazy">
+        <img src="/specials3.jpg" alt="Specials Image 3" loading="lazy">
+    </div>
+    <div class="menu-list">
+        <div class="menu-item">
+            <span>Grilled Tilapia</span> <span>KSh 800</span>
+            <button class="order-btn" data-item="Grilled Tilapia" data-prices='{"Default": 800}'>Order</button>
+        </div>
+        <div class="menu-item">
+            <span>Kuku Choma 1/2kg</span> <span>KSh 600</span>
+            <button class="order-btn" data-item="Kuku Choma" data-prices='{"Default": 600}'>Order</button>
+        </div>
+        <div class="menu-item">
+            <span>Chicken Platter 1/2kg</span> <span>KSh 600</span>
+            <button class="order-btn" data-item="Chicken Platter" data-prices='{"Default": 600}'>Order</button>
+        </div>
+        <div class="menu-item">
+            <span>Chicken Maryland Marinated 1/2kg</span> <span>KSh 600</span>
+            <button class="order-btn" data-item="Chicken Mmaryland Marinated" data-prices='{"Default": 600}'>Order</button>
+        </div>
+        <div class="menu-item">
+            <span>Chicken Stew Special 1/4kg</span> <span>KSh 400</span>
+            <button class="order-btn" data-item="Chicken Stew Special" data-prices='{"Default": 600}'>Order</button>
+        </div>
+        <div class="menu-item">
+            <span>Chicken Boneless 1/2kg</span> <span>KSh 400</span>
+            <button class="order-btn" data-item="Chicken Boneless" data-prices='{"Default": 600}'>Order</button>
+        </div>
+        <div class="menu-item">
+            <span>Vegetable Stir Fry</span> <span>KSh 500</span>
+            <button class="order-btn" data-item="Vegetable Stir Fry" data-prices='{"Default": 500}'>Order</button>
+        </div>
+        <div class="menu-item">
+            <span>Beef Kebabs</span> <span>KSh 300</span>
+            <button class="order-btn" data-item="Beef Kebabs" data-prices='{"Default": 700}'>Order</button>
+        </div>
+        <div class="menu-item">
+            <span>Pork Chops (Ribs)</span> <span>KSh 350</span>
+            <button class="order-btn" data-item="Pork Ribs" data-prices='{"Default": 350}'>Order</button>
+        </div>
+        <div class="menu-item">
+            <span>Pork Pan Fried 1/2kg</span> <span>KSh 800</span>
+            <button class="order-btn" data-item="Pork Pan Friend" data-prices='{"Default": 800}'>Order</button>
+        </div>
+        <div class="menu-item">
+            <span>Mixed Fruit Platter</span> <span>KSh 250</span>
+            <button class="order-btn" data-item="Mixed Fruit Platter" data-prices='{"Default": 400}'>Order</button>
+        </div>
+        <div class="menu-item">
+            <span>Pizza</span> <span>KSh 1000</span>
+            <button class="order-btn" data-item="Pizza" data-prices='{"Default": 1000}'>Order</button>
+        </div>
+    </div>
+
+    <!-- Section 3: Running Gallery -->
+    <h2 class="section-header">Our Special Moments</h2>
+    <div class="gallery">
+        <div class="gallery-track">
+            <img src="/gallery1.jpg" alt="Gallery Image 1" loading="lazy">
+            <img src="/gallery2.jpg" alt="Gallery Image 2" loading="lazy">
+            <img src="/gallery3.jpg" alt="Gallery Image 3" loading="lazy">
+            <img src="/gallery4.jpg" alt="Gallery Image 4" loading="lazy">
+            <img src="/gallery5.jpg" alt="Gallery Image 5" loading="lazy">
+            <img src="/gallery6.jpg" alt="Gallery Image 6" loading="lazy">
+            <img src="/gallery7.jpg" alt="Gallery Image 7" loading="lazy">
+            <img src="/gallery8.jpg" alt="Gallery Image 8" loading="lazy">
+            <img src="/gallery9.jpg" alt="Gallery Image 9" loading="lazy">
+            <img src="/specials1.jpg" alt="Gallery Image 10" loading="lazy">
+            <img src="/specials2.jpg" alt="Gallery Image 11" loading="lazy">
+            <img src="/sizzling1.jpg" alt="Gallery Image 12" loading="lazy">
+        </div>
+    </div>
+</Layout>
