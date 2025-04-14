@@ -8,6 +8,14 @@ const { title = 'Nebraska Lounge & Grill', subtitle = 'Welcome to Our Offerings'
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{title}</title>
+    <!-- Add Font Awesome for social media icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <style>
         :root {
             --primary-color: #0B3D02;
@@ -471,6 +479,34 @@ const { title = 'Nebraska Lounge & Grill', subtitle = 'Welcome to Our Offerings'
             color: #fff;
         }
 
+        /* Social Links Styling */
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 10px 0;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #ffd700; /* Match existing footer link hover color */
+        }
+
+        @media (max-width: 480px) {
+            .social-links a {
+                font-size: 1.2rem;
+            }
+
+            .social-links {
+                gap: 15px;
+            }
+        }
+
         /* Responsive Adjustments for All Sections */
         @media (max-width: 768px) {
             .events-container h2 {
@@ -594,12 +630,38 @@ const { title = 'Nebraska Lounge & Grill', subtitle = 'Welcome to Our Offerings'
 
     <footer>
         <p>Contact Us: 0707444742</p>
+        <!-- Social Media Links -->
+        <div class="social-links">
+            <a
+                href="https://www.facebook.com/share/15zMcSBAaV/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Follow us on Facebook"
+            >
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a
+                href="https://wa.me/254707444742"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Contact us on WhatsApp"
+            >
+                <i class="fab fa-whatsapp"></i>
+            </a>
+            <a
+                href="https://www.tiktok.com/@www.nebraskaloungeandgri?_t=ZM-8vTBkVdGIyb&_r=1"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Follow us on TikTok"
+            >
+                <i class="fab fa-tiktok"></i>
+            </a>
+        </div>
         <p>© 2025 Club Nebraska. All Rights Reserved.</p>
         <p>Designed By <a href="https://winkdevsolutions.com" target="_blank">WinKDev Solutions</a></p>
     </footer>
 
     <!-- JavaScript for Ordering -->
-    
     <script>
         let cart = [];
 
@@ -653,7 +715,7 @@ const { title = 'Nebraska Lounge & Grill', subtitle = 'Welcome to Our Offerings'
             }
 
             // Replace with your WhatsApp number (international format, e.g., 254712345678)
-            const whatsappNumber = "254720226517";
+            const whatsappNumber = "254707444742";
 
             // Construct order details
             const orderDetails = cart.map(i => 
@@ -683,7 +745,7 @@ const { title = 'Nebraska Lounge & Grill', subtitle = 'Welcome to Our Offerings'
 
         // Update cart display (unchanged)
         function updateCart() {
-        const cartItems = document.getElementById('cart-items');
+            const cartItems = document.getElementById('cart-items');
             const cartCount = document.getElementById('cart-count');
             const cartTotal = document.getElementById('cart-total');
             cartItems.innerHTML = cart.map(i => `<li>${i.quantity}x ${i.item} (${i.size}) - KSh ${i.total}</li>`).join('');
@@ -691,5 +753,5 @@ const { title = 'Nebraska Lounge & Grill', subtitle = 'Welcome to Our Offerings'
             cartTotal.textContent = cart.reduce((sum, i) => sum + i.total, 0);
         }
     </script>
-    </body>
-    </html>
+</body>
+</html>

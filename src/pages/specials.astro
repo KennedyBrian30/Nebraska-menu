@@ -76,7 +76,7 @@ import Layout from "../layouts/Layout.astro";
             background: rgba(105, 87, 96, 0.8);
             padding: 15px;
             width: 100%;
-            max-width: 400px;
+            max-width: 600px; /* Increased for better mobile fit */
             margin: 0 auto;
             border-radius: 10px;
         }
@@ -85,20 +85,26 @@ import Layout from "../layouts/Layout.astro";
             display: flex;
             justify-content: space-between;
             align-items: center;
-            width: 90%;
-            padding: 5px 0;
-            margin: 0 auto;
+            width: 100%; /* Full width for consistency */
+            padding: 8px 10px;
+            margin: 5px 0;
             gap: 10px;
+            flex-wrap: nowrap; /* Prevent wrapping on mobile */
         }
 
         .menu-item span:first-child {
             flex: 1;
             text-align: left;
+            font-size: 1rem;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap; /* Keep name on one line */
         }
 
         .menu-item span:nth-child(2) {
-            min-width: 70px;
+            width: 80px; /* Fixed width for price */
             text-align: right;
+            font-size: 1rem;
         }
 
         .full-breakfast {
@@ -147,16 +153,16 @@ import Layout from "../layouts/Layout.astro";
             font-size: 0.9rem;
             cursor: pointer;
             transition: background 0.3s ease;
-            width: auto;
-            min-width: 80px;
+            width: 80px; /* Fixed width for uniformity */
             text-align: center;
+            flex-shrink: 0; /* Prevent button from shrinking */
         }
 
         .full-breakfast .order-btn {
             padding: 8px 15px;
             font-size: 1rem;
             margin-top: 10px;
-            width: 100%;
+            width: 100%; /* Full width for Unbeatable Specials */
         }
 
         .order-btn:hover {
@@ -203,10 +209,19 @@ import Layout from "../layouts/Layout.astro";
                 height: 150px;
             }
 
+            .menu-list {
+                max-width: 100%;
+                padding: 10px;
+            }
+
+            .menu-item {
+                padding: 6px 8px;
+            }
+
             .order-btn {
                 padding: 5px 10px;
                 font-size: 0.85rem;
-                min-width: 70px;
+                width: 70px; /* Slightly smaller but uniform */
             }
 
             .full-breakfast .order-btn {
@@ -231,17 +246,29 @@ import Layout from "../layouts/Layout.astro";
 
             .menu-list {
                 font-size: 1rem;
-                padding: 10px;
+                padding: 8px;
             }
 
             .menu-item {
-                font-size: 1rem;
+                font-size: 0.9rem;
+                padding: 5px 5px;
+                gap: 5px;
+            }
+
+            .menu-item span:first-child {
+                font-size: 0.9rem;
+                max-width: 60%; /* Limit name width */
+            }
+
+            .menu-item span:nth-child(2) {
+                font-size: 0.9rem;
+                width: 60px; /* Smaller price width */
             }
 
             .order-btn {
                 padding: 4px 8px;
                 font-size: 0.8rem;
-                min-width: 60px;
+                width: 60px; /* Uniform size */
             }
 
             .full-breakfast .order-btn {
@@ -259,20 +286,21 @@ import Layout from "../layouts/Layout.astro";
     <!-- Section 1: Unbeatable Specials -->
     <h2 class="section-header">Unbeatable Specials</h2>
     <div class="full-breakfast">
-        <img src="/sizzling3.jpg" alt="NEB Special Platter for 5" loading="lazy">
+        <img src="/sizzling3.jpg" alt="NEB Special Platter" loading="lazy">
         <div class="full-breakfast-details">
             <span>NEB Special Platter - KSh 3000</span>
             <p>Contains beef, chicken, fish grilled veges, choice of ugali, chips rice, and a side of kachumbari.</p>
-            <p>Ideal for 5-8 people.</p>
+            <p>Ideal for 5-7 people.</p>
             <button class="order-btn" data-item="NEB Special Platter" data-prices='{"Default": 3000}'>Order</button>
         </div>
-        <div class="full-breakfast">
-        <img src="/sizzling3.jpg" alt="NEB Special Platter for 3" loading="lazy">
+    </div>
+    <div class="full-breakfast">
+        <img src="/sizzling3.jpg" alt="NEB Special Platter" loading="lazy">
         <div class="full-breakfast-details">
             <span>NEB Special Platter - KSh 2300</span>
             <p>Contains beef, chicken, fish grilled veges, choice of ugali, chips rice, and a side of kachumbari.</p>
-            <p>Ideal for 5-8 people.</p>
-            <button class="order-btn" data-item="NEB Special Platter" data-prices='{"Default": 3000}'>Order</button>
+            <p>Ideal for 3 people.</p>
+            <button class="order-btn" data-item="NEB Special Platter" data-prices='{"Default": 2300}'>Order</button>
         </div>
     </div>
     <div class="full-breakfast">
@@ -288,7 +316,7 @@ import Layout from "../layouts/Layout.astro";
         <div class="full-breakfast-details">
             <span>Beef Boil Ganga with Ojuri - KSh 600</span>
             <p>Served with veges.</p>
-            <button class="order-btn" data-item="Beef Boil Ganga with Ojuri" data-prices='{"Default": 60}'>Order</button>
+            <button class="order-btn" data-item="Beef Boil Ganga with Ojuri" data-prices='{"Default": 600}'>Order</button>
         </div>
     </div>
     <div class="full-breakfast">
@@ -322,15 +350,15 @@ import Layout from "../layouts/Layout.astro";
         </div>
         <div class="menu-item">
             <span>Chicken Maryland Marinated 1/2kg</span> <span>KSh 600</span>
-            <button class="order-btn" data-item="Chicken Mmaryland Marinated" data-prices='{"Default": 600}'>Order</button>
+            <button class="order-btn" data-item="Chicken Maryland Marinated" data-prices='{"Default": 600}'>Order</button>
         </div>
         <div class="menu-item">
             <span>Chicken Stew Special 1/4kg</span> <span>KSh 400</span>
-            <button class="order-btn" data-item="Chicken Stew Special" data-prices='{"Default": 600}'>Order</button>
+            <button class="order-btn" data-item="Chicken Stew Special" data-prices='{"Default": 400}'>Order</button>
         </div>
         <div class="menu-item">
             <span>Chicken Boneless 1/2kg</span> <span>KSh 400</span>
-            <button class="order-btn" data-item="Chicken Boneless" data-prices='{"Default": 600}'>Order</button>
+            <button class="order-btn" data-item="Chicken Boneless" data-prices='{"Default": 400}'>Order</button>
         </div>
         <div class="menu-item">
             <span>Vegetable Stir Fry</span> <span>KSh 500</span>
@@ -338,19 +366,19 @@ import Layout from "../layouts/Layout.astro";
         </div>
         <div class="menu-item">
             <span>Beef Kebabs</span> <span>KSh 300</span>
-            <button class="order-btn" data-item="Beef Kebabs" data-prices='{"Default": 700}'>Order</button>
+            <button class="order-btn" data-item="Beef Kebabs" data-prices='{"Default": 300}'>Order</button>
         </div>
         <div class="menu-item">
             <span>Pork Chops (Ribs)</span> <span>KSh 350</span>
-            <button class="order-btn" data-item="Pork Ribs" data-prices='{"Default": 350}'>Order</button>
+            <button class="order-btn" data-item="Pork Chops (Ribs)" data-prices='{"Default": 350}'>Order</button>
         </div>
         <div class="menu-item">
             <span>Pork Pan Fried 1/2kg</span> <span>KSh 800</span>
-            <button class="order-btn" data-item="Pork Pan Friend" data-prices='{"Default": 800}'>Order</button>
+            <button class="order-btn" data-item="Pork Pan Fried" data-prices='{"Default": 800}'>Order</button>
         </div>
         <div class="menu-item">
             <span>Mixed Fruit Platter</span> <span>KSh 250</span>
-            <button class="order-btn" data-item="Mixed Fruit Platter" data-prices='{"Default": 400}'>Order</button>
+            <button class="order-btn" data-item="Mixed Fruit Platter" data-prices='{"Default": 250}'>Order</button>
         </div>
         <div class="menu-item">
             <span>Pizza</span> <span>KSh 1000</span>
