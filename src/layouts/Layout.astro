@@ -1,9 +1,13 @@
+---
+const { title = 'Nebraska Lounge & Grill', subtitle = 'Savour Our Tasty Dishes' } = Astro.props;
+---
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nebraska Lounge & Grill</title>
+    <title>{title}</title>
     <!-- Add Font Awesome for social media icons -->
     <link
       rel="stylesheet"
@@ -162,7 +166,6 @@
         /* Upcoming Events Slideshow */
         .events-container {
             width: 100%;
-            max-width: 1800px; /* Increased from 1200px by 50% */
             margin: 20px auto 0;
             position: relative;
             overflow: hidden;
@@ -171,15 +174,9 @@
             padding: 20px;
         }
 
-        @media (max-width: 768px) {
-            .events-container {
-                max-width: 90%; /* Ensure responsiveness on smaller screens */
-            }
-        }
-
         .events-container h2 {
             font-size: 2rem;
-            color: rgb(218, 21, 64);
+            color: rgb(21, 50, 132);
             font-weight: bold;
             text-align: center;
             margin-bottom: 20px;
@@ -190,12 +187,11 @@
 
         .events-slideshow {
             display: flex;
-            width: calc(100% * 5); /* 5 events total */
-            animation: events-slide 20s infinite linear;
+            transition: transform 0.5s ease-in-out;
         }
 
         .event-slide {
-            width: calc(100% / 5); /* Each event takes 1/5th of total width */
+            width: 100%; /* Full viewport width */
             flex-shrink: 0;
             position: relative;
             text-align: center;
@@ -203,7 +199,7 @@
 
         .event-slide img {
             width: 100%;
-            height: 450px; /* Increased from 300px by 50% */
+            height: 600px;
             object-fit: cover;
             border-radius: 10px;
         }
@@ -221,9 +217,32 @@
             font-weight: bold;
         }
 
-        @keyframes events-slide {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-100%); } /* Full width of unique slides */
+        /* Navigation Arrows */
+        .event-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 1.5rem;
+            border-radius: 50%;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .events-container:hover .event-nav {
+            opacity: 1;
+        }
+
+        .event-nav-left {
+            left: 20px;
+        }
+
+        .event-nav-right {
+            right: 20px;
         }
 
         /* Order Button Styling */
@@ -231,15 +250,15 @@
             background: rgba(57, 109, 14, 0.8);
             color: white;
             border: none;
-            padding: 6px 12px; /* Reduced padding for minimal size */
+            padding: 6px 12px;
             border-radius: 5px;
             font-weight: bold;
-            font-size: 0.9rem; /* Slightly smaller text */
+            font-size: 0.9rem;
             cursor: pointer;
             transition: background 0.3s ease;
-            width: auto; /* Fixed width instead of 100% */
-            min-width: 80px; /* Minimal width for readability */
-            display: inline-block; /* Prevents full-width stretch */
+            width: auto;
+            min-width: 80px;
+            display: inline-block;
             text-align: center;
         }
 
@@ -327,7 +346,7 @@
             background: rgba(57, 109, 14, 0.8);
         }
 
-        /* Cart (Updated for Readability) */
+        /* Cart */
         .cart {
             position: fixed;
             bottom: 20px;
@@ -371,8 +390,8 @@
             color: white;
             padding: 15px;
             border-radius: 10px;
-            width: 100%; /* Ensure it takes available width */
-            max-width: 300px; /* Default max-width */
+            width: 100%;
+            max-width: 300px;
             max-height: 50vh;
             overflow-y: auto;
             position: absolute;
@@ -383,14 +402,14 @@
         .cart-content ul {
             list-style-type: none;
             margin: 10px 0;
-            white-space: normal; /* Allow text wrapping */
-            word-wrap: break-word; /* Break long words if needed */
+            white-space: normal;
+            word-wrap: break-word;
         }
 
         .cart-content li {
             margin: 5px 0;
-            font-size: 1rem; /* Readable font size */
-            line-height: 1.4; /* Improve readability */
+            font-size: 1rem;
+            line-height: 1.4;
         }
 
         .cart-expanded .cart-content {
@@ -424,18 +443,18 @@
             }
 
             .cart-icon {
-                display: none; /* Hide icon on desktop */
+                display: none;
             }
 
             .cart-content {
-                display: block; /* Always show full cart on desktop */
-                position: static; /* No absolute positioning */
-                max-height: none; /* No scroll limit */
+                display: block;
+                position: static;
+                max-height: none;
                 overflow-y: visible;
             }
         }
 
-        /* Mobile Adjustments (Updated for Wider Cart) */
+        /* Mobile Adjustments */
         @media (max-width: 768px) {
             .cart {
                 bottom: 10px;
@@ -455,9 +474,9 @@
             }
 
             .cart-content {
-                max-width: 80vw; /* Increased from 90vw for better fit */
-                width: 320px; /* Fixed width, approx 4x previous effective width */
-                min-width: 280px; /* Ensure it doesn’t shrink too much */
+                max-width: 80vw;
+                width: 320px;
+                min-width: 280px;
                 bottom: 50px;
                 right: 0;
             }
@@ -496,7 +515,7 @@
         }
 
         .social-links a:hover {
-            color: #ffd700; /* Match existing footer link hover color */
+            color: #ffd700;
         }
 
         @media (max-width: 480px) {
@@ -516,7 +535,7 @@
             }
 
             .event-slide img {
-                height: 300px; /* Increased from 200px by 50% */
+                height: 400px;
             }
 
             .event-details {
@@ -536,7 +555,7 @@
             }
 
             .event-slide img {
-                height: 225px; /* Increased from 150px by 50% */
+                height: 225px;
             }
 
             .event-details {
@@ -565,10 +584,10 @@
         </div>
     </nav>
 
-    <h2>Explore Our Culinary Choices</h2>
+    <h2>Explore Our Culinary Delights</h2>
 
     <img src="/menu-image1.jpg" alt="Delicious Menu" class="menu-image" loading="lazy">
-    <p class="welcome-text">Welcome!</p>
+    <p class="welcome-text">Your Club of Choice!</p>
 
     <div class="content">
         <slot />
@@ -606,28 +625,22 @@
     <!-- Upcoming Events Slideshow -->
     <section class="events-container">
         <h2>Upcoming Events</h2>
+        <button class="event-nav event-nav-left">◄</button>
         <div class="events-slideshow">
             <div class="event-slide">
                 <img src="/event1.jpg" alt="Event 1" loading="lazy">
-                <div class="event-details">Beats & Bliss - April 11, 2025</div>
+                <div class="event-details">Ignition Party - Sat April 26, 2025</div>
             </div>
             <div class="event-slide">
                 <img src="/event2.jpg" alt="Event 2" loading="lazy">
-                <div class="event-details">Touch Down - Sat, April 12, 2025</div>
+                <div class="event-details">Chills & Vibes - Sat, April 26, 2025</div>
             </div>
             <div class="event-slide">
                 <img src="/event3.jpg" alt="Event 3" loading="lazy">
-                <div class="event-details">Sunday Night Live - April 13, 2025</div>
-            </div>
-            <div class="event-slide">
-                <img src="/event4.jpg" alt="Event 4" loading="lazy">
-                <div class="event-details">Easter Fest - Music/Comedy - April 19, 2025</div>
-            </div>
-            <div class="event-slide">
-                <img src="/event4.jpg" alt="Event 5" loading="lazy">
-                <div class="event-details">Easter Music/Comedy Show - April 19, 2025</div>
+                <div class="event-details">Finesse Friday - April 25, 2025</div>
             </div>
         </div>
+        <button class="event-nav event-nav-right">►</button>
     </section>
 
     <footer>
@@ -663,7 +676,7 @@
         <p>Designed By <a href="https://winkdevsolutions.com" target="_blank">WinKDev Solutions</a></p>
     </footer>
 
-    <!-- JavaScript for Ordering -->
+    <!-- JavaScript for Ordering and Slideshow -->
     <script>
         let cart = [];
 
@@ -743,6 +756,47 @@
             cartCount.textContent = cart.length;
             cartTotal.textContent = cart.reduce((sum, i) => sum + i.total, 0);
         }
+
+        // Slideshow JavaScript
+        const slideshow = document.querySelector('.events-slideshow');
+        const slides = document.querySelectorAll('.event-slide');
+        const totalSlides = slides.length;
+        let currentIndex = 0;
+        const slideWidth = 100; // Each slide is 100% width
+
+        function updateSlideshow() {
+            slideshow.style.transform = `translateX(-${currentIndex * slideWidth}%)`;
+        }
+
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % totalSlides;
+            updateSlideshow();
+        }
+
+        function prevSlide() {
+            currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+            updateSlideshow();
+        }
+
+        // Auto-slide every 5 seconds
+        let autoSlide = setInterval(nextSlide, 5000);
+
+        // Navigation buttons
+        document.querySelector('.event-nav-left').addEventListener('click', () => {
+            clearInterval(autoSlide);
+            prevSlide();
+            autoSlide = setInterval(nextSlide, 5000); // Restart auto-slide
+        });
+
+        document.querySelector('.event-nav-right').addEventListener('click', () => {
+            clearInterval(autoSlide);
+            nextSlide();
+            autoSlide = setInterval(nextSlide, 5000); // Restart auto-slide
+        });
+
+        // Pause on hover (optional for better UX)
+        slideshow.addEventListener('mouseenter', () => clearInterval(autoSlide));
+        slideshow.addEventListener('mouseleave', () => autoSlide = setInterval(nextSlide, 5000));
     </script>
 </body>
 </html>
